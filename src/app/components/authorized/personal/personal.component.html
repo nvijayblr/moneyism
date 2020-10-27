@@ -1,0 +1,234 @@
+<section class="page-body profile-body">
+  <div class="container">
+    <div class="flex-containers space-between page-heading-action">
+      <div class="flex-item">
+        <h4 class="name">Personal Details</h4>
+      </div>
+      <div class="btn-main-right-wrapper">
+        <button mat-stroked-button class="secondary-btn" routerLink="/auth/personal/update">Edit</button>
+      </div>
+    </div>
+    <div class="row">
+      <app-progress-bar message="Loading personal details..." class="page" *ngIf="isLoading"></app-progress-bar>
+
+      <div class="col-xs-12 col-sm-4 col-md-4 ">
+        <app-account-details></app-account-details>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-8">
+
+        <mat-accordion class="personal-details" multi>
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Personal Details
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list flex-containers flex-start">
+              <div class="list-item-3 no-margin">
+                <label class="label">Gender</label>
+                <h4>{{personal.gender}}</h4>
+              </div>
+              <div class="list-item-3 no-margin">
+                <label class="label">DOB</label>
+                <h4>{{personal.dob | date:'mediumDate'}}</h4>
+              </div>
+              <div class="list-item-3 no-margin">
+                <label class="label">Maritial Status</label>
+                <h4>{{personal.maritalstatus}}</h4>
+              </div>
+              <div class="list-item-3 no-margin">
+                <label class="label">Blood Group</label>
+                <h4>{{personal.bloodgroup}}</h4>
+              </div>
+            </div>
+            <div class="list flex-containers flex-start">
+              <div class="list-item-3 no-margin">
+                <label class="label">Father Name</label>
+                <h4>{{personal.fathername}}</h4>
+              </div>
+              <div class="list-item-3 no-margin">
+                <label class="label">Monther Name</label>
+                <h4>{{personal.mothername}}</h4>
+              </div>
+              <div class="list-item-3 no-margin">
+                <label class="label">Birth City</label>
+                <h4>{{personal.birthcity}}</h4>
+              </div>
+              <div class="list-item-3 no-margin">
+                <label class="label">Living City</label>
+                <h4>{{personal.leavingcity}}</h4>
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Education
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list bt-border flex-containers space-between education-wrp" *ngFor="let education of personal.education">
+              <div class="flex-item no-margin">
+                <label class="label">{{education.year}}</label>
+                <h4>{{education.qualifiation}}, {{education.institution}}</h4>
+              </div>
+              <div class="flex-item">
+                <div class="img-preview" *ngIf="education.certificate && education.certificate.indexOf('blank.png') < 0">
+                  <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + education.certificate + ')'}"></div>
+                </div>
+                <button mat-icon-button title="View / Download" *ngIf="education.certificate && education.certificate.indexOf('blank.png') < 0">
+                  <mat-icon>attachment</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Oraganizaiton
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list flex-containers flex-start">
+              <div class="list-item-2 no-margin">
+                <label class="label">Oraganizaiton</label>
+                <h4>{{personal.comapanyname}}</h4>
+              </div>
+              <div class="list-item-2 no-margin">
+                <label class="label">Location</label>
+                <h4>{{personal.comapanyloc}}</h4>
+              </div>
+            </div>
+            <div class="list flex-containers flex-start">
+              <div class="list-item-2 no-margin">
+                <label class="label">Designation</label>
+                <h4>{{personal.designation}}</h4>
+              </div>
+              <div class="list-item-2 no-margin">
+                <label class="label">Email</label>
+                <h4>{{personal.companyemail}}</h4>
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Relations
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <h4 class="sub-title">Spouse</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let spouse of personal.spouse">
+                <label class="label">{{spouse.location}}</label>
+                <h4>{{spouse.name}}</h4>
+                <h4>{{spouse.phoneno}}, {{spouse.email}}</h4>
+              </div>
+            </div>
+
+            <h4 class="sub-title">Friends</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let friend of personal.friends">
+                <label class="label">{{friend.location}}</label>
+                <h4>{{friend.name}}</h4>
+                <h4>{{friend.phoneno}}, {{friend.email}}</h4>
+              </div>
+            </div>
+
+            <h4 class="sub-title">Relatives</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let relative of personal.relatives">
+                <label class="label">{{relative.location}}</label>
+                <h4>{{relative.name}}</h4>
+                <h4>{{relative.phoneno}}, {{relative.email}}</h4>
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Service Providers
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <h4 class="sub-title">Doctors</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let doctor of personal.doctors">
+                <label class="label">{{doctor.location}}</label>
+                <h4>{{doctor.name}}</h4>
+                <h4>{{doctor.phoneno}}, {{doctor.email}}</h4>
+              </div>
+            </div>
+
+            <h4 class="sub-title">Accountants</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let accountant of personal.accountant">
+                <label class="label">{{accountant.location}}</label>
+                <h4>{{accountant.name}}</h4>
+                <h4>{{accountant.phoneno}}, {{accountant.email}}</h4>
+              </div>
+            </div>
+
+            <h4 class="sub-title">Drivers</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let driver of personal.drivers">
+                <label class="label">{{driver.location}}</label>
+                <h4>{{driver.name}}</h4>
+                <h4>{{driver.phoneno}}, {{driver.email}}</h4>
+              </div>
+            </div>
+
+            <h4 class="sub-title">Lawyers</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let lawyer of personal.lawyers">
+                <label class="label">{{lawyer.location}}</label>
+                <h4>{{lawyer.name}}</h4>
+                <h4>{{lawyer.phoneno}}, {{lawyer.email}}</h4>
+              </div>
+            </div>
+
+            <h4 class="sub-title">Servant</h4>
+            <div class="flex-containers flex-start wrap">
+              <div class="list-item-2 list bt-border" *ngFor="let servant of personal.servants">
+                <label class="label">{{servant.location}}</label>
+                <h4>{{servant.name}}</h4>
+                <h4>{{servant.phoneno}}, {{servant.email}}</h4>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          
+          
+          <mat-expansion-panel class="repository-wrp">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Repository
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list" *ngIf="personal.idproofs && personal.idproofs.length">
+              <app-mn-carousel [items]="personal.idproofs" title="ID Proofs"></app-mn-carousel>
+            </div>
+
+            <div class="list" *ngIf="personal.awards && personal.awards.length">
+              <app-mn-carousel [items]="personal.awards" title="Awards"></app-mn-carousel>
+            </div>
+
+            <div class="list" *ngIf="personal.assets && personal.assets.length">
+              <app-mn-carousel [items]="personal.assets" title="Assets"></app-mn-carousel>
+            </div>
+
+            <div class="list" *ngIf="personal.libilities && personal.libilities.length">
+              <app-mn-carousel [items]="personal.libilities" title="Libilities"></app-mn-carousel>
+            </div>
+            
+            <div class="list" *ngIf="personal.homeAppliances && personal.homeAppliances.length">
+              <app-mn-carousel [items]="personal.homeAppliances" title="Home Appliances"></app-mn-carousel>
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+    </div>
+    
+
+  </div>
+</section>

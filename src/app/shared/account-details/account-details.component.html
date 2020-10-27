@@ -1,0 +1,47 @@
+<mat-card class="user-wrapper account-details">
+  <div class="flex-containers space-between account-heading">
+    <div class="flex-item">
+      <h4 class="a-title">Account Details</h4>
+    </div>
+    <div class="btn-main-right-wrapper" *ngIf="isCurrentUser">
+      <button mat-icon-button routerLink="/auth/personal/settings">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="user-profile-img">
+    <div class="profile-pic-small img" *ngIf="user.path" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + user.path + ')'}"></div>
+    <h4 class="profile-pic-small" *ngIf="!user.path">
+      <mat-icon>account_circle</mat-icon>
+    </h4>
+  </div>
+  <div class="personal-details">
+    <div class="text-center ratting-container">
+      <star-rating value="2.5" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="18px" readonly="true"></star-rating>
+    </div>
+    <div class="list">
+      <label class="label">Firstname</label>
+      <h4>{{user.firstname}}&nbsp;</h4>
+    </div>
+    <div class="list">
+      <label class="label">Middlename&nbsp;</label>
+      <h4>{{user.middlename}}</h4>
+    </div>
+    <div class="list">
+      <label class="label">Surname</label>
+      <h4>{{user.surname}}</h4>
+    </div>
+    <div class="list">
+      <label class="label">Username</label>
+      <h4>{{user.username}}</h4>
+    </div>
+    <div class="list">
+      <label class="label">Email</label>
+      <h4>{{user.email}}</h4>
+    </div>
+    <div class="list">
+      <label class="label">Phone number</label>
+      <h4>{{user.phoneno}}</h4>
+    </div>
+  </div>
+</mat-card>

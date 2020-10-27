@@ -1,0 +1,163 @@
+<section class="page-body profile-body">
+  <div class="container">
+    <div class="flex-containers space-between page-heading-action">
+      <div class="flex-item">
+        <h4 class="name">Professional Details</h4>
+      </div>
+      <div class="btn-main-right-wrapper" *ngIf="isCurrentUser">
+        <button mat-stroked-button class="secondary-btn" routerLink="/auth/professional/update">Edit</button>
+      </div>
+    </div>
+    <div class="row">
+      <app-progress-bar message="Loading professional details..." class="page" *ngIf="isLoading"></app-progress-bar>
+
+      <div class="col-xs-12 col-sm-4 col-md-4 ">
+        <app-account-details></app-account-details>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-8">
+
+        <mat-accordion class="personal-details" multi>
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Professional Experience
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list">
+              <div class="flex-containers list flex-start">
+                <div class="flex-item">
+                  <label class="label">Company / Individual,  Deisgnation, Location</label>
+                  <h4>{{professional.company}}, {{professional.profession}}, {{professional.location}}</h4>
+                </div>
+              </div>
+
+              <div class="flex-containers list flex-start">
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Experience</label>
+                  <h4>{{professional.exp}} Years</h4>
+                </div>
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Skill Type</label>
+                  <h4>{{professional.skilltype}}</h4>
+                </div>
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Ratting</label>
+                  <h4>{{professional.rating}}</h4>
+                </div>
+              </div>
+
+              <div class="flex-containers list flex-start">
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Company Website</label>
+                  <h4>{{professional.offwebsite}}</h4>
+                </div>
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Personal Website</label>
+                  <h4>{{professional.perwebsite}}</h4>
+                </div>
+              </div>
+
+              <div class="flex-containers list flex-start">
+                <div class="flex-item">
+                  <label class="label">Products / Skills</label>
+                  <h4>{{professional.products ? professional.products.join(', ') : ''}}</h4>
+                </div>
+              </div>
+
+              <div class="flex-containers list flex-start">
+                <div class="flex-item">
+                  <label class="label">Service Locations</label>
+                  <h4>{{professional.serLocations ? professional.serLocations.join(', ') : ''}}</h4>
+                </div>
+              </div>
+
+              <div class="flex-containers list flex-start">
+                <div class="flex-item">
+                  <label class="label">About me</label>
+                  <h4>{{professional.description}}</h4>
+                </div>
+              </div>
+
+            </div>
+          </mat-expansion-panel>
+
+          <!-- Address -->
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Address
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list">
+              <div class="flex-containers list flex-start">
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Street</label>
+                  <h4>{{professional.street}}</h4>
+                </div>
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">City</label>
+                  <h4>{{professional.city}}</h4>
+                </div>
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">State</label>
+                  <h4>{{professional.state}}</h4>
+                </div>
+              </div>
+
+              <div class="flex-containers list flex-start">
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Country</label>
+                  <h4>{{professional.country}}</h4>
+                </div>
+                <div class="flex-item list-item-3 no-margin">
+                  <label class="label">Zipcode</label>
+                  <h4>{{professional.zipcode}}</h4>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <!-- Achivements Panel -->
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Achivements
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list" *ngIf="professional.achivements && professional.achivements.length">
+              <app-mn-carousel [items]="professional.achivements"></app-mn-carousel>
+            </div>
+          </mat-expansion-panel>
+
+          <!-- Clinets Panel -->
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Clients
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list bt-border flex-containers space-between clients-wrp" *ngFor="let client of professional.clients">
+              <div class="flex-item no-margin">
+                <label class="label">{{client.work_type}}</label>
+                <h4>{{client.clientname}}</h4>
+                <h4>{{client.email}}, {{client.phoneno}}</h4>
+              </div>
+              <div class="flex-item">
+                <div class="img-preview" *ngIf="client.path">
+                  <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + client.path + ')'}"></div>
+                </div>
+                <!-- <button mat-icon-button title="View / Download" *ngIf="client.path">
+                  <mat-icon>attachment</mat-icon>
+                </button> -->
+              </div>
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+    </div>
+    
+
+  </div>
+</section>

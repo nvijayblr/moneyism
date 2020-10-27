@@ -1,0 +1,59 @@
+.signup-wrapper {
+  background: linear-gradient(100deg,#b00000 ,#8d0000),linear-gradient(100deg, #8aaebb, #89adba);
+  background-attachment: fixed;
+  background-color: #b00000;  
+  height: 100vh;
+  .login-card {
+    width: 600px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0;
+    padding: 44px 55px 33px 55px;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  }
+  .page-title {
+    font-size: 52px;
+    text-align: left;
+    font-weight: 300;
+    margin-right: 44px;
+    color: #f2f2f2;
+  }
+  .title {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 44px;
+  }
+  .logo-wrapper {
+    text-align: center;
+    margin: 24px 0;
+    .logo {
+      width: 100px;
+    }
+  }
+  .mat-form-field {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 18px;
+  }
+  .login-btn-wrpper {
+    margin-top: 24px;
+    text-align: center;
+  }
+  .account-btn-wrpper {
+    margin-top: 62px;
+    text-align: center;
+  }
+  .btn-wrapper-text {
+    margin-top: 20px; 
+    text-align: center;
+    line-height: 22px;
+    width: 400px;
+    margin: auto;    
+  }
+}

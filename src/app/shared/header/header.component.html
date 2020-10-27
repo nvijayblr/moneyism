@@ -1,0 +1,92 @@
+<header class="header masthead sticky" [ngClass]="{'white-bg' : isSticky, 'menu-hidden' : isHidden}">
+  <div class="header-top header-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-1 ">
+          <a class="logo-wrapper" routerLink="/auth/home">
+            <img class="logo" src="./../assets/images/logo.png" alt="Moneyism">
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-7">
+          <form [formGroup]="searchForm">
+            <div class="list flex-containers flex-start wrap">
+              <div class="list-item-4 list-item">
+                <mat-form-field appearance="outline">
+                  <mat-label>Option</mat-label>
+                  <mat-select formControlName="option">
+                    <mat-option *ngFor="let option of searchOptions" [value]="option.value">{{option.title}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="list-item-3 list-item">
+                <mat-form-field appearance="outline">
+                  <mat-label>Search</mat-label>
+                  <input matInput placeholder="Search" formControlName="q" maxlength="100" autocomplete="off"/>
+                </mat-form-field>
+              </div>
+              <div class="list-item-3 list-item">
+                <mat-form-field appearance="outline">
+                  <mat-label>Location</mat-label>
+                  <input matInput placeholder="Location" formControlName="location" maxlength="100" autocomplete="off"/>
+                </mat-form-field>
+              </div>
+              <div class="list-item-7 list-item">
+                <button mat-stroked-button class="primary-btn" cdkFocusInitial (click)="initSearch()">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-right">
+          <div class="main-nav">
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>account_circle</mat-icon>
+              Me
+            </button>
+            <mat-menu #menu="matMenu">
+              <div class="nav-category-item user-menu-item" mat-menu-item>
+                <mat-icon class="user-icon">account_circle</mat-icon>
+                <div class="user-info">
+                  <p>{{user.firstname}} {{user.lastname}}</p>
+                  <p>{{user.email}}</p>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <button class="nav-category-item" mat-menu-item routerLink="/auth/personal">Personal</button>
+              <button class="nav-category-item" mat-menu-item routerLink="/auth/professional">Professional</button>
+              <button class="nav-category-item" mat-menu-item routerLink="/auth/community">Community</button>
+              <button class="nav-category-item" mat-menu-item routerLink="/auth/personal/settings">Settings</button>
+              <mat-divider></mat-divider>
+              <button class="nav-category-item" mat-menu-item (click)="doLogout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+            </mat-menu>
+
+            <button mat-button routerLink="/auth/deals">
+              <mat-icon>group_work</mat-icon>
+              Deals
+            </button>
+            <button mat-button routerLink="/auth/contacts">
+              <mat-icon>perm_contact_calendar</mat-icon>
+              Contacts
+            </button>
+            <button mat-button>
+              <mat-icon>calendar_today</mat-icon>
+              Tasks
+            </button>
+            <button mat-button class="notification-menu">
+              <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+              Notifications
+            </button>
+          </div>
+          <!-- <div class="logged-in-wrp sub-nav" *ngIf="user.isLoggedIn">
+            <a class="gv-btn-link" 
+              routerLink="/personal/{{user.UserId}}"
+              routerLinkActive="on"
+              [routerLinkActiveOptions]="{ exact: false, __change_detection_hack__: user.UserId }"
+            >
+              Vijay N
+          </a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

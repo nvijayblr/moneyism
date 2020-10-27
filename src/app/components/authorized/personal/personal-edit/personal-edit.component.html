@@ -1,0 +1,311 @@
+<section class="page-body profile-body">
+  <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
+  <div class="container">
+    <div class="flex-containers space-between page-heading-action">
+      <div class="flex-item">
+        <h4 class="name">Personal Details</h4>
+      </div>
+      <div class="btns-wrapper">
+        <div class="btn-main-right-wrapper">
+          <button mat-stroked-button class="secondary-btn" routerLink="/auth/personal">Cancel</button>
+          <button mat-stroked-button class="primary-btn" (click)="savePersonalDetails()">Save</button>
+        </div>
+        <div class="error-messages-wrapper">
+          <mat-error *ngIf="errorMessage">
+            {{errorMessage}}
+          </mat-error>
+        </div>
+      </div>
+    </div>
+    <div class="personal-form-wrapper">
+      <form [formGroup]="personalDetailsForm">
+
+        <mat-accordion class="personal-details" multi>
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Personal Details
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="form-continer">
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Gender</mat-label>
+                      <mat-select formControlName="gender">
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>DOB</mat-label>
+                      <input 
+                        matInput 
+                        [matDatepicker]="picker"
+                        [max]="maxDate" 
+                        placeholder="Target Date" 
+                        formControlName="dob" 
+                        autocomplete="off"/>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Maritial Status</mat-label>
+                      <mat-select formControlName="maritalstatus">
+                        <mat-option value="Single">Single</mat-option>
+                        <mat-option value="Married">Married</mat-option>
+                        <mat-option value="Divorced">Divorced</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+    
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Father's Name</mat-label>
+                      <input matInput placeholder="Father's Name" formControlName="fathername" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Mother's Name</mat-label>
+                      <input matInput placeholder="Mother's Name" formControlName="mothername" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Birth City</mat-label>
+                      <input matInput placeholder="Birth City" formControlName="birthcity" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                </div>
+    
+
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Leaving City</mat-label>
+                      <input matInput placeholder="Leaving City" formControlName="leavingcity" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Blood Group</mat-label>
+                      <input matInput placeholder="Blood Group" formControlName="bloodgroup" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Company Name</mat-label>
+                      <input matInput placeholder="Company Name" formControlName="comapanyname" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                </div>
+    
+
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Company Location</mat-label>
+                      <input matInput placeholder="Company Location" formControlName="comapanyloc" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Designation</mat-label>
+                      <input matInput placeholder="Designation" formControlName="designation" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Company Email</mat-label>
+                      <input matInput placeholder="Company Email" formControlName="companyemail" maxlength="50" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Education
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="btn-main-right-wrapper top-sapce">
+              <button type="button" mat-stroked-button class="secondary-btn" 
+                (click)="addFormItem('education')" 
+                *ngIf="!personalDetailsForm.get('education')['controls'].length">
+                  Add Education
+              </button>
+            </div>
+            <div class="flex-containers space-between" 
+              formArrayName="education" *ngFor="let edu of personalDetailsForm.get('education')['controls']; index as i; last as isLast; first as isFirst">
+              <ng-container [formGroupName]="i">
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Education</mat-label>
+                      <mat-select formControlName="qualifiation">
+                        <mat-option *ngFor="let edu of educationTypes" [value]="edu.value">{{edu.title}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Institution</mat-label>
+                      <input matInput placeholder="Institution" formControlName="institution" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-7">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Year</mat-label>
+                      <input matInput placeholder="Year" formControlName="year" maxlength="4" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-4">
+                    <app-image-cropper 
+                      [imageType]="'Education'"
+                      [imagePath]="personal.education[i]?.path ? personal.education[i].path : ''"
+                      (uploadCompleted)="onUploadCompleted($event, edu)">
+                    </app-image-cropper>
+                  </div>
+                </div>
+                <div class="list add-remove-button">
+                  <button type="button" mat-icon-button type="button" (click)="addFormItem('education')" *ngIf="isLast">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <button type="button" mat-icon-button type="button" (click)="removeFormItem('education', i)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Relations and Service Providers
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="btn-main-right-wrapper top-sapce">
+              <button type="button" mat-stroked-button class="secondary-btn" 
+                (click)="addFormItem('relations')" 
+                *ngIf="!personalDetailsForm.get('relations')['controls'].length">
+                  Add Relation
+              </button>
+            </div>
+            <div class="flex-containers space-between" 
+              formArrayName="relations" *ngFor="let relation of personalDetailsForm.get('relations')['controls']; index as i; last as isLast; first as isFirst">
+              <ng-container [formGroupName]="i">
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Relation Type</mat-label>
+                      <mat-select formControlName="relation_type">
+                        <mat-option *ngFor="let type of relationTypes | keyvalue" [value]="type.value.value">{{type.value.title}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Name" formControlName="name" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input matInput placeholder="Email" formControlName="email" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Phone No</mat-label>
+                      <input matInput placeholder="Phone No" formControlName="phoneno" maxlength="15" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Location</mat-label>
+                      <input matInput placeholder="Location" formControlName="location" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="list add-remove-button">
+                  <button type="button" mat-icon-button type="button" (click)="addFormItem('relations')" *ngIf="isLast">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <button type="button" mat-icon-button type="button" (click)="removeFormItem('relations', i)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Repository
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="btn-main-right-wrapper top-sapce">
+              <button type="button" mat-stroked-button class="secondary-btn" 
+                (click)="addFormItem('records')" 
+                *ngIf="!personalDetailsForm.get('records')['controls'].length">
+                  Add Record
+              </button>
+            </div>
+            <div class="flex-containers space-between" 
+              formArrayName="records" *ngFor="let record of personalDetailsForm.get('records')['controls']; index as i; last as isLast; first as isFirst">
+              <ng-container [formGroupName]="i">
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Type</mat-label>
+                      <mat-select formControlName="image_type">
+                        <mat-option *ngFor="let type of recordTypes | keyvalue" [value]="type.value.value">{{type.value.title}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Name" formControlName="name" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-3">
+                    <app-image-cropper 
+                      [imageType]="'Records'"
+                      [imagePath]="personal.records[i]?.path ? personal.records[i].path : ''"
+                      (uploadCompleted)="onUploadCompleted($event, record)">
+                    </app-image-cropper>
+                  </div>
+
+                </div>
+                <div class="list add-remove-button">
+                  <button type="button" mat-icon-button type="button" (click)="addFormItem('records')" *ngIf="isLast">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <button type="button" mat-icon-button type="button" (click)="removeFormItem('records', i)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </form>
+    </div>
+    
+
+  </div>
+</section>

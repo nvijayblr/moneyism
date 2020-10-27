@@ -1,0 +1,106 @@
+<section class="page-body profile-body">
+  <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
+  <div class="container">
+    <div class="flex-containers space-between page-heading-action">
+      <div class="flex-item">
+        <h4 class="name">Account Details</h4>
+      </div>
+      <div class="btns-wrapper">
+        <div class="btn-main-right-wrapper">
+          <button mat-stroked-button class="secondary-btn" routerLink="/auth/personal">Cancel</button>
+          <button mat-stroked-button class="primary-btn" (click)="saveAccountDetails()">Save</button>
+        </div>
+        <div class="error-messages-wrapper">
+          <mat-error *ngIf="errorMessage">
+            {{errorMessage}}
+          </mat-error>
+          <div class="mat-error" *ngIf="isConfirmPasswordError">
+            Passsword and Confirm Password didn't match.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="settings-form-wrapper">
+
+      <form [formGroup]="userDetailsForm">
+
+        <mat-accordion class="personal-details" multi>
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Account Details
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="form-continer">
+              <div class="list flex-containers flex-start wrap">
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" formControlName="username" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Phone number</mat-label>
+                    <input matInput placeholder="Phone number" formControlName="phoneno" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="list flex-containers flex-start wrap">
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Firstname</mat-label>
+                    <input matInput placeholder="Firstname" formControlName="firstname" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Middlename</mat-label>
+                    <input matInput placeholder="Middlename" formControlName="middlename" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Surname</mat-label>
+                    <input matInput placeholder="Surname" formControlName="surname" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+              </div>              
+              <div class="list flex-containers flex-start wrap">
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput placeholder="Password" formControlName="password" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" matInput placeholder="Confirm Password" formControlName="confirm_password" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <app-image-cropper 
+                    [imageType]="'Profile'"
+                    [imagePath]="user?.path ? user.path : ''"
+                    (uploadCompleted)="onUploadCompleted($event, userDetailsForm)">
+                  </app-image-cropper>
+                </div>
+
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </form>
+    </div>
+    
+
+  </div>
+</section>
+

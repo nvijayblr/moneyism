@@ -1,0 +1,57 @@
+
+<div class="login-wrapper flex-containers center">
+  <h1 class="page-title">Welcome to your <br/>professional community</h1>
+  <mat-card class="login-card ">
+    <div class="logo-wrapper">
+      <img class="logo" src="./../assets/images/logo.png" alt="Moneyism">
+    </div>
+    <h1 class="title">Sign in to your account</h1>
+
+    <div mat-dialog-content>
+      <mat-error class="box-error-msg" *ngIf="errorMessage">
+        {{errorMessage}}
+      </mat-error>
+      <div class="row">
+        <!-- <div class="col-md-5">
+          <div class="social-btn-wrapper">
+            <button mat-flat-button color="primary" class="full-width google-btn" (click)="signInWithGoogle()">
+              <i class="fa fa-google"></i>
+              Sign In with Google
+            </button>
+            <button mat-flat-button color="primary" class="full-width facebook-btn" (click)="signInWithFB()">
+              <i class="fa fa-facebook"></i>
+              Sign In with Facebook</button>
+          </div>
+        </div> -->
+        <div class="col">
+          <form [formGroup]="loginForm" class="custom-login-wrapper">
+            <mat-form-field class="full-width" appearance="standard">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="Username" cdkFocusInitial formControlName="username" required autocomplete="no">
+              <mat-error>
+                Please provide a valid username.
+              </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="full-width" appearance="standard">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Password" formControlName="password" required>
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <div class="login-btn-wrpper">
+              <button mat-raised-button color="primary" (click)="doLogin()" class="full-width login-primary-btn" [disabled]="isLoading" [class.loading]="isLoading">
+                Sign in
+              </button>
+            </div>
+
+            <div class="account-btn-wrpper">
+              New to Moneyism? <a routerLink="/signup">Join Now</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
