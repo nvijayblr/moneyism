@@ -15,12 +15,14 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
   isLoading = true;
 
   user: any = {};
-  professional: any = {};
+  professional: any = [];
+  services: any = [];
   userId: any = '';
   isUserLoggedIn = false;
   isEditMode = false;
   appConfig: any = {};
   isCurrentUser = false;
+  isProfessionalTab = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,6 +59,44 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
     }, (error) => {
       this.isLoading = false;
     });
+  }
+
+  getUsersServicesDetails() {
+    this.isLoading = true;
+    this.http.getServicesDetails(this.userId).subscribe((result: any) => {
+      this.isLoading = false;
+      this.services = result;
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
+  tabChange(tab) {
+    if (tab.index === 0) {
+      this.isProfessionalTab = true;
+    }
+    if (tab.index === 1) {
+      this.isProfessionalTab = false;
+      this.getUsersServicesDetails();
+    }
+  }
+
+
+  isImage(path) {
+    if (path && path.indexOf('.jpg') > 0 || path.indexOf('.jpeg') > 0 || path.indexOf('.png') > 0 || path.indexOf('.gif') > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  isFile(path) {
+    if (!path) {
+      return false;
+    }
+    if (path && path.indexOf('.jpg') < 0 && path.indexOf('.jpeg') < 0 && path.indexOf('.png') < 0 && path.indexOf('.gif') < 0) {
+      return true;
+    }
+    return false;
   }
 
   ngOnDestroy() {

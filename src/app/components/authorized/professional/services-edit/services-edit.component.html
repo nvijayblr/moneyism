@@ -1,0 +1,87 @@
+<section class="page-body profile-body">
+  <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
+  <div class="container">
+    <div class="flex-containers space-between page-heading-action">
+      <div class="flex-item">
+        <h4 class="name">Products / Services Details</h4>
+      </div>
+      <div class="btns-wrapper">
+        <div class="btn-main-right-wrapper">
+          <button mat-stroked-button class="secondary-btn" routerLink="/auth/professional">Cancel</button>
+          <button mat-stroked-button class="primary-btn" (click)="saveServicesDetails()" [disabled]="!servicesDetailsForm.get('services').length">Save</button>
+        </div>
+        <div class="error-messages-wrapper">
+          <mat-error *ngIf="errorMessage">
+            {{errorMessage}}
+          </mat-error>
+        </div>
+      </div>
+    </div>
+    <div class="personal-form-wrapper">
+      <form [formGroup]="servicesDetailsForm">
+
+        <mat-accordion class="personal-details" multi>
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Products / Services
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="btn-main-right-wrapper top-sapce">
+              <button type="button" mat-stroked-button class="secondary-btn" 
+                (click)="addFormItem('services')" 
+                *ngIf="!servicesDetailsForm.get('services')['controls'].length">
+                  Add Products / Services
+              </button>
+            </div>
+            <div class="flex-containers space-between" 
+              formArrayName="services" *ngFor="let service of servicesDetailsForm.get('services')['controls']; index as i; last as isLast; first as isFirst">
+              <ng-container [formGroupName]="i">
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-4">
+                    <app-image-cropper 
+                      [imageType]="'Products'"
+                      [fileTypes]="'application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*'"
+                      [imagePath]="services[i]?.path ? services[i].path : ''"
+                      (uploadCompleted)="onUploadCompleted($event, service)">
+                    </app-image-cropper>
+                  </div>
+                  <div class="list-item-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Name" formControlName="name" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Amount</mat-label>
+                      <input matInput type="number" placeholder="Amount" formControlName="amount" maxlength="10" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-1">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Description</mat-label>
+                      <textarea matInput placeholder="Description" formControlName="description" rows="2" autocomplete="off"></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="list add-remove-button">
+                  <button type="button" mat-icon-button type="button" (click)="addFormItem('services')" *ngIf="isLast">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <button type="button" mat-icon-button type="button" (click)="removeFormItem('services', i)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </form>
+    </div>
+    
+
+  </div>
+</section>

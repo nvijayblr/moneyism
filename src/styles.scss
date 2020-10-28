@@ -585,6 +585,27 @@ app-progress-bar.page {
     margin-top: 0 !important;
   }
 }
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #b00000;
+}
+.mat-tab-header, .mat-tab-nav-bar {
+  border-bottom: 1px solid #8d0000;
+}
+.mat-tab-label {
+  height: 42px;
+  text-transform: uppercase;
+  padding: 0;
+}
+.mat-tab-label-active {
+  background: rgb(176,1, 0, 0.52);
+  color: #FFF;
+  opacity: 1 !important;
+}
+.mat-tab-body-content {
+  padding: 0 0;
+}
+
 // Media Query
 
 @media only screen and (max-width: 720px) { 

@@ -26,6 +26,7 @@ export class HttpService  {
   private cancelGetUsernameTypeahead$ = new Subject<void>();
   private cancelGetDealsSearch$ = new Subject<void>();
   private cancelGetProfessionsSearch$ = new Subject<void>();
+  private cancelGetServicesDetails$ = new Subject<void>();
 
   loginRequest(payload): Observable<any> {
     return this.http.post<any>(`${this.rootUrl}user/login`, payload).pipe(
@@ -131,7 +132,7 @@ export class HttpService  {
   }
 
 
-  // Get user personal details - grouping
+  // Get user professional details - grouping
   getProfessionalDetails(userId): Observable<any> {
     const header: any = this.getAuthHeaders();
     return this.http.get<any>(`${this.rootUrl}userprof/${userId}`, header).pipe(
@@ -152,7 +153,7 @@ export class HttpService  {
     return this.cancelGetProfessionalDetails$.asObservable();
   }
 
-  // Save user personal details
+  // Save user professional details
   saveProfessionalDetails(userId, professional): Observable<any> {
     const header: any = this.getAuthHeaders();
     return this.http.post<any>(`${this.rootUrl}userprof/${userId}`, professional, header).pipe(
@@ -164,6 +165,39 @@ export class HttpService  {
     );
   }
 
+
+  // Get user services details
+  getServicesDetails(userId): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.get<any>(`${this.rootUrl}user/${userId}/products`, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+      takeUntil(this.onCancelGetServicesDetails())
+    );
+  }
+
+  public cancelGetServicesDetails() {
+    this.cancelGetServicesDetails$.next();
+  }
+
+  public onCancelGetServicesDetails() {
+    return this.cancelGetServicesDetails$.asObservable();
+  }
+
+  // Save user services details
+  saveServicesDetails(userId, professional): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.post<any>(`${this.rootUrl}user/${userId}/products`, professional, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
 
 
   // Get user contacts

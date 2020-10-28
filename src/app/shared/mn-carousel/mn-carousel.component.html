@@ -13,7 +13,7 @@
     <ng-container *ngFor="let item of items">
       <ng-template carouselSlide [width]="'180px'">
         <mat-card class="flex-item border award">
-          <h4 *ngIf="!item.path"><mat-icon>attachment</mat-icon></h4>
+          <h4 *ngIf="!item.path"><mat-icon>image</mat-icon></h4>
           <h4 *ngIf="item.path && isFile(item.path)">
             <a href="{{appConfig.imgBaseUrl}}{{item.path}}" target="_blank">
               <mat-icon>picture_as_pdf</mat-icon>
@@ -35,7 +35,7 @@
   <h4 class="sub-title block" *ngIf="title">{{title}}</h4>
   <div class="list bt-border flex-containers flex-start">
     <mat-card class="flex-item list-item-3 border award" *ngFor="let item of items">
-      <h4 *ngIf="!item.path"><mat-icon>attachment</mat-icon></h4>
+      <h4 *ngIf="!item.path"><mat-icon>image</mat-icon></h4>
       <h4 *ngIf="item.path && isFile(item.path)">
         <a href="{{appConfig.imgBaseUrl}}{{item.path}}" target="_blank">
           <mat-icon>picture_as_pdf</mat-icon>

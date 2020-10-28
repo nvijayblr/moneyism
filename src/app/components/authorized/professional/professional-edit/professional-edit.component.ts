@@ -63,7 +63,7 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.initProfessionalDetails({});
+    this.initProfessionalDetailsForm({});
     this.getUsersProfessionalDetails();
   }
 
@@ -72,13 +72,13 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
     this.http.getProfessionalDetails(this.userId).subscribe((result: any) => {
       this.isLoading = false;
       this.professional = result;
-      this.initProfessionalDetails(this.professional);
+      this.initProfessionalDetailsForm(this.professional);
     }, (error) => {
       this.isLoading = false;
     });
   }
 
-  initProfessionalDetails(professional) {
+  initProfessionalDetailsForm(professional) {
     this.professionalDetailsForm = this.fb.group({
       company: [professional.company, [Validators.required]],
       profession: [professional.profession, [Validators.required]],

@@ -5,10 +5,11 @@ import { SharedModule } from '../../../shared/shared.module';
 import { ProfessionalRoutingModule } from './professional-routing.module';
 import { ProfessionalComponent } from './professional.component';
 import { ProfessionalEditComponent } from './professional-edit/professional-edit.component';
+import { ServicesEditComponent } from './services-edit/services-edit.component';
 
 
 @NgModule({
-  declarations: [ProfessionalComponent, ProfessionalEditComponent],
+  declarations: [ProfessionalComponent, ProfessionalEditComponent, ServicesEditComponent],
   imports: [
     CommonModule,
     ProfessionalRoutingModule,
@@ -16,7 +17,8 @@ import { ProfessionalEditComponent } from './professional-edit/professional-edit
   ],
   exports: [
     ProfessionalComponent,
-    ProfessionalEditComponent
+    ProfessionalEditComponent,
+    ServicesEditComponent
   ]
 })
 export class ProfessionalModule { }
