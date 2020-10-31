@@ -8,7 +8,7 @@
       <div class="btns-wrapper">
         <div class="btn-main-right-wrapper">
           <button mat-stroked-button class="secondary-btn" routerLink="/auth/professional">Cancel</button>
-          <button mat-stroked-button class="primary-btn" (click)="saveServicesDetails()" [disabled]="!servicesDetailsForm.get('services').length">Save</button>
+          <button mat-stroked-button class="primary-btn" (click)="saveServicesDetails()">Save</button>
         </div>
         <div class="error-messages-wrapper">
           <mat-error *ngIf="errorMessage">

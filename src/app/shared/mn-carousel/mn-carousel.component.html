@@ -14,12 +14,12 @@
       <ng-template carouselSlide [width]="'180px'">
         <mat-card class="flex-item border award">
           <h4 *ngIf="!item.path"><mat-icon>image</mat-icon></h4>
-          <h4 *ngIf="item.path && isFile(item.path)">
+          <h4 *ngIf="item.path && (item.path | fileformat) === 'docs'">
             <a href="{{appConfig.imgBaseUrl}}{{item.path}}" target="_blank">
               <mat-icon>picture_as_pdf</mat-icon>
             </a>
           </h4>
-          <div *ngIf="item.path && isImage(item.path)" class="img-preview">
+          <div *ngIf="item.path && (item.path | fileformat) === 'images'" class="img-preview">
             <a href="{{appConfig.imgBaseUrl}}{{item.path}}" target="_blank">
               <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + item.path + ')'}"></div>
             </a>
@@ -36,12 +36,12 @@
   <div class="list bt-border flex-containers flex-start">
     <mat-card class="flex-item list-item-3 border award" *ngFor="let item of items">
       <h4 *ngIf="!item.path"><mat-icon>image</mat-icon></h4>
-      <h4 *ngIf="item.path && isFile(item.path)">
+      <h4 *ngIf="item.path && (item.path | fileformat) === 'docs'">
         <a href="{{appConfig.imgBaseUrl}}{{item.path}}" target="_blank">
           <mat-icon>picture_as_pdf</mat-icon>
         </a>
       </h4>
-      <div *ngIf="item.path && isImage(item.path)" class="img-preview">
+      <div *ngIf="item.path && (item.path | fileformat) === 'images'" class="img-preview">
         <a href="{{appConfig.imgBaseUrl}}{{item.path}}" target="_blank">
           <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + item.path + ')'}"></div>
         </a>

@@ -10,11 +10,10 @@
     <button mat-icon-button class="done-btn" *ngIf="isUploadDone">
       <mat-icon>done</mat-icon>
     </button>
-    
-    <div class="img-preview" *ngIf="imagePath && !isUploadDone && isFile(imagePath)">
+    <div class="img-preview" *ngIf="imagePath && !isUploadDone && (imagePath | fileformat) === 'docs'">
       <mat-icon>picture_as_pdf</mat-icon>
     </div>
-    <div class="img-preview" *ngIf="imagePath && !isUploadDone && isImage(imagePath)">
+    <div class="img-preview" *ngIf="imagePath && !isUploadDone && (imagePath | fileformat) === 'images'">
       <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + imagePath + ')'}"></div>
     </div>
     <div class="error-messages-wrapper">

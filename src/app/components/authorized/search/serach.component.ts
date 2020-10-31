@@ -40,7 +40,7 @@ export class SerachComponent implements OnInit {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
     this.userId = this.user.id;
-    this.initOpenDeails();
+    this.initUsersOpenDeails();
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.search = queryParams;
       if (this.search.option === 'deals') {
@@ -74,7 +74,7 @@ export class SerachComponent implements OnInit {
   }
 
   // Get users open deals list
-  initOpenDeails() {
+  initUsersOpenDeails() {
     this.openDeals = [];
     this.http.getDealsByStatus(this.userId, 'New').subscribe((result: any) => {
       this.openDeals = result ? result : [];
@@ -122,27 +122,10 @@ export class SerachComponent implements OnInit {
     this.http.updateDealsStatus(payload).subscribe((result: any) => {
       profession.showComment = false;
       this.isLoading = false;
-      this.initOpenDeails();
+      this.initUsersOpenDeails();
     }, (error) => {
       this.isLoading = false;
     });
-  }
-
-  isImage(path) {
-    if (path && path.indexOf('.jpg') > 0 || path.indexOf('.jpeg') > 0 || path.indexOf('.png') > 0 || path.indexOf('.gif') > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  isFile(path) {
-    if (!path) {
-      return false;
-    }
-    if (path && path.indexOf('.jpg') < 0 && path.indexOf('.jpeg') < 0 && path.indexOf('.png') < 0 && path.indexOf('.gif') < 0) {
-      return true;
-    }
-    return false;
   }
 
 }

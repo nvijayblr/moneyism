@@ -27,11 +27,6 @@ export class SignupComponent implements OnInit {
   isOtpScreen = false;
   isConfirmPasswordError = false;
 
-  ngoList: any = {
-    ngoSectors: [],
-    ngoTypes: []
-  };
-
   constructor(
     private fb: FormBuilder,
     private socialAuthService: SocialAuthService,

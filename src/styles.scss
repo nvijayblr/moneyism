@@ -4,6 +4,7 @@
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;
@@ -586,26 +587,79 @@ app-progress-bar.page {
   }
 }
 
+.mat-tab-label {
+  text-transform: uppercase;
+  font-weight: 400;
+}
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: #b00000;
 }
-.mat-tab-header, .mat-tab-nav-bar {
-  border-bottom: 1px solid #8d0000;
-}
-.mat-tab-label {
-  height: 42px;
-  text-transform: uppercase;
-  padding: 0;
+.mat-tab-labels {
+  border-bottom: 1px solid #b00000;
 }
 .mat-tab-label-active {
-  background: rgb(176,1, 0, 0.52);
-  color: #FFF;
+  background: rgba(176, 0, 0, 0.82);
+  color: #fff;
   opacity: 1 !important;
 }
-.mat-tab-body-content {
-  padding: 0 0;
+
+
+owl-date-time-container {
+  owl-date-time-calendar {
+      .owl-dt-calendar-control {
+          padding: 1em 0.5em;
+      }
+  }
+
+  owl-date-time-timer {
+      .owl-dt-timer-content {
+          .owl-dt-timer-input {
+              font-size: 16px;
+              border: 0;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.32);
+              border-radius: 0;
+              background: transparent;
+              color: rgba(0, 0, 0, 0.87);
+          }
+      }
+
+      .owl-dt-timer-divider {
+          position: absolute;
+          width: .6em;
+          height: 30px;
+          left: 0;
+          font-size: 8px;
+          top: 30px;
+      }
+  }
+
+  .owl-dt-container-buttons {
+      height: 50px;
+  }
+
+  .owl-dt-control-button {
+      .owl-dt-control-button-content {
+          &:hover {
+              background-color: rgba(0, 0, 0, 0.08);
+          }
+      }
+  }
+  .owl-dt-timer-hour12, .owl-dt-container-buttons {
+    color: #b00100;
+  }
+  .owl-dt-timer-hour12 .owl-dt-timer-hour12-box:focus .owl-dt-control-button-content, .owl-dt-timer-hour12 .owl-dt-timer-hour12-box:hover .owl-dt-control-button-content {
+    background: #b00100;
+    color: #fff;
+  }
+  .owl-dt-timer-hour12 .owl-dt-timer-hour12-box .owl-dt-control-button-content {
+    padding: 5px;
+    font-size: 12px;
+  }
 }
 
+.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+  margin-bottom: 3px !important;
+}
 // Media Query
 
 @media only screen and (max-width: 720px) { 

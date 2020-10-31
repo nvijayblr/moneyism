@@ -27,6 +27,7 @@ export class HttpService  {
   private cancelGetDealsSearch$ = new Subject<void>();
   private cancelGetProfessionsSearch$ = new Subject<void>();
   private cancelGetServicesDetails$ = new Subject<void>();
+  private cancelGetUserTasksList$ = new Subject<void>();
 
   loginRequest(payload): Observable<any> {
     return this.http.post<any>(`${this.rootUrl}user/login`, payload).pipe(
@@ -469,6 +470,48 @@ export class HttpService  {
   }
 
 
+  // Get user tasks list
+  getUserTasksList(userId): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.get<any>(`${this.rootUrl}user/${userId}/tasks`, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+      takeUntil(this.onCancelGetUserTasksList())
+    );
+  }
+
+  public cancelGetUserTasksList() {
+    this.cancelGetUserTasksList$.next();
+  }
+
+  public onCancelGetUserTasksList() {
+    return this.cancelGetUserTasksList$.asObservable();
+  }
+
+  createUpdateTasks(userId, deals): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.post<any>(`${this.rootUrl}user/${userId}/tasks`, deals, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  deleteUserTask(userId, taskId): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.delete<any>(`${this.rootUrl}user/${userId}/delete/tasks/${taskId}`, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
 
 
 
@@ -519,18 +562,6 @@ export class HttpService  {
     //   })
     // };
     return header;
-  }
-
-
-  uploadProfilePicutre(formdata): Observable<any> {
-    const header: any = this.getAuthHeaders();
-    return this.http.post<any>(`${this.rootUrl}api/User/UploadDisplayPic`, formdata, header).pipe(
-      tap((res) => {
-      }),
-      catchError(err => {
-        return throwError(err);
-      }),
-    );
   }
 
 

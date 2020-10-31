@@ -252,23 +252,23 @@
               formArrayName="clients" *ngFor="let client of professionalDetailsForm.get('clients')['controls']; index as i; last as isLast; first as isFirst">
               <ng-container [formGroupName]="i">
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-5">
+                  <div class="list-item-3">
                     <mat-form-field appearance="outline">
                       <mat-label>Client Name</mat-label>
                       <input matInput placeholder="Client Name" formControlName="clientname" maxlength="100" autocomplete="off"/>
                     </mat-form-field>
                   </div>
 
-                  <div class="list-item-5">
+                  <!-- <div class="list-item-5">
                     <mat-form-field appearance="outline">
                       <mat-label>Work Type</mat-label>
                       <mat-select formControlName="work_type">
                         <mat-option *ngFor="let type of workTypes" [value]="type.value">{{type.title}}</mat-option>
                       </mat-select>
                     </mat-form-field>
-                  </div>
+                  </div> -->
 
-                  <div class="list-item-5">
+                  <div class="list-item-4">
                     <mat-form-field appearance="outline">
                       <mat-label>Email</mat-label>
                       <input matInput placeholder="Email" formControlName="email" maxlength="100" autocomplete="off"/>

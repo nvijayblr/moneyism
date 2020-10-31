@@ -21,12 +21,12 @@
                     <h4 *ngIf="!deals.path" class="icon-image">
                       <mat-icon>image</mat-icon>
                     </h4>
-                    <h4 *ngIf="deals.path && isFile(deals.path)" class="icon-image">
+                    <h4 *ngIf="deals.path && (deals.path | fileformat) === 'docs'" class="icon-image">
                       <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
                         <mat-icon>picture_as_pdf</mat-icon>
                       </a>
                     </h4>
-                    <div *ngIf="deals.path && isImage(deals.path)" class="img-preview">
+                    <div *ngIf="deals.path && (deals.path | fileformat) === 'images'" class="img-preview">
                       <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
                         <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + deals.path + ')'}"></div>
                       </a>
@@ -199,12 +199,12 @@
                       <h5>{{history.description}}</h5>
                       <div class="deals-image-wrapper small">
                         <!-- <h4 *ngIf="!history.path" class="icon-image"><mat-icon>image</mat-icon></h4> -->
-                        <h4 *ngIf="deals.path && isFile(history.path)" class="icon-image">
+                        <h4 *ngIf="history.path && (history.path | fileformat) === 'docs'" class="icon-image">
                           <a href="{{appConfig.imgBaseUrl}}{{history.path}}" target="_blank">
                             <mat-icon>picture_as_pdf</mat-icon>
                           </a>
                         </h4>
-                        <div *ngIf="history.path && isImage(history.path)" class="img-preview">
+                        <div *ngIf="history.path && (history.path | fileformat) === 'images'" class="img-preview">
                           <a href="{{appConfig.imgBaseUrl}}{{history.path}}" target="_blank">
                             <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + history.path + ')'}"></div>
                           </a>
@@ -231,12 +231,12 @@
                 <div class="list-item-5 no-margin">
                   <div class="deals-image-wrapper">
                     <h4 *ngIf="!deals.path" class="icon-image"><mat-icon>image</mat-icon></h4>
-                    <h4 *ngIf="deals.path && isFile(deals.path)" class="icon-image">
+                    <h4 *ngIf="deals.path && (deals.path | fileformat) === 'docs'" class="icon-image">
                       <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
                         <mat-icon>picture_as_pdf</mat-icon>
                       </a>
                     </h4>
-                    <div *ngIf="deals.path && isImage(deals.path)" class="img-preview">
+                    <div *ngIf="deals.path && (deals.path | fileformat) === 'images'" class="img-preview">
                       <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
                         <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + deals.path + ')'}"></div>
                       </a>
@@ -360,12 +360,12 @@
                       <h5>{{history.description}}</h5>
                       <div class="deals-image-wrapper small">
                         <!-- <h4 *ngIf="!history.path" class="icon-image"><mat-icon>image</mat-icon></h4> -->
-                        <h4 *ngIf="deals.path && isFile(history.path)" class="icon-image">
+                        <h4 *ngIf="history.path && (history.path | fileformat) === 'docs'" class="icon-image">
                           <a href="{{appConfig.imgBaseUrl}}{{history.path}}" target="_blank">
                             <mat-icon>picture_as_pdf</mat-icon>
                           </a>
                         </h4>
-                        <div *ngIf="history.path && isImage(history.path)" class="img-preview">
+                        <div *ngIf="history.path && (history.path | fileformat) === 'images'" class="img-preview">
                           <a href="{{appConfig.imgBaseUrl}}{{history.path}}" target="_blank">
                             <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + history.path + ')'}"></div>
                           </a>

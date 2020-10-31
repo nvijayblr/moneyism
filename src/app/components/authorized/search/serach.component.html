@@ -77,12 +77,12 @@
           <div class="list-item-5 no-margin">
             <div class="deals-image-wrapper">
               <h4 *ngIf="!deals.path" class="icon-image"><mat-icon>image</mat-icon></h4>
-              <h4 *ngIf="deals.path && isFile(deals.path)" class="icon-image">
+              <h4 *ngIf="deals.path && (deals.path | fileformat) === 'docs'" class="icon-image">
                 <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
                   <mat-icon>picture_as_pdf</mat-icon>
                 </a>
               </h4>
-              <div *ngIf="deals.path && isImage(deals.path)" class="img-preview">
+              <div *ngIf="deals.path && (deals.path | fileformat) === 'images'" class="img-preview">
                 <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
                   <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + deals.path + ')'}"></div>
                 </a>

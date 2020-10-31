@@ -126,7 +126,7 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
     if (field === 'clients') {
       return this.fb.group({
         clientname: [value.clientname, [Validators.required]],
-        work_type: [value.work_type, [Validators.required]],
+        // work_type: [value.work_type, [Validators.required]],
         email: [value.email],
         phoneno: [value.phoneno, [Validators.required]],
         imgname: [value.imgname],

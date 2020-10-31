@@ -1,0 +1,103 @@
+<div class="page-body">
+  <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
+
+  <h1 mat-dialog-title>Task</h1>
+  <div mat-dialog-content>
+    <div class="deals-form-wrapper page-body">
+      <form [formGroup]="tasksForm">
+        <div class="form-continer">
+  
+          <div class="list flex-containers flex-start wrap">
+            <div class="list-item-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Task Name</mat-label>
+                <input matInput placeholder="Task Name" formControlName="name" maxlength="120" autocomplete="off"/>
+              </mat-form-field>
+            </div>
+          </div> 
+  
+          <div class="list flex-containers flex-start wrap">
+            <div class="list-item-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Description" formControlName="description" rows="3" autocomplete="off"></textarea>
+              </mat-form-field>
+            </div>
+          </div> 
+  
+          <div class="list flex-containers flex-start wrap">
+            <div class="list-item-3">
+              <mat-form-field appearance="outline" [owlDateTimeTrigger]="frompicker">
+                <mat-label>Start Date</mat-label>
+                <input 
+                  matInput
+                  [owlDateTime]="frompicker" 
+                  [owlDateTimeTrigger]="frompicker"
+                  placeholder="Start Date" 
+                  formControlName="from_date"
+                  [min]="minDate"
+                  readonly
+                />
+                <mat-datepicker-toggle matSuffix [owlDateTimeTrigger]="frompicker">
+                  <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+                </mat-datepicker-toggle>
+                <owl-date-time [hour12Timer]="true" #frompicker></owl-date-time>
+              </mat-form-field>
+            </div>
+            <div class="list-item-3">
+              <mat-form-field appearance="outline" [owlDateTimeTrigger]="topicker">
+                <mat-label>End Date</mat-label>
+                <input 
+                  matInput
+                  [owlDateTime]="topicker" 
+                  [owlDateTimeTrigger]="topicker"
+                  placeholder="Start Date" 
+                  formControlName="to_date"
+                  [min]="minDate"
+                  readonly
+                />
+                <mat-datepicker-toggle matSuffix [owlDateTimeTrigger]="topicker">
+                  <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+                </mat-datepicker-toggle>
+                <owl-date-time [hour12Timer]="true" #topicker></owl-date-time>
+              </mat-form-field>
+            </div>
+            <div class="list-item-3">
+              <mat-form-field appearance="outline" [owlDateTimeTrigger]="rempicker">
+                <mat-label>Remaind On</mat-label>
+                <input 
+                  matInput
+                  [owlDateTime]="rempicker" 
+                  [owlDateTimeTrigger]="rempicker"
+                  placeholder="Remaind On" 
+                  formControlName="rem_date"
+                  [min]="minDate"
+                  readonly
+                />
+                <mat-datepicker-toggle matSuffix [owlDateTimeTrigger]="rempicker">
+                  <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+                </mat-datepicker-toggle>
+                <owl-date-time [hour12Timer]="true" #rempicker></owl-date-time>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="list flex-containers flex-start wrap">
+            <div class="list-item-4">
+              <mat-checkbox formControlName="reminder">Reminder</mat-checkbox>
+            </div>
+            <div class="list-item-4">
+              <mat-checkbox formControlName="repetive">Repeative</mat-checkbox>
+            </div>
+          </div> 
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="btn-main-right-wrapper">
+    <button mat-stroked-button (click)="onCloseClick()" class="secondary-btn">Cancel</button>
+    <button mat-stroked-button class="primary-btn" cdkFocusInitial (click)="saveTaskDetails()">Save</button>
+  </div>
+</div>

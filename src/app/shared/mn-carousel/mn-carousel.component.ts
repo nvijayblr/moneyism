@@ -37,21 +37,4 @@ export class MnCarouselComponent implements OnInit {
   ngOnInit() {
   }
 
-  isImage(path) {
-    if (path && path.indexOf('.jpg') > 0 || path.indexOf('.jpeg') > 0 || path.indexOf('.png') > 0 || path.indexOf('.gif') > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  isFile(path) {
-    if (!path) {
-      return false;
-    }
-    if (path && path.indexOf('.jpg') < 0 && path.indexOf('.jpeg') < 0 && path.indexOf('.png') < 0 && path.indexOf('.gif') < 0) {
-      return true;
-    }
-    return false;
-  }
-
 }

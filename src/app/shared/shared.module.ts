@@ -6,13 +6,14 @@ import { MaterialModule } from './modules/material.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { RatingModule } from 'ng-starrating';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { CategoryIconPipe } from './../services/categoryicon.pipe';
+import { FileFormatPipe } from '../services/file-format-pipe';
 import { MnCarouselComponent } from './mn-carousel/mn-carousel.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 
@@ -26,6 +27,8 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     RouterModule,
     ReactiveFormsModule,
     RatingModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   declarations: [
     HeaderComponent,
@@ -33,7 +36,7 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     ProgressBarComponent,
     ImageCropperComponent,
     ConfirmDialogComponent,
-    CategoryIconPipe,
+    FileFormatPipe,
     MnCarouselComponent,
     AccountDetailsComponent
   ],
@@ -50,10 +53,14 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     ConfirmDialogComponent,
     AccountDetailsComponent,
     MnCarouselComponent,
-    CategoryIconPipe,
+    FileFormatPipe,
     RatingModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe
+  ],
   entryComponents: [
     ConfirmDialogComponent
   ]

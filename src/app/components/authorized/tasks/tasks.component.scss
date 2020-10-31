@@ -1,0 +1,46 @@
+.task-date-wrapper {
+  text-align: center;
+  border-right: 1px dashed #848484;
+  margin-right: 32px;  
+  text-align: center;
+  h4 {
+    font-size: 46px !important;
+    font-weight: 100 !important;
+    margin: 0 !important;
+    letter-spacing: 0px;
+    padding: 0;
+    opacity: 0.62;
+  }
+  h5 {
+    font-size: 24px !important;
+    font-weight: 400 !important;
+    margin: 0 !important;
+    letter-spacing: 0px;
+    opacity: 0.62;
+  }
+  h6 {
+    margin: 10px 0 0 0 !important;
+  }
+  .mat-icon {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+}
+.reminder-on {
+  color: #00a300;
+}
+.reminder-off {
+  color: #ff0000;
+}
+.repetive-on {
+  color: #037d84;
+}
+.repetive-off {
+  color: #6c6c6c;
+}
+.task-list.list.bt-border-dark {
+  padding-bottom: 0 !important;
+  margin-bottom: 40px !important;
+  border-bottom: 1px dashed #cacaca;
+  position: relative;
+}

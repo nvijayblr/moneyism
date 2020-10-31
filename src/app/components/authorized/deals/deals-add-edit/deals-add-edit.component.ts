@@ -117,7 +117,7 @@ export class DealsAddEditComponent implements OnInit {
       assignedto: [deals.assignedto],
       status: [deals.status ? deals.status : 'New'],
       owner: [{ value: this.user.username, disabled: true }],
-      type: [deals.type ? deals.type : 'Open', [Validators.required]],
+      // type: [deals.type ? deals.type : 'Open', [Validators.required]],
       path: [deals.path],
     });
   }

@@ -38,6 +38,11 @@ const routes: Routes = [
         // canActivate: [AuthGaurd]
       },
       {
+        path: 'tasks',
+        loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
+        // canActivate: [AuthGaurd]
+      },
+      {
         path: 'search',
         loadChildren: () => import('./search/search.module').then(m => m.SearchModule),
         // canActivate: [AuthGaurd]
