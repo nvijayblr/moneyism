@@ -40,7 +40,7 @@ export class HttpService  {
   }
 
   signupRequest(payload): Observable<any> {
-    return this.http.post<any>(`${this.rootUrl}users`, payload).pipe(
+    return this.http.post<any>(`${this.rootUrl}users/registration`, payload).pipe(
       tap((res) => {
       }),
       catchError(err => {

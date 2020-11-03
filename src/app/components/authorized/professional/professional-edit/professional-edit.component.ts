@@ -87,7 +87,7 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
       perwebsite: [professional.perwebsite],
       offwebsite: [professional.offwebsite],
       skilltype: [professional.skilltype, [Validators.required]],
-      rating: [professional.rating, [Validators.required]],
+      rating: [professional.rating, [Validators.required, Validators.max(10)]],
       products: [professional.products ? professional.products : []],
       serLocations: [professional.serLocations ? professional.serLocations : []],
       description: [professional.description, [Validators.required]],

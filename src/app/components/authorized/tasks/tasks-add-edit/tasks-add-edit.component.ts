@@ -34,6 +34,20 @@ export class TasksAddEditComponent implements OnInit {
     title: 'Open',
   }];
 
+  repetiveTypes = [{
+    value: 'Daily',
+    title: 'Daily',
+  }, {
+    value: 'Weekly',
+    title: 'Weekly',
+  }, {
+    value: 'Monthly',
+    title: 'Monthly',
+  }, {
+    value: 'Yearly',
+    title: 'Yearly',
+  }];
+
   constructor(
     private fb: FormBuilder,
     private http: HttpService,
@@ -63,6 +77,7 @@ export class TasksAddEditComponent implements OnInit {
       rem_date: [tasks.rem_date, [Validators.required]],
       reminder: [tasks.reminder],
       repetive: [tasks.repetive],
+      repetive_type: [tasks.repetive_type ? tasks.repetive_type : 'Daily'],
     });
   }
 
