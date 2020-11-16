@@ -9,12 +9,11 @@
       </div> -->
     </div>
     <div class="row">
-      <app-progress-bar message="Loading professional details..." class="page" *ngIf="isLoading"></app-progress-bar>
-
       <div class="col-xs-12 col-sm-4 col-md-4 ">
         <app-account-details></app-account-details>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-8">
+        <app-progress-bar message="Loading community details..." class="page" *ngIf="isLoading"></app-progress-bar>
         <mat-card class="border no-rounded list">
           <div class="flex-containers wrap">
             <div class="flex-item no-margin">
@@ -26,6 +25,11 @@
               <p class="name">Vijayakumar N</p>
               <label class="label">Tech Lead, Aveva, Bangalore</label>
               <label class="label">Date and time / Hours ago, 2 Days</label>
+            </div>
+            <div class="remove-wrapper">
+              <button mat-button color="primary" (click)="removePost(post)" [disabled]="isLoading" [class.loading]="isLoading">
+                Remove
+              </button>
             </div>
           </div>
           <h4>Title</h4>
@@ -54,6 +58,11 @@
               <p class="name">Vijayakumar N</p>
               <label class="label">Tech Lead, Aveva, Bangalore</label>
               <label class="label">Date and time / Hours ago, 2 Days</label>
+            </div>
+            <div class="remove-wrapper">
+              <button mat-button color="primary" (click)="removePost(post)" [disabled]="isLoading" [class.loading]="isLoading">
+                Remove
+              </button>
             </div>
           </div>
           <h4>Title</h4>

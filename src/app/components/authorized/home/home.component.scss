@@ -1,6 +1,6 @@
 .home-wrapper {
-  .flex-item {
-    min-height: calc(100vh - 274px);
+  .flex-item-h {
+    min-height: 220px;
   }
   .sec-title {
     font-size: 28px;
@@ -9,7 +9,7 @@
   .strong-title {
     margin-bottom: 14px;
   }
-  .flex-item {
+  .flex-item-h {
     width: 33%;
     border-radius: 0;
     border-width: 0 !important;

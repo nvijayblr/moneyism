@@ -1,13 +1,13 @@
 <section class="page-body profile-body">
   <div class="container">
     <div class="flex-containers space-between">
-      <div class="flex-item">
+      <div class="flex-item-h">
         <h4 class="name">Welcome {{user.firstname}} {{user.surname}}</h4>
       </div>
     </div>
     <div class="home-wrapper">
       <div class="flex-containers list space-between">
-        <mat-card class="flex-item border no-margin professional">
+        <mat-card class="flex-item-h border no-margin professional">
           <div class="flex-wrapper">
             <div class="flex-overlay"></div>
             <h4 class="sec-title">Personal</h4>
@@ -16,7 +16,7 @@
             <button mat-stroked-button class="secondary-btn" routerLink="/auth/personal">View</button>
           </div>
         </mat-card>
-        <mat-card class="flex-item border no-margin personal">
+        <mat-card class="flex-item-h border no-margin personal">
           <div class="flex-wrapper">
             <div class="flex-overlay"></div>
             <h4 class="sec-title">Professional</h4>
@@ -25,7 +25,7 @@
             <button mat-stroked-button class="secondary-btn" routerLink="/auth/professional">View</button>
           </div>
         </mat-card>
-        <mat-card class="flex-item border no-margin community">
+        <mat-card class="flex-item-h border no-margin community">
           <div class="flex-wrapper">
             <div class="flex-overlay"></div>
             <h4 class="sec-title">Community</h4>
@@ -34,6 +34,72 @@
             <button mat-stroked-button class="secondary-btn" routerLink="/auth/community">View</button>
           </div>
         </mat-card>
+      </div>
+
+      <!-- Community Pages -->
+      <div class="row my-community-body">
+        <div class="col-xs-12 col-sm-4 col-md-4 ">
+          <app-account-details></app-account-details>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-8">
+          <app-progress-bar message="Loading community details..." class="page" *ngIf="isLoading"></app-progress-bar>
+          <mat-card class="border no-rounded list">
+            <div class="flex-containers wrap">
+              <div class="flex-item no-margin">
+                <div class="user-profile-img">
+                  <div class="profile-pic-small pic-xs img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + '/assets/images/logo.png' + ')'}"></div>
+                </div>
+              </div>
+              <div class="flex-item no-margin">
+                <p class="name">Vijayakumar N</p>
+                <label class="label">Tech Lead, Aveva, Bangalore</label>
+                <label class="label">Date and time / Hours ago, 2 Days</label>
+              </div>
+            </div>
+            <h4>Title</h4>
+            <p>Message sampel...</p>
+            <div class="img-wrapper">
+              <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + '/assets/images/logo.png' + ')'}"></div>
+            </div>
+            <div class="likes-wrapper flex-containers wrap v-center">
+              <div class="likes-icon flex-item">
+                <mat-icon>thumb_up</mat-icon>
+              </div>
+              <div class="likes-count flex-item">
+                12,234
+              </div>
+            </div>
+          </mat-card>
+  
+          <mat-card class="border no-rounded list">
+            <div class="flex-containers wrap">
+              <div class="flex-item no-margin">
+                <div class="user-profile-img">
+                  <div class="profile-pic-small pic-xs img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + '/assets/images/logo.png' + ')'}"></div>
+                </div>
+              </div>
+              <div class="flex-item no-margin">
+                <p class="name">Vijayakumar N</p>
+                <label class="label">Tech Lead, Aveva, Bangalore</label>
+                <label class="label">Date and time / Hours ago, 2 Days</label>
+              </div>
+            </div>
+            <h4>Title</h4>
+            <p>Message sampel...</p>
+            <div class="img-wrapper">
+              <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + '/assets/images/logo.png' + ')'}"></div>
+            </div>
+            <div class="likes-wrapper liked flex-containers wrap v-center">
+              <div class="likes-icon flex-item">
+                <mat-icon>thumb_up</mat-icon>
+              </div>
+              <div class="likes-count flex-item">
+                12,234
+              </div>
+            </div>
+          </mat-card>
+  
+        </div>
       </div>
     </div>
 
