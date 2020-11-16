@@ -40,15 +40,15 @@
                 <div class="list flex-containers flex-start">
                   <div class="list-item-3 no-margin">
                     <label class="label">From</label>
-                    <h4>{{task.from_date | date:'MMM dd, yyyy hh:mm'}}</h4>
+                    <h4>{{task.from_date | date:'MMM dd, yyyy hh:mm a'}}</h4>
                   </div>
                   <div class="list-item-3 no-margin">
                     <label class="label">To</label>
-                    <h4>{{task.to_date | date:'MMM dd, yyyy hh:mm'}}</h4>
+                    <h4>{{task.to_date | date:'MMM dd, yyyy hh:mm a'}}</h4>
                   </div>
                   <div class="list-item-3 no-margin">
-                    <label class="label">Reminder On</label>
-                    <h4>{{task.rem_date | date:'MMM dd, yyyy hh:mm'}}</h4>
+                    <label class="label">Remind On</label>
+                    <h4>{{task.rem_date | date:'MMM dd, yyyy hh:mm a'}}</h4>
                   </div>
                 </div>
               </div>

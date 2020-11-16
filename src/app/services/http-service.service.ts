@@ -513,13 +513,8 @@ export class HttpService  {
     );
   }
 
-
-
-
-  // Authorized API
-
-  validateOTP(payload): Observable<any> {
-    return this.http.post<any>(`${this.rootUrl}api/Register/CheckOTP`, payload).pipe(
+  getNotificationsCount(userId): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}user/${userId}/notifications/count`).pipe(
       tap((res) => {
       }),
       catchError(err => {
@@ -528,8 +523,58 @@ export class HttpService  {
     );
   }
 
-  resendOTP(username): Observable<any> {
-    return this.http.post<any>(`${this.rootUrl}api/Register/ResendOTP?UserName=${username}`, {}).pipe(
+  getNotifications(userId): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}user/${userId}/notifications`).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  makeNotificationRead(userId, notificationId): Observable<any> {
+    return this.http.put<any>(`${this.rootUrl}user/${userId}/notifications/${notificationId}/status?status=true`, {}).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  resetPassword(payload): Observable<any> {
+    return this.http.post<any>(`${this.rootUrl}user/resetpassword`, payload).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  generateOTP(phoneno): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}users/generateOtp?phoneno=${phoneno}`).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  validateOTP(payload): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}users/validateOtp?phoneno=${payload.phoneno}&otpnum=${payload.otpnum}`, payload).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  resedVerifyEmail(email): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}users/email/resend?email=${email}`).pipe(
       tap((res) => {
       }),
       catchError(err => {

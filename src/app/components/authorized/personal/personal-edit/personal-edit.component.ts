@@ -28,26 +28,6 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
       value: 'Relatives',
       title: 'Relatives'
     },
-    doctors: {
-      value: 'Doctor',
-      title: 'Doctor'
-    },
-    accountant: {
-      value: 'Accountant',
-      title: 'Accountant'
-    },
-    drivers: {
-      value: 'Driver',
-      title: 'Driver'
-    },
-    lawyers: {
-      value: 'Lawyer',
-      title: 'Lawyer'
-    },
-    servants: {
-      value: 'Servant',
-      title: 'Servant'
-    },
   };
 
   serviceProvidersTypes = {
@@ -169,6 +149,7 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
       companyemail: [personal.companyemail, [Validators.required]],
       education: this.fb.array([]),
       relations: this.fb.array([]),
+      serviceproviders: this.fb.array([]),
       records: this.fb.array([]),
     });
     if (personal.education) {
@@ -178,7 +159,6 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
       });
     }
 
-    // this.parseRelations();
     if (personal.relations) {
       const relationsFA = this.personalDetailsForm.controls.relations as FormArray;
       personal.relations.map(relations => {
@@ -186,7 +166,13 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
       });
     }
 
-    // this.parseRecords();
+    if (personal.serviceproviders) {
+      const serviceprovidersFA = this.personalDetailsForm.controls.serviceproviders as FormArray;
+      personal.serviceproviders.map(serviceproviders => {
+        serviceprovidersFA.push(this.intiFormArrays('serviceproviders', serviceproviders));
+      });
+    }
+
     if (personal.records) {
       const recordsFA = this.personalDetailsForm.controls.records as FormArray;
       personal.records.map(record => {
@@ -207,6 +193,15 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
       });
     }
     if (field === 'relations') {
+      return this.fb.group({
+        relation_type: [value.relation_type, [Validators.required]],
+        name: [value.name, [Validators.required]],
+        email: [value.email],
+        phoneno: [value.phoneno, [Validators.required]],
+        location: [value.location, [Validators.required]],
+      });
+    }
+    if (field === 'serviceproviders') {
       return this.fb.group({
         relation_type: [value.relation_type, [Validators.required]],
         name: [value.name, [Validators.required]],

@@ -11,7 +11,7 @@
       <mat-error class="box-error-msg" *ngIf="errorMessage">
         {{errorMessage}}
       </mat-error>
-      <div class="row">
+      <div class="row" *ngIf="!isOtpScreen">
         <!-- <div class="col-md-5">
           <div class="social-btn-wrapper">
             <button mat-flat-button color="primary" class="full-width google-btn" (click)="signInWithGoogle()">
@@ -47,11 +47,54 @@
             </div>
 
             <div class="account-btn-wrpper">
+              <button mat-button color="primary" (click)="showHideOTPScreen(true)" [disabled]="isLoading" [class.loading]="isLoading">
+                Sign in with OTP?
+              </button>
+            </div>
+
+            <div class="account-btn-wrpper">
               New to Moneyism? <a routerLink="/signup">Join Now</a>
             </div>
+
           </form>
         </div>
       </div>
+
+      <!-- Login with OTP -->
+      <div class="otp-wrpper otp-login-wrapper page-body" [hidden]="!isOtpScreen">
+        <app-progress-bar [message]="loaderMsg" class="page component" *ngIf="isLoading"></app-progress-bar>
+        <p>The OTP has been Sent to your phone. Please input the OTP before 5 minutes.</p>
+        <form [formGroup]="otpForm" class="custom-login-wrapper" style="margin-top: 24px; font-size: 12px;">
+          <mat-form-field  appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput placeholder="Mobile Number" cdkFocusInitial formControlName="phoneno" autocomplete="off">
+          </mat-form-field>
+          <div class="login-btn-wrpper">
+            <button mat-button color="primary" (click)="generateOtp()" [disabled]="isLoading" [class.loading]="isLoading">
+              Generate OTP?
+            </button>
+          </div>
+          <mat-form-field  appearance="outline">
+            <mat-label>One Time Password</mat-label>
+            <input matInput placeholder="One Time Password" formControlName="otpnum" autocomplete="off">
+          </mat-form-field>
+          <div class="login-btn-wrpper">
+            <button mat-raised-button color="primary" class="login-primary-btn" (click)="validateOtp()" 
+              [disabled]="isLoading || (otpForm.invalid || !otpForm.controls.phoneno.value || !otpForm.controls.otpnum.value || otpForm.controls.otpnum.value.length < 6)" 
+              [class.loading]="isLoading">
+              Verify and Sign in
+            </button>
+          </div>
+
+          <div class="account-btn-wrpper">
+            <button mat-button color="primary" (click)="showHideOTPScreen(false)" [disabled]="isLoading" [class.loading]="isLoading">
+              Sign in with Username?
+            </button>
+          </div>
+
+        </form>
+      </div>
+
     </div>
   </mat-card>
 </div>

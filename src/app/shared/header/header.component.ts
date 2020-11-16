@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   commonSub: Subscription;
   isUserLoggedIn = false;
   search: any = {};
+  notificationsCount = 0;
   searchOptions = [{
     value: 'profession',
     title: 'Professions'
@@ -92,6 +93,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (message.topic === 'showLogin' ) {
         this.doLogin('create');
       }
+      if (message.topic === 'notifications' ) {
+        this.getNotificationsCount();
+      }
     });
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.search = queryParams;
@@ -101,11 +105,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         location: [this.search.location ? this.search.location : ''],
       });
     });
-
+    this.getNotificationsCount();
   }
 
   initSearch() {
     this.router.navigate([`/auth/search`], {queryParams: this.searchForm.value});
+  }
+
+  getNotificationsCount() {
+    this.http.getNotificationsCount(this.user.id).subscribe((result: any) => {
+      this.notificationsCount = result.count;
+    }, (error) => {
+    });
   }
 
   doLogin(option) {

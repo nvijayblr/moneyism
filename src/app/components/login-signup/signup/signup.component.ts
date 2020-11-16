@@ -23,9 +23,11 @@ export class SignupComponent implements OnInit {
   isSubmitted = false;
   isLoading = false;
   errorMessage = '';
+  loaderMsg = '';
   mode = 'login';
   isOtpScreen = false;
   isConfirmPasswordError = false;
+  registerUser: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -55,10 +57,10 @@ export class SignupComponent implements OnInit {
       surname: ['', [Validators.required, Validators.maxLength(50)]],
     });
 
-    // this.otpForm = this.fb.group({
-    //   username: [''],
-    //   token: ['', Validators.required]
-    // });
+    this.otpForm = this.fb.group({
+      phoneno: ['', Validators.required],
+      otpnum: ['', Validators.required]
+    });
   }
 
 
@@ -77,12 +79,12 @@ export class SignupComponent implements OnInit {
     delete signup.confirm_password;
     this.isLoading = true;
     this.http.signupRequest(this.signupForm.value).subscribe((result: any) => {
+      this.generateOtp();
       this.isLoading = false;
-      // this.isOtpScreen = true;
-      // const { username, password } = this.signupForm.value;
-      // this.otpForm.controls.password.setValue(password);
+      this.otpForm.controls.phoneno.setValue(this.signupForm.value.phoneno);
+      this.isOtpScreen = true;
       this.errorMessage = '';
-      this.setLoginSessionAndRouting(result, false);
+      this.registerUser = result;
     }, (error) => {
       this.isLoading = false;
       this.errorMessage = error.error.message ? error.error.message : 'The username or email or phone number already found.';
@@ -90,30 +92,36 @@ export class SignupComponent implements OnInit {
   }
 
 
-  validateOtp() {
-    if (this.otpForm.invalid) {
-      return;
-    }
+  generateOtp() {
     this.isLoading = true;
-    this.http.validateOTP(this.otpForm.value).subscribe((result: any) => {
-      this.isLoading = false;
-      this.errorMessage = '';
-      // this.doLogin();
-    }, (error) => {
-      this.isLoading = false;
-      this.errorMessage = 'Invalid OTP. Please try again.';
-    });
-  }
-
-  resendOtp() {
-    this.isLoading = true;
-    this.http.resendOTP(this.otpForm.controls.UserName.value).subscribe((result: any) => {
+    this.loaderMsg = 'Sending OTP to your phone.';
+    this.http.generateOTP(this.otpForm.controls.UserName.value).subscribe((result: any) => {
       this.isLoading = false;
       this.errorMessage = '';
     }, (error) => {
       this.isLoading = false;
       this.errorMessage = error.error.ResponseMsg;
     });
+  }
+
+  validateOtp() {
+    if (this.otpForm.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    this.loaderMsg = 'Validating OTP...';
+    this.http.validateOTP(this.otpForm.value).subscribe((result: any) => {
+      this.isLoading = false;
+      this.errorMessage = '';
+      this.setLoginSessionAndRouting(this.registerUser, false);
+    }, (error) => {
+      this.isLoading = false;
+      this.errorMessage = 'Invalid OTP. Please try again.';
+    });
+  }
+
+  verifyOTPLater() {
+      this.setLoginSessionAndRouting(this.registerUser, false);
   }
 
   reloadCurrentRoute() {

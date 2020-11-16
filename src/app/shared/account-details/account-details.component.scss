@@ -18,6 +18,13 @@
       }
     }
   }
+  .verified {
+    position: relative;
+    top: 6px;
+    .mat-icon {
+      color: #008200;
+    }
+  }
 }
 
 :host {

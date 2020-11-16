@@ -44,7 +44,6 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
   professional: any = {};
   loaderMsg = 'Loading professional details...';
   errorMessage = '';
-  productsList = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   visible = true;
   selectable = true;
@@ -82,13 +81,14 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
     this.professionalDetailsForm = this.fb.group({
       company: [professional.company, [Validators.required]],
       profession: [professional.profession, [Validators.required]],
+      qualification: [professional.qualification, [Validators.required]],
       location: [professional.location, [Validators.required]],
       exp: [professional.exp, [Validators.required]],
       perwebsite: [professional.perwebsite],
       offwebsite: [professional.offwebsite],
       skilltype: [professional.skilltype, [Validators.required]],
       rating: [professional.rating, [Validators.required, Validators.max(10)]],
-      products: [professional.products ? professional.products : []],
+      skills: [professional.skills ? professional.skills : []],
       serLocations: [professional.serLocations ? professional.serLocations : []],
       description: [professional.description, [Validators.required]],
       street: [professional.street, [Validators.required]],

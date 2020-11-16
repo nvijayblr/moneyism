@@ -90,7 +90,7 @@ export class TasksAddEditComponent implements OnInit {
     if (this.tasksForm.invalid) {
       return;
     }
-    this.loaderMsg = 'Saving deals...';
+    this.loaderMsg = 'Saving task...';
     this.isLoading = true;
     const payload = this.tasksForm.getRawValue();
     this.http.createUpdateTasks(this.userId, payload).subscribe((result: any) => {

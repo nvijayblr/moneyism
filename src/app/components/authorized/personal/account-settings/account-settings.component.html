@@ -14,18 +14,14 @@
           <mat-error *ngIf="errorMessage">
             {{errorMessage}}
           </mat-error>
-          <div class="mat-error" *ngIf="isConfirmPasswordError">
-            Passsword and Confirm Password didn't match.
-          </div>
         </div>
       </div>
     </div>
     <div class="settings-form-wrapper">
+      <mat-accordion class="personal-details" multi>
+        <mat-expansion-panel expanded>
+          <form [formGroup]="userDetailsForm">
 
-      <form [formGroup]="userDetailsForm">
-
-        <mat-accordion class="personal-details" multi>
-          <mat-expansion-panel expanded>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Account Details
@@ -74,18 +70,6 @@
               </div>              
               <div class="list flex-containers flex-start wrap">
                 <div class="list-item-3">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Password</mat-label>
-                    <input type="password" matInput placeholder="Password" formControlName="password" maxlength="50" autocomplete="off"/>
-                  </mat-form-field>
-                </div>
-                <div class="list-item-3">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Confirm Password</mat-label>
-                    <input type="password" matInput placeholder="Confirm Password" formControlName="confirm_password" maxlength="50" autocomplete="off"/>
-                  </mat-form-field>
-                </div>
-                <div class="list-item-3">
                   <app-image-cropper 
                     [imageType]="'Profile'"
                     [imagePath]="user?.path ? user.path : ''"
@@ -95,9 +79,56 @@
 
               </div>
             </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </form>
+          </form>
+        </mat-expansion-panel>
+
+        <!-- Reset Password -->
+        <mat-expansion-panel expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Reset Password
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="resetPasswordForm">
+            <div class="form-continer">
+              <div class="list flex-containers flex-start wrap">
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Current Password</mat-label>
+                    <input type="password" matInput placeholder="Current Password" formControlName="current_password" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>New Password</mat-label>
+                    <input type="password" matInput placeholder="New Password" formControlName="password" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+                <div class="list-item-3">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Confirm New Password</mat-label>
+                    <input type="password" matInput placeholder="Confirm New Password" formControlName="confirm_password" maxlength="50" autocomplete="off"/>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="btns-wrapper">
+            <div class="btn-main-right-wrapper">
+              <button mat-stroked-button class="secondary-btn" routerLink="/auth/personal">Cancel</button>
+              <button mat-stroked-button class="primary-btn" (click)="resetPassword()">Reset</button>
+            </div>
+            <div class="error-messages-wrapper">
+              <mat-error *ngIf="passwordErrorMessage">
+                {{passwordErrorMessage}}
+              </mat-error>
+              <div class="mat-error" *ngIf="isConfirmPasswordError">
+                Passsword and Confirm Password didn't match.
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>          
+      </mat-accordion>
     </div>
     
 

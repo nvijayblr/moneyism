@@ -130,6 +130,9 @@ button {
     justify-content: center;
     align-items: center;
   }
+  &.v-center {
+    align-items: center;
+  }
   &.flex-start {
     justify-content: flex-start;
   }
@@ -197,6 +200,8 @@ button {
     &.img {
       height: 220px;
       background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;      
       width: 220px;
       text-align: center;
       margin: auto;
@@ -210,6 +215,22 @@ button {
       color: #5d5d5d;
       width: auto;
       height: auto;
+    }
+  }
+
+  .profile-pic-small.pic-xs {
+    padding: 0;
+    &.img {
+      height: 52px;
+      background-size: contain;
+      width: 52px;
+      text-align: center;
+      margin: auto;
+      border-radius: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+      border: 1px solid #ccc;
+      margin-right: 8px;
     }
   }
   .list {
@@ -330,6 +351,10 @@ button {
       color: #eeeeee;
       background-color: rgba(223, 53, 37, 0.26);
     }
+  }
+  .list-item {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
   }
   .list-item-1 {
     width: calc(100% - 24px);
@@ -527,6 +552,13 @@ app-progress-bar.page {
     border-radius: 5px;
     box-shadow: rgba(57, 73, 76, 0.35) 0px 1px 20px 0px;
   }
+  &.component {
+    .progress-wrapper {
+      box-shadow: none;
+      border: 0;
+      background: rgba(255, 255, 255,0.32);
+    }
+  }
 }
 
 .mat-standard-chip.mat-chip-with-trailing-icon {
@@ -659,6 +691,27 @@ owl-date-time-container {
 
 .mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
   margin-bottom: 3px !important;
+}
+
+.likes-wrapper {
+  font-size: 12px;
+  cursor: pointer;
+  .likes-icon {
+    .mat-icon {
+      font-size: 14px;
+      height: 14px;
+      width: 14px;
+    }
+  }
+  .likes-count {
+    position: relative;
+    top: -3px;
+    margin-left: 2px;
+  }
+  &.liked {
+    cursor: auto;
+    color: #b00000;
+  }
 }
 // Media Query
 

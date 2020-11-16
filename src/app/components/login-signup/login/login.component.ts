@@ -17,10 +17,13 @@ import { MessageService } from '../../../services/message.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  otpForm: FormGroup;
   user: SocialUser;
   isSubmitted = false;
   isLoading = false;
   errorMessage = '';
+  loaderMsg = '';
+  isOtpScreen = false;
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +46,11 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    this.otpForm = this.fb.group({
+      phoneno: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      otpnum: ['']
+    });
   }
 
 
@@ -60,6 +68,42 @@ export class LoginComponent implements OnInit {
       this.errorMessage = error.error.message ? error.error.message : 'Invalid username or passowrd.';
     });
   }
+
+  showHideOTPScreen(option) {
+    this.isOtpScreen = option;
+  }
+
+  generateOtp() {
+    if (this.otpForm.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    this.loaderMsg = 'Sending OTP to your phone.';
+    this.http.generateOTP(this.otpForm.controls.phoneno.value).subscribe((result: any) => {
+      this.isLoading = false;
+      this.errorMessage = '';
+    }, (error) => {
+      this.isLoading = false;
+      this.errorMessage = error.error.ResponseMsg;
+    });
+  }
+
+  validateOtp() {
+    if (this.otpForm.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    this.loaderMsg = 'Validating OTP...';
+    this.http.validateOTP(this.otpForm.value).subscribe((result: any) => {
+      this.isLoading = false;
+      this.errorMessage = '';
+      this.setLoginSessionAndRouting(result, false);
+    }, (error) => {
+      this.isLoading = false;
+      this.errorMessage = 'Invalid OTP. Please try again.';
+    });
+  }
+
 
   reloadCurrentRoute() {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>

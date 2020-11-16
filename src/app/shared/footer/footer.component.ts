@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.commonSub.unsubscribe();
+    // this.commonSub.unsubscribe();
   }
 
 }

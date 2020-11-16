@@ -13,6 +13,7 @@ import { MessageService } from '../../../../services/message.service';
 export class AccountSettingsComponent implements OnInit, OnDestroy {
 
   userDetailsForm: FormGroup;
+  resetPasswordForm: FormGroup;
 
   user: any = {};
   isLoading = false;
@@ -21,6 +22,7 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
 
   isSubmitted = false;
   errorMessage = '';
+  passwordErrorMessage = '';
   isConfirmPasswordError = false;
   loaderMsg = 'Loading account details...';
 
@@ -55,15 +57,21 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
     this.userDetailsForm = this.fb.group({
       username: [user.username, [Validators.required]],
       email: [user.email, [Validators.required, Validators.email]],
+      password: [user.password, [Validators.required]],
       phoneno: [user.phoneno, [Validators.required]],
       firstname: [user.firstname, [Validators.required, Validators.maxLength(50)]],
       middlename: [user.middlename],
       surname: [user.surname, [Validators.required, Validators.maxLength(50)]],
-      password: [user.password, [Validators.required, Validators.maxLength(50)]],
-      confirm_password: [user.password, []],
       image_type: [user.image_type ? user.image_type : 'Profile'],
       imgname: [user.pimgnameassword],
       path: [user.path],
+    });
+
+    this.resetPasswordForm = this.fb.group({
+      username: [user.username, [Validators.required]],
+      current_password: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required]],
     });
 
   }
@@ -81,13 +89,6 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
     if (this.userDetailsForm.invalid) {
       return;
     }
-
-    if (signup.password !== signup.confirm_password) {
-      this.isConfirmPasswordError = true;
-      return;
-    }
-
-    delete signup.confirm_password;
     this.loaderMsg = 'Saving account details...';
     this.isLoading = true;
     this.http.saveAccountDetails(this.userId, this.userDetailsForm.value).subscribe((result: any) => {
@@ -107,6 +108,36 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
     this.messageService.sendLoginMessage(session);
     localStorage.setItem('moneyism_token', JSON.stringify(session));
     this.router.navigate([`/auth/personal`]);
+  }
+
+  resetPassword() {
+    this.passwordErrorMessage = '';
+    this.isConfirmPasswordError = false;
+    this.resetPasswordForm.markAllAsTouched();
+    if (this.resetPasswordForm.invalid) {
+      return;
+    }
+    const resetPassword = {...this.resetPasswordForm.value};
+    if (resetPassword.current_password !== this.userDetailsForm.value.password) {
+      this.passwordErrorMessage = 'The entered current password is wrong.';
+      return;
+    }
+    if (resetPassword.password !== resetPassword.confirm_password) {
+      this.isConfirmPasswordError = true;
+      return;
+    }
+
+    this.loaderMsg = 'Resetting account password...';
+    this.isLoading = true;
+    delete resetPassword.current_password;
+    delete resetPassword.confirm_password;
+    this.http.resetPassword(resetPassword).subscribe((result: any) => {
+      this.isLoading = false;
+      this.router.navigate(['login']);
+    }, (error) => {
+      this.isLoading = false;
+    });
+
   }
 
 

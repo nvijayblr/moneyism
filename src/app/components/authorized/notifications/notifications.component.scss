@@ -1,0 +1,14 @@
+.notification-body {
+  .unread-icon {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #b00100;
+  }
+  .unread {
+    font-weight: 400 !important;
+  }
+  .list.notification {
+    padding-bottom: 0;
+    cursor: pointer;
+  }
+}

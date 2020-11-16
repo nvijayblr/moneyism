@@ -47,3 +47,13 @@
     text-align: center;
   }
 }
+
+.otp-login-wrapper {
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+  .login-btn-wrpper {
+    margin: 0 0 24px 0;
+  }
+}

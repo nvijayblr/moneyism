@@ -52,7 +52,7 @@
                 <div class="list flex-containers flex-start wrap">
                   <div class="list-item-8">
                     <mat-form-field appearance="outline">
-                      <mat-label>Experience</mat-label>
+                      <mat-label>Experience (Years)</mat-label>
                       <input matInput type="number" placeholder="Experience" formControlName="exp" maxlength="2" autocomplete="off"/>
                     </mat-form-field>
                   </div>
@@ -70,13 +70,22 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-4">
+                  <div class="list-item-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Highest Qualification</mat-label>
+                      <input matInput placeholder="Highest Qualification" formControlName="qualification" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-2">
                     <mat-form-field appearance="outline">
                       <mat-label>Personal Website</mat-label>
                       <input matInput placeholder="Blood Group" formControlName="perwebsite" maxlength="50" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-4">
+                  <div class="list-item-2">
                     <mat-form-field appearance="outline">
                       <mat-label>Office Website</mat-label>
                       <input matInput placeholder="Company Name" formControlName="offwebsite" maxlength="50" autocomplete="off"/>
@@ -87,22 +96,22 @@
                 <div class="list flex-containers flex-start wrap">
                   <div class="list-item-1">
                     <mat-form-field appearance="outline">
-                      <mat-label>Products / Skiills / Services</mat-label>
-                      <mat-chip-list #produtsChipsList formControlName="products">
+                      <mat-label>Skiills</mat-label>
+                      <mat-chip-list #produtsChipsList formControlName="skills">
                         <mat-chip
-                          *ngFor="let product of professionalDetailsForm.get('products').value"
+                          *ngFor="let skill of professionalDetailsForm.get('skills').value"
                           [selectable]="selectable"
                           [removable]="removable"
-                          (removed)="removeTags(product, 'products')">
-                          {{product}}
+                          (removed)="removeTags(skill, 'skills')">
+                          {{skill}}
                           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
                         <input
-                          placeholder="New product / skiill / service..."
+                          placeholder="Skiills..."
                           #prodcutInput
                           [matChipInputFor]="produtsChipsList"
                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                          (matChipInputTokenEnd)="addTags($event, 'products')" 
+                          (matChipInputTokenEnd)="addTags($event, 'skills')" 
                         />
                       </mat-chip-list>
                     </mat-form-field>

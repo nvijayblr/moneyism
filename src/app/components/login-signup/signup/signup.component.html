@@ -130,25 +130,32 @@
         </div>
       </div>
 
-      <!-- <div class="otp-wrpper" [hidden]="!isOtpScreen">
-        <p>The OTP has been Sent to the Above Email. Please input the OTP before 5 minutes.</p>
-        <form [formGroup]="otpForm" class="custom-login-wrapper">
+      <div class="otp-wrpper page-body" [hidden]="!isOtpScreen">
+        <app-progress-bar [message]="loaderMsg" class="page component" *ngIf="isLoading"></app-progress-bar>
+        <p><b>Your Moneyism account has been created successfully. Please verify your mobile number to get the deals and other notifications.</b><br/><br/></p>
+        <p>The OTP has been Sent to your phone. Please input the OTP before 5 minutes.</p>
+        <form [formGroup]="otpForm" class="custom-login-wrapper" style="margin-top: 24px; font-size: 12px;">
           <mat-form-field  appearance="outline">
             <mat-label>One Time Password</mat-label>
-            <input matInput placeholder="One Time Password" cdkFocusInitial formControlName="SecurityToken" autocomplete="off">
+            <input matInput placeholder="One Time Password" cdkFocusInitial formControlName="otpnum" autocomplete="off">
           </mat-form-field>
-          <div class="btn-wrpper">
-            <button mat-raised-button color="primary" (click)="validateOtp()" [disabled]="isLoading" [class.loading]="isLoading">
-              Sign up
+          <div class="login-btn-wrpper">
+            <button mat-raised-button color="primary" class="login-primary-btn" (click)="validateOtp()" [disabled]="isLoading" [class.loading]="isLoading">
+              Verify and Sign in
             </button>
           </div>
-          <div class="btn-wrpper">
-            <button mat-button color="primary" (click)="resendOtp()" [disabled]="isLoading" [class.loading]="isLoading">
+          <div class="login-btn-wrpper">
+            <button mat-button color="primary" (click)="generateOtp()" [disabled]="isLoading" [class.loading]="isLoading">
               Resend OTP?
             </button>
           </div>
+          <div class="login-btn-wrpper">
+            <button mat-button color="primary" (click)="verifyOTPLater()" [disabled]="isLoading" [class.loading]="isLoading">
+              Verify Later
+            </button>
+          </div>
         </form>
-      </div> -->
+      </div>
     </div>
   </mat-card>
 </div>

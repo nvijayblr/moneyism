@@ -191,7 +191,7 @@
           <mat-expansion-panel expanded>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Relations and Service Providers
+                Relations
               </mat-panel-title>
             </mat-expansion-panel-header>
             <div class="btn-main-right-wrapper top-sapce">
@@ -243,6 +243,69 @@
                     <mat-icon>add</mat-icon>
                   </button>
                   <button type="button" mat-icon-button type="button" (click)="removeFormItem('relations', i)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Service Providers
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="btn-main-right-wrapper top-sapce">
+              <button type="button" mat-stroked-button class="secondary-btn" 
+                (click)="addFormItem('serviceproviders')" 
+                *ngIf="!personalDetailsForm.get('serviceproviders')['controls'].length">
+                  Add Service Provider
+              </button>
+            </div>
+            <div class="flex-containers space-between" 
+              formArrayName="serviceproviders" *ngFor="let provider of personalDetailsForm.get('serviceproviders')['controls']; index as i; last as isLast; first as isFirst">
+              <ng-container [formGroupName]="i">
+                <div class="list flex-containers flex-start wrap">
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Service Provider Type</mat-label>
+                      <mat-select formControlName="relation_type">
+                        <mat-option *ngFor="let type of serviceProvidersTypes | keyvalue" [value]="type.value.value">{{type.value.title}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Name" formControlName="name" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input matInput placeholder="Email" formControlName="email" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Phone No</mat-label>
+                      <input matInput placeholder="Phone No" formControlName="phoneno" maxlength="15" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-5">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Location</mat-label>
+                      <input matInput placeholder="Location" formControlName="location" maxlength="100" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="list add-remove-button">
+                  <button type="button" mat-icon-button type="button" (click)="addFormItem('serviceproviders')" *ngIf="isLast">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <button type="button" mat-icon-button type="button" (click)="removeFormItem('serviceproviders', i)">
                     <mat-icon>remove</mat-icon>
                   </button>
                 </div>
