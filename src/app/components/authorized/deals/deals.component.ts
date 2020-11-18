@@ -182,6 +182,7 @@ export class DealsComponent implements OnInit, OnDestroy {
   showHideStatusComment(obj, isShow, status = '') {
     obj.showReqestors = false;
     obj.showHistory = false;
+    obj.status_path = '';
     if (status === 'Completed' || status === 'Closed') {
       obj.showRating = true;
     } else {
@@ -221,7 +222,7 @@ export class DealsComponent implements OnInit, OnDestroy {
         assignerating: obj.assignerating,
         ownerrating: obj.ownerrating,
         amountpaid: obj.amountpaid,
-        path: obj.path,
+        path: obj.status_path,
     };
     this.http.updateDealsStatus(payload).subscribe((result: any) => {
       obj.showComment = false;
@@ -237,7 +238,7 @@ export class DealsComponent implements OnInit, OnDestroy {
   }
 
   onUploadCompleted(e, deals) {
-    deals.path = e.path;
+    deals.status_path = e.path;
   }
 
   tabChange(tab) {

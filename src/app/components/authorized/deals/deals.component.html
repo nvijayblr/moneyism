@@ -137,7 +137,7 @@
                           <app-image-cropper 
                             [imageType]="'Deals'"
                             [fileTypes]="'application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*'"
-                            [imagePath]="deals.path ? deals.path : ''"
+                            [imagePath]="deals.status_path ? deals.status_path : ''"
                             (uploadCompleted)="onUploadCompleted($event, deals)">
                           </app-image-cropper>
                         </div>
@@ -332,7 +332,7 @@
                         <app-image-cropper 
                           [imageType]="'Deals'"
                           [fileTypes]="'application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*'"
-                          [imagePath]="deals.path ? deals.path : ''"
+                          [imagePath]="deals.status_path ? deals.status_path : ''"
                           (uploadCompleted)="onUploadCompleted($event, deals)">
                         </app-image-cropper>
                       </div>
