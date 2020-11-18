@@ -184,6 +184,7 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
   intiFormArrays(field, value: any = {}) {
     if (field === 'education') {
       return this.fb.group({
+        id: [value.id],
         qualifiation: [value.qualifiation, [Validators.required]],
         institution: [value.institution, [Validators.required]],
         year: [value.year, [Validators.required]],
@@ -194,6 +195,7 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
     }
     if (field === 'relations') {
       return this.fb.group({
+        id: [value.id],
         relation_type: [value.relation_type, [Validators.required]],
         name: [value.name, [Validators.required]],
         email: [value.email],
@@ -203,6 +205,7 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
     }
     if (field === 'serviceproviders') {
       return this.fb.group({
+        id: [value.id],
         relation_type: [value.relation_type, [Validators.required]],
         name: [value.name, [Validators.required]],
         email: [value.email],
@@ -212,6 +215,7 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
     }
     if (field === 'records') {
       return this.fb.group({
+        id: [value.id],
         image_type: [value.image_type, [Validators.required]],
         name: [value.name, [Validators.required, Validators.maxLength(50)]],
         imgname: [value.imgname],

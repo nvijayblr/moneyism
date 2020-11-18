@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   loaderMsg = '';
   isOtpScreen = false;
+  isOtpGenerated = false;
 
   constructor(
     private fb: FormBuilder,
@@ -73,6 +74,22 @@ export class LoginComponent implements OnInit {
     this.isOtpScreen = option;
   }
 
+  validateUserAndGenerateOtp() {
+    if (this.otpForm.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    this.loaderMsg = 'Sending OTP to your phone.';
+    this.http.loginRequest({phoneno: this.otpForm.controls.phoneno.value}).subscribe((result: any) => {
+      this.errorMessage = '';
+      this.generateOtp();
+    }, (error) => {
+      this.isLoading = false;
+      this.errorMessage = 'Entered mobile number is not regiester with Moneyism. Please sign up to Moneyism.';
+    });
+  }
+
+
   generateOtp() {
     if (this.otpForm.invalid) {
       return;
@@ -81,6 +98,7 @@ export class LoginComponent implements OnInit {
     this.loaderMsg = 'Sending OTP to your phone.';
     this.http.generateOTP(this.otpForm.controls.phoneno.value).subscribe((result: any) => {
       this.isLoading = false;
+      this.isOtpGenerated = true;
       this.errorMessage = '';
     }, (error) => {
       this.isLoading = false;

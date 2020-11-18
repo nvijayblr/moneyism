@@ -1,4 +1,6 @@
+
 <div class="car-wrapper" *ngIf="items && items.length > 3">
+  <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
   <h4 class="sub-title" *ngIf="title">{{title}}</h4>
   <div class="car-btn-wrapper text-right">
     <button mat-stroked-button class="secondary-btn prev-next-btn" (click)="owlCar.prev()">
@@ -25,6 +27,15 @@
             </a>
           </div>
           <h4>{{item.name}}</h4>
+          <p class="desc" *ngIf="item.description" title="{{item.description}}">{{item.description}}</p>
+          <!-- Sharing menu -->
+          <mat-menu #shareMenu="matMenu" class="share-menu-wrapper">
+            <button mat-menu-item (click)="shareWithCommunity(item)">Share with Community</button>
+          </mat-menu>
+      
+          <button mat-icon-button class="more-icon-btn" [matMenuTriggerFor]="shareMenu" *ngIf="communityShare" [disabled]="isLoading" [class.loading]="isLoading">
+            <mat-icon class="more-icon">more_vert</mat-icon>
+          </button>
         </mat-card>
       </ng-template>
     </ng-container>
@@ -32,6 +43,7 @@
 </div>
 
 <div class="car-wrapper" *ngIf="items && items.length <= 3">
+  <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
   <h4 class="sub-title block" *ngIf="title">{{title}}</h4>
   <div class="list bt-border flex-containers flex-start">
     <mat-card class="flex-item list-item-3 border award" *ngFor="let item of items">
@@ -47,6 +59,17 @@
         </a>
       </div>
       <h4>{{item.name}}</h4>
+      <p class="desc" *ngIf="item.description" title="{{item.description}}">{{item.description}}</p>
+
+      <!-- Sharing menu -->
+      <mat-menu #shareMenu="matMenu" class="share-menu-wrapper">
+        <button mat-menu-item (click)="shareWithCommunity(item)">Share with Community</button>
+      </mat-menu>
+  
+      <button mat-icon-button class="more-icon-btn" [matMenuTriggerFor]="shareMenu" *ngIf="communityShare" [disabled]="isLoading" [class.loading]="isLoading">
+        <mat-icon class="more-icon">more_vert</mat-icon>
+      </button>
+
     </mat-card>
   </div>
 </div>

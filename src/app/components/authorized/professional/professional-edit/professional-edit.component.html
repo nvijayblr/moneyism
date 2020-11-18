@@ -223,7 +223,13 @@
                       <input matInput placeholder="Name" formControlName="name" maxlength="100" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-4">
+                  <div class="list-item-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Description</mat-label>
+                      <input matInput placeholder="Description" formControlName="description" maxlength="255" autocomplete="off"/>
+                    </mat-form-field>
+                  </div>
+                  <div class="list-item-6">
                     <app-image-cropper 
                       [imageType]="'Achivements'"
                       [fileTypes]="'application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*'"

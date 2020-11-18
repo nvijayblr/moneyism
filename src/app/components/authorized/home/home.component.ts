@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
   isEditMode = false;
   appConfig: any = {};
   isCurrentUser = false;
+  isLoading = false;
+  loaderMsg = '';
+  posts: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +37,20 @@ export class HomeComponent implements OnInit {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
     this.userId = this.user.id;
+    this.getSharedPosts();
   }
+
+  getSharedPosts() {
+    this.isLoading = true;
+    this.loaderMsg = 'Loading community details...';
+    this.http.sharedByOthers(this.userId).subscribe((result: any) => {
+      this.isLoading = false;
+      this.posts = result && result.communityResponse ? result.communityResponse : [];
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
+
 
 }

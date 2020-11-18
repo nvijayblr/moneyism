@@ -15,12 +15,13 @@ export class CommunityComponent implements OnInit, OnDestroy {
   isLoading = false;
 
   user: any = {};
-  professional: any = {};
+  posts: any = [];
   userId: any = '';
   isUserLoggedIn = false;
   isEditMode = false;
   appConfig: any = {};
   isCurrentUser = false;
+  loaderMsg = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -44,19 +45,46 @@ export class CommunityComponent implements OnInit, OnDestroy {
         }
         this.userId = queryParams.id;
       }
-      // this.getUsersProfessionalDetails();
+      this.getSharedPosts();
     });
 
   }
 
-  getUsersProfessionalDetails() {
+  getSharedPosts() {
     this.isLoading = true;
-    this.http.getProfessionalDetails(this.userId).subscribe((result: any) => {
+    this.loaderMsg = 'Loading community details...';
+    this.http.sharedByMe(this.userId).subscribe((result: any) => {
       this.isLoading = false;
-      this.professional = result;
+      this.posts = result && result.communityResponse ? result.communityResponse : [];
     }, (error) => {
       this.isLoading = false;
     });
+  }
+
+  removePost(post, index) {
+    this.isLoading = true;
+    this.loaderMsg = 'Removing post from community...';
+    this.http.removePost(this.userId, post.achivements[0].id).subscribe((result: any) => {
+      this.isLoading = false;
+      this.posts.splice(index, 1);
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
+  likeUnlikePost(post, isLiked) {
+    this.http.likeUnlikePost(this.userId, post.achivements[0].id, isLiked).subscribe((result: any) => {
+      if (isLiked) {
+        post.likesCount = post.likesCount + 1;
+        post.isLiked = true;
+      } else {
+        post.likesCount = post.likesCount - 1;
+        post.isLiked = false;
+      }
+    }, (error) => {
+      this.isLoading = false;
+    });
+
   }
 
   ngOnDestroy() {

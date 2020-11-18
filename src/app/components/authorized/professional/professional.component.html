@@ -131,7 +131,7 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="list" *ngIf="professional.achivements && professional.achivements.length">
-                  <app-mn-carousel [items]="professional.achivements"></app-mn-carousel>
+                  <app-mn-carousel [items]="professional.achivements" [communityShare]="true" [shareKey]="'achivements'"></app-mn-carousel>
                 </div>
               </mat-expansion-panel>
 

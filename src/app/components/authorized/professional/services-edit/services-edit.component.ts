@@ -74,6 +74,7 @@ export class ServicesEditComponent implements OnInit, OnDestroy {
   intiFormArrays(field, value: any = {}) {
     if (field === 'services') {
       return this.fb.group({
+        id: [value.id],
         image_type: ['Proudcts'],
         name: [value.name, [Validators.required, Validators.maxLength(50)]],
         description: [value.description],

@@ -67,18 +67,18 @@
         <form [formGroup]="otpForm" class="custom-login-wrapper" style="margin-top: 24px; font-size: 12px;">
           <mat-form-field  appearance="outline">
             <mat-label>Mobile Number</mat-label>
-            <input matInput placeholder="Mobile Number" cdkFocusInitial formControlName="phoneno" autocomplete="off">
+            <input matInput type="number" placeholder="Your 10 digit mobile number" cdkFocusInitial formControlName="phoneno" autocomplete="off">
           </mat-form-field>
           <div class="login-btn-wrpper">
-            <button mat-button color="primary" (click)="generateOtp()" [disabled]="isLoading" [class.loading]="isLoading">
+            <button mat-button color="primary" (click)="validateUserAndGenerateOtp()" [disabled]="isLoading || otpForm.invalid" [class.loading]="isLoading">
               Generate OTP?
             </button>
           </div>
-          <mat-form-field  appearance="outline">
+          <mat-form-field  appearance="outline" *ngIf="isOtpGenerated">
             <mat-label>One Time Password</mat-label>
-            <input matInput placeholder="One Time Password" formControlName="otpnum" autocomplete="off">
+            <input matInput type="number" placeholder="One Time Password" formControlName="otpnum" autocomplete="off" [disabled]="!isOtpGenerated">
           </mat-form-field>
-          <div class="login-btn-wrpper">
+          <div class="login-btn-wrpper" *ngIf="isOtpGenerated">
             <button mat-raised-button color="primary" class="login-primary-btn" (click)="validateOtp()" 
               [disabled]="isLoading || (otpForm.invalid || !otpForm.controls.phoneno.value || !otpForm.controls.otpnum.value || otpForm.controls.otpnum.value.length < 6)" 
               [class.loading]="isLoading">
@@ -90,6 +90,10 @@
             <button mat-button color="primary" (click)="showHideOTPScreen(false)" [disabled]="isLoading" [class.loading]="isLoading">
               Sign in with Username?
             </button>
+          </div>
+
+          <div class="account-btn-wrpper">
+            New to Moneyism? <a routerLink="/signup">Join Now</a>
           </div>
 
         </form>

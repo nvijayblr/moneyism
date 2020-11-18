@@ -117,14 +117,17 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
   intiFormArrays(field, value: any = {}) {
     if (field === 'achivements') {
       return this.fb.group({
+        id: [value.id],
         image_type: ['Achivements'],
         name: [value.name, [Validators.required, Validators.maxLength(50)]],
+        description: [value.description, [Validators.maxLength(255)]],
         imgname: [value.imgname],
         path: [value.path],
       });
     }
     if (field === 'clients') {
       return this.fb.group({
+        id: [value.id],
         clientname: [value.clientname, [Validators.required]],
         // work_type: [value.work_type, [Validators.required]],
         email: [value.email],

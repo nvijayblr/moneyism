@@ -543,6 +543,59 @@ export class HttpService  {
     );
   }
 
+  // Community related aps
+  shareWithCommunity(userId, payload): Observable<any> {
+    return this.http.post<any>(`${this.rootUrl}users/${userId}/community/share`, payload).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  removePost(userId, communityId): Observable<any> {
+    return this.http.delete<any>(`${this.rootUrl}users/${userId}/community/${communityId}/share`).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  likeUnlikePost(userId, communityId, isLiked): Observable<any> {
+    return this.http.put<any>(`${this.rootUrl}users/${userId}/community/${communityId}/share?like=${isLiked}`, {}).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+
+  sharedByMe(userId): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}users/${userId}/community/share/me`).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  sharedByOthers(userId): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}users/${userId}/community/share/others`).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+
   resetPassword(payload): Observable<any> {
     return this.http.post<any>(`${this.rootUrl}user/resetpassword`, payload).pipe(
       tap((res) => {
