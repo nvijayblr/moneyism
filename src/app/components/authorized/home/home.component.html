@@ -59,15 +59,6 @@
                 <label class="label">Tech Lead, Aveva, Bangalore</label>
                 <label class="label">{{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label>
               </div>
-              <div class="remove-wrapper">
-                <mat-menu #shareMenu="matMenu" class="share-menu-wrapper">
-                  <button mat-menu-item (click)="removePost(post, i)">Remove</button>
-                </mat-menu>
-            
-                <button mat-icon-button class="more-icon-btn" [matMenuTriggerFor]="shareMenu" [disabled]="isLoading" [class.loading]="isLoading">
-                  <mat-icon class="more-icon">more_vert</mat-icon>
-                </button>              
-              </div>
             </div>
             <div *ngIf="post.achivements && post.achivements.length">
               <h4 class="comm-title">{{post.achivements[0].name}}</h4>
