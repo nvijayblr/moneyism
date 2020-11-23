@@ -125,6 +125,18 @@ export class HttpService  {
     );
   }
 
+  // Save user personal details
+  updateNotificationPref(userId, type, state): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.put<any>(`${this.rootUrl}user/${userId}/notifications?${type}=${state}`, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
   // Upload Image
   uploadImage(userId, formData): Observable<any> {
     const header: any = this.getAuthHeaders();

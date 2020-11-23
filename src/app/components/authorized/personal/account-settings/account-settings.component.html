@@ -20,13 +20,12 @@
     <div class="settings-form-wrapper">
       <mat-accordion class="personal-details" multi>
         <mat-expansion-panel expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Account Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
           <form [formGroup]="userDetailsForm">
-
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Account Details
-              </mat-panel-title>
-            </mat-expansion-panel-header>
             <div class="form-continer">
               <div class="list flex-containers flex-start wrap">
                 <div class="list-item-3">
@@ -124,6 +123,26 @@
               </mat-error>
               <div class="mat-error" *ngIf="isConfirmPasswordError">
                 Passsword and Confirm Password didn't match.
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>  
+        
+        
+        <!-- Notification Prefrences -->
+        <mat-expansion-panel expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Notification Prefrences
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="form-continer">
+            <div class="list flex-containers flex-start wrap">
+              <div class="list-item-3">
+                <mat-slide-toggle [(ngModel)]="notification.isEmail" color="warn" (change)="updateNotificationPref('email', notification.isEmail)">Email</mat-slide-toggle>
+              </div>
+              <div class="list-item-3">
+                <mat-slide-toggle  [(ngModel)]="notification.isPhone" color="warn" (change)="updateNotificationPref('phoneno', notification.isPhone)">Mobile</mat-slide-toggle>
               </div>
             </div>
           </div>

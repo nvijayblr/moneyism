@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpService } from '../../../services/http-service.service';
 import { AuthGuardService } from '../../../services/auth-guard.service';
 import { MessageService } from '../../../services/message.service';
 import { appConfig } from '../../../app.config';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
   posts: any = [];
 
   constructor(
+    private dialog: MatDialog,
     private route: ActivatedRoute,
     private http: HttpService,
     private router: Router,
@@ -37,6 +40,10 @@ export class HomeComponent implements OnInit {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
     this.userId = this.user.id;
+    if (localStorage.getItem('isInitLoad') && !this.user.emailVerified && !this.user.phonenoVerified) {
+      this.showVerifyEmailPhoneDialog();
+    }
+    localStorage.removeItem('isInitLoad');
     this.getSharedPosts();
   }
 
@@ -62,6 +69,21 @@ export class HomeComponent implements OnInit {
       }
     }, (error) => {
       this.isLoading = false;
+    });
+  }
+
+  showVerifyEmailPhoneDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Notification',
+        message: `Please verify you email or phone number to create deals.`,
+        cancelLable: '',
+        okLable: 'Close'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(action => {
     });
   }
 

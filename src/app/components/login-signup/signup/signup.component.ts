@@ -95,7 +95,7 @@ export class SignupComponent implements OnInit {
   generateOtp() {
     this.isLoading = true;
     this.loaderMsg = 'Sending OTP to your phone.';
-    this.http.generateOTP(`+91${this.signupForm.value.phoneno}`).subscribe((result: any) => {
+    this.http.generateOTP(this.signupForm.value.phoneno).subscribe((result: any) => {
       this.isLoading = false;
       this.errorMessage = '';
     }, (error) => {
@@ -169,6 +169,7 @@ export class SignupComponent implements OnInit {
       isSocial
     };
     localStorage.setItem('moneyism_token', JSON.stringify(session));
+    localStorage.setItem('isInitLoad', JSON.stringify({isInitLoad: true}));
     this.messageService.sendLoginMessage(session);
     this.router.navigate([`/auth/home`]);
     // if (this.data.option === 'create') {

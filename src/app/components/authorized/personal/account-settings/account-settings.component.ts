@@ -14,6 +14,10 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
 
   userDetailsForm: FormGroup;
   resetPasswordForm: FormGroup;
+  notification = {
+    isEmail: false,
+    isPhone: false
+  };
 
   user: any = {};
   isLoading = false;
@@ -74,6 +78,11 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
       confirm_password: ['', [Validators.required]],
     });
 
+    const pref = user.notificationPreferences;
+    this.notification = {
+      isEmail: pref.indexOf('Email') >= 0 ? true : false,
+      isPhone: pref.indexOf('Phone') >= 0 ? true : false
+    };
   }
 
   onUploadCompleted(e, formControl) {
@@ -134,6 +143,17 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
     this.http.resetPassword(resetPassword).subscribe((result: any) => {
       this.isLoading = false;
       this.router.navigate(['login']);
+    }, (error) => {
+      this.isLoading = false;
+    });
+
+  }
+
+  updateNotificationPref(type, state) {
+    this.loaderMsg = 'Updating notification prefrences...';
+    this.isLoading = true;
+    this.http.updateNotificationPref(this.userId, type, state).subscribe((result: any) => {
+      this.isLoading = false;
     }, (error) => {
       this.isLoading = false;
     });
