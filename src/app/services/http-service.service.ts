@@ -4,17 +4,13 @@ import { tap, catchError } from 'rxjs/operators';
 import { Observable, throwError, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthGuardService } from './auth-guard.service';
+import * as env from './../../assets/config/env.json';
 
 @Injectable({ providedIn: 'root' })
 
 export class HttpService  {
 
-  constructor(
-    private http: HttpClient,
-    private authGuardService: AuthGuardService
-  ) { }
-
-  private rootUrl = 'http://15.206.147.201:8080/';
+  private rootUrl = '';
 
 
   private cancelGetPersonalDetailsReq$ = new Subject<void>();
@@ -28,6 +24,15 @@ export class HttpService  {
   private cancelGetProfessionsSearch$ = new Subject<void>();
   private cancelGetServicesDetails$ = new Subject<void>();
   private cancelGetUserTasksList$ = new Subject<void>();
+
+  constructor(
+    private http: HttpClient,
+    private authGuardService: AuthGuardService
+  ) {
+    this.rootUrl = env.baseUrl;
+  }
+
+
 
   loginRequest(payload): Observable<any> {
     return this.http.post<any>(`${this.rootUrl}user/login`, payload).pipe(

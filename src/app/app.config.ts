@@ -1,3 +1,5 @@
+import * as env from '../assets/config/env.json';
+
 export const appConfig = {
-  imgBaseUrl:  'http://15.206.147.201:8080'
+  imgBaseUrl:  env.imgBaseUrl
 };

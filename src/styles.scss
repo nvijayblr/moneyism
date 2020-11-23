@@ -81,6 +81,10 @@ button {
   letter-spacing: 0.72px;
   text-transform: uppercase;
   font-size: 12px;
+  &[disabled] {
+    color: #b00000 !important;
+    opacity: 0.62;
+  }
 }
 
 .primary-btn {
@@ -439,6 +443,20 @@ button {
   .mat-form-field-appearance-outline .mat-form-field-outline-end {
     border-radius: 0;
   }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 20px 0 0 20px;
+    min-width: 16px;
+  }
+  .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 0 20px 20px 0;
+  }
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    left: 12px;
+  }
+  .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    transform: translate(-10px, -5%);
+  }
 }
 .page-heading-action {
   margin-bottom: 24px;
@@ -759,6 +777,14 @@ owl-date-time-container {
       margin-top: 8px;
     }
   }
+}
+.right-text {
+  text-align: right;
+}
+.info-msg {
+  font-size: 11px;
+  font-weight: 500;
+  margin: 4px 0;
 }
 
 // Media Query

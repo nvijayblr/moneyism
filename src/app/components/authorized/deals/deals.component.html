@@ -4,8 +4,9 @@
       <div class="flex-item">
         <h4 class="name">Deals</h4>
       </div>
-      <div class="flex-item">
-        <button mat-stroked-button class="secondary-btn" (click)="showCreateEditDeals()">Create Deal</button>
+      <div class="flex-item right-text">
+        <p class="info-msg" *ngIf="!this.user.phonenoVerified && !this.user.emailVerified">Please verify your phone number or email to create the delas.</p>
+        <button mat-stroked-button class="secondary-btn" (click)="showCreateEditDeals()" [disabled]="!this.user.phonenoVerified && !this.user.emailVerified">Create Deal</button>
       </div>
     </div>
     <div class="deals-wrapper personal-details">

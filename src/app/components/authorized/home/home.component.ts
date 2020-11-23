@@ -51,6 +51,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  likeUnlikePost(post, isLiked) {
+    this.http.likeUnlikePost(this.userId, post.achivements[0].id, isLiked).subscribe((result: any) => {
+      if (isLiked) {
+        post.likesCount = post.likesCount + 1;
+        post.isLiked = true;
+      } else {
+        post.likesCount = post.likesCount - 1;
+        post.isLiked = false;
+      }
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
 
 
 }

@@ -87,7 +87,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   generateOtp() {
     this.loaderMsg = 'Sending OTP to your phone...';
     this.isLoading = true;
-    this.http.generateOTP(this.user.phoneno).subscribe((result: any) => {
+    this.http.generateOTP(`+91${this.user.phoneno}`).subscribe((result: any) => {
       this.isLoading = false;
       this.showVerifyOTP = true;
       this.messageService.sendCommonMessage({topic: 'notifications', reason: 'Sent Notification'});

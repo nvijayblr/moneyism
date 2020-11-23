@@ -95,7 +95,7 @@ export class SignupComponent implements OnInit {
   generateOtp() {
     this.isLoading = true;
     this.loaderMsg = 'Sending OTP to your phone.';
-    this.http.generateOTP(this.signupForm.value.phoneno).subscribe((result: any) => {
+    this.http.generateOTP(`+91${this.signupForm.value.phoneno}`).subscribe((result: any) => {
       this.isLoading = false;
       this.errorMessage = '';
     }, (error) => {

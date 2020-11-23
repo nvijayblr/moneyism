@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
     }
     this.isLoading = true;
     this.loaderMsg = 'Sending OTP to your phone.';
-    this.http.generateOTP(this.otpForm.controls.phoneno.value).subscribe((result: any) => {
+    this.http.generateOTP(`+91${this.otpForm.controls.phoneno.value}`).subscribe((result: any) => {
       this.isLoading = false;
       this.isOtpGenerated = true;
       this.errorMessage = '';
