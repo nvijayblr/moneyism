@@ -3,8 +3,10 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { AuthGuardService as AuthGaurd } from './services/auth-guard.service';
 import { LoginComponent } from './components/login-signup/login/login.component';
 import { SignupComponent } from './components/login-signup/signup/signup.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const routes: Routes = [
+  { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {
@@ -15,9 +17,9 @@ const routes: Routes = [
     path: 'static',
     loadChildren: () => import('./components/static/static.module').then(m => m.StaticModule)
   }, {
-    path: '', redirectTo: '/login', pathMatch: 'full'
+    path: '', redirectTo: '', pathMatch: 'full'
   }, {
-    path: '**', redirectTo: '/login', pathMatch: 'full'
+    path: '**', redirectTo: '', pathMatch: 'full'
   },
 ];
 
