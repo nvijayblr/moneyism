@@ -17,11 +17,11 @@ export class AuthGuardService implements CanActivate {
       token = JSON.parse(token);
     }
     this.session = token;
-    return token && token.id ? true : false;
+    return token && token.user_id ? true : false;
   }
 
   public getToken() {
-    return this.session && this.session.id ? this.session.id : '';
+    return this.session && this.session.user_id ? this.session.user_id : '';
   }
 
   public getLoggedUser() {

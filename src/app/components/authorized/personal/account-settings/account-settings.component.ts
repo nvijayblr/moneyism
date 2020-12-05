@@ -39,7 +39,7 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
   ) {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
-    this.userId = this.user.id;
+    this.userId = this.user.user_id;
   }
 
   ngOnInit() {
@@ -63,9 +63,7 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
       email: [user.email, [Validators.required, Validators.email]],
       password: [user.password, [Validators.required]],
       phoneno: [user.phoneno, [Validators.required]],
-      firstname: [user.firstname, [Validators.required, Validators.maxLength(50)]],
-      middlename: [user.middlename],
-      surname: [user.surname, [Validators.required, Validators.maxLength(50)]],
+      fullname: [user.fullname, [Validators.required, Validators.maxLength(100)]],
       image_type: [user.image_type ? user.image_type : 'Profile'],
       imgname: [user.pimgnameassword],
       path: [user.path],

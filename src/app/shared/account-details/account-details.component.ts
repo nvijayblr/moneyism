@@ -35,7 +35,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   ) {
     this.appConfig = appConfig;
     this.user = this.authGuardService.getLoggedInUserDetails();
-    this.userId = this.user.id;
+    this.userId = this.user.user_id;
   }
 
   ngOnInit() {

@@ -39,7 +39,7 @@ export class SerachComponent implements OnInit {
   ngOnInit() {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
-    this.userId = this.user.id;
+    this.userId = this.user.user_id;
     this.initUsersOpenDeails();
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.search = queryParams;

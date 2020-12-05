@@ -71,7 +71,7 @@ export class DealsAddEditComponent implements OnInit {
   ) {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
-    this.userId = this.user.id;
+    this.userId = this.user.user_id;
     this.deals = data;
     this.isStatusOnly = data.isStatusOnly;
     if (this.isStatusOnly) {

@@ -47,8 +47,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     value: 'phoneno',
     title: 'Phoneno'
   }, {
-    value: 'firstname',
-    title: 'Firstname'
+    value: 'fullname',
+    title: 'Full name'
   }];
 
   @HostListener('window:scroll')
@@ -113,7 +113,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getNotificationsCount() {
-    this.http.getNotificationsCount(this.user.id).subscribe((result: any) => {
+    this.http.getNotificationsCount(this.user.user_id).subscribe((result: any) => {
       this.notificationsCount = result.count;
     }, (error) => {
     });

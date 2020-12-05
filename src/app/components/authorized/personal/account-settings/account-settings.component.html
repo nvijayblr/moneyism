@@ -48,35 +48,21 @@
                 </div>
               </div>
               <div class="list flex-containers flex-start wrap">
-                <div class="list-item-3">
+                <div class="list-item-2">
                   <mat-form-field appearance="fill">
-                    <mat-label>Firstname</mat-label>
-                    <input matInput placeholder="Firstname" formControlName="firstname" maxlength="50" autocomplete="off"/>
+                    <mat-label>Full Name</mat-label>
+                    <input matInput placeholder="Full Name" formControlName="fullname" maxlength="100" autocomplete="off"/>
                   </mat-form-field>
                 </div>
-                <div class="list-item-3">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Middlename</mat-label>
-                    <input matInput placeholder="Middlename" formControlName="middlename" maxlength="50" autocomplete="off"/>
-                  </mat-form-field>
-                </div>
-                <div class="list-item-3">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Surname</mat-label>
-                    <input matInput placeholder="Surname" formControlName="surname" maxlength="50" autocomplete="off"/>
-                  </mat-form-field>
-                </div>
-              </div>              
-              <div class="list flex-containers flex-start wrap">
-                <div class="list-item-3">
+                <div class="list-item-2">
                   <app-image-cropper 
                     [imageType]="'Profile'"
                     [imagePath]="user?.path ? user.path : ''"
                     (uploadCompleted)="onUploadCompleted($event, userDetailsForm)">
                   </app-image-cropper>
                 </div>
-
-              </div>
+                
+              </div>              
             </div>
           </form>
         </mat-expansion-panel>

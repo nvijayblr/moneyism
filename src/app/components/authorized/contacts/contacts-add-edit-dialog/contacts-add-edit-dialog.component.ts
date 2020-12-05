@@ -44,7 +44,7 @@ export class ContactsAddEditDialogComponent implements OnInit {
   ) {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
-    this.userId = this.user.id;
+    this.userId = this.user.user_id;
     this.contact = data;
     this.initContactDetails(this.contact);
   }

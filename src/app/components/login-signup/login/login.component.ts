@@ -133,7 +133,7 @@ export class LoginComponent implements OnInit {
     if (user.provider === 'GOOGLE') {
       payload = {
         userName: user.email,
-        FirstName: user.firstName,
+        fullname: user.firstName + ' ' + user.lastName,
         LastName: user.lastName,
         DPPath: user.photoUrl,
         provider: user.provider,
@@ -142,8 +142,7 @@ export class LoginComponent implements OnInit {
     } else {
       payload = {
         userName: user.email,
-        FirstName: user.firstName,
-        LastName: user.lastName,
+        fullname: user.firstName + ' ' + user.lastName,
         DPPath: user.photoUrl,
         provider: user.provider,
         AId: user.id,
@@ -162,6 +161,7 @@ export class LoginComponent implements OnInit {
   }
 
   setLoginSessionAndRouting(result, isSocial?) {
+    console.log(result);
     const session = {
       ...result,
       isLoggedIn: true,

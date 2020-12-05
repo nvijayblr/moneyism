@@ -52,9 +52,7 @@ export class SignupComponent implements OnInit {
       confirm_password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneno: ['', Validators.required],
-      firstname: ['', Validators.required],
-      middlename: [''],
-      surname: ['', [Validators.required, Validators.maxLength(50)]],
+      fullname: ['', Validators.required],
     });
 
     this.otpForm = this.fb.group({
@@ -134,8 +132,7 @@ export class SignupComponent implements OnInit {
     if (user.provider === 'GOOGLE') {
       payload = {
         userName: user.email,
-        FirstName: user.firstName,
-        LastName: user.lastName,
+        fullname: user.firstName + ' ' + user.lastName,
         DPPath: user.photoUrl,
         provider: user.provider,
         AId: user.id,
@@ -143,8 +140,7 @@ export class SignupComponent implements OnInit {
     } else {
       payload = {
         userName: user.email,
-        FirstName: user.firstName,
-        LastName: user.lastName,
+        fullname: user.firstName + ' ' + user.lastName,
         DPPath: user.photoUrl,
         provider: user.provider,
         AId: user.id,

@@ -111,7 +111,7 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
   ) {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
-    this.userId = this.user.id;
+    this.userId = this.user.user_id;
   }
 
   ngOnInit() {
@@ -132,9 +132,6 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
 
   initPersonalDetails(personal) {
     this.personalDetailsForm = this.fb.group({
-      // firstname: [personal.firstname, [Validators.required, Validators.maxLength(50)]],
-      // middlename: [personal.middlename],
-      // surname: [personal.surname],
       gender: [personal.gender, [Validators.required]],
       fathername: [personal.fathername, [Validators.required]],
       mothername: [personal.mothername, [Validators.required]],
