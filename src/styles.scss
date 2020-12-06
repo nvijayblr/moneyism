@@ -67,10 +67,14 @@ button {
 }
 
 .login-primary-btn {
-  background-color: #b00000 !important;
+  background-color: #D74F31 !important;
   line-height: 46px !important;
   font-size: 18px;
   font-weight: 400;
+  height: 50px;
+  border-radius: 25px !important;
+  width: auto;
+  padding: 0 46px !important;
 }
 
 .secondary-btn {
@@ -96,6 +100,26 @@ button {
   letter-spacing: 0.72px;
   text-transform: uppercase;
   font-size: 12px;
+  &[disabled] {
+    color: #fff !important;
+    opacity: 0.3;
+  }
+}
+
+.primary-btn-gray {
+  border: 1px solid #3B3B3B !important;
+  background-color: #3B3B3B !important;
+  border-radius: 40px !important;
+  height: 40px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0 20px !important;
+  &.white {
+    border: 1px solid #000000 !important;
+    background-color: #FFFFFF !important;
+    color: #3B3B3B;
+  }
   &[disabled] {
     color: #fff !important;
     opacity: 0.3;
@@ -199,7 +223,7 @@ button {
   }
   .profile-pic-small {
     text-align: center;
-    border-bottom: 1px solid #eeeeee;
+    // border-bottom: 1px solid #eeeeee;
     padding: 40px 0;
     &.img {
       height: 220px;
@@ -248,9 +272,14 @@ button {
       padding-bottom: 20px;
     }
     label.label {
-      font-size: 11px;
+      // font-size: 11px;
+      // margin-bottom: 4px;
+      // display: block;
+      font-size: 16px;
       margin-bottom: 4px;
       display: block;
+      color: #9B9B9B;
+      line-height: 25px;
     }
     p {
       font-size: 13px;
@@ -502,7 +531,6 @@ button {
 }
 .notification-menu {
   .mat-badge-active.mat-badge-content {
-    right: 8px !important;
     font-size: 10px;
     font-weight: 400;
   }
@@ -712,13 +740,14 @@ owl-date-time-container {
 }
 
 .likes-wrapper {
-  font-size: 12px;
+  font-size: 16px;
+  margin-top: 20px;
   cursor: pointer;
   .likes-icon {
     .mat-icon {
-      font-size: 14px;
+      font-size: 20px;
       height: 14px;
-      width: 14px;
+      width: 22px;
     }
   }
   .likes-count {
@@ -736,17 +765,25 @@ owl-date-time-container {
     margin: 0 0 12px 0;
     label.label {
       margin-bottom: 0;
+      font-size: 16px;
+      color: #7B7C7D;
+      display: inline-block;
     }
     h4.comm-title {
-      margin-top: 10px;
+      margin-top: 16px;
       margin-bottom: 4px;
+      font-size: 16px;
       font-weight: 400;
+      color: #212121;
     }
     p.comm-desc {
       margin-bottom: 10px;
+      font-size: 16px;
+      color: #515151;
     }
     p.name {
-      margin-bottom: 2px;
+      margin-top: 2px;
+      font-size: 20px;
     }
 
   }
@@ -764,8 +801,8 @@ owl-date-time-container {
   }
   .user-profile-name {
     text-align: center;
-    width: 52px;
-    height: 52px;
+    width: 68px;
+    height: 68px;
     background-size: contain;
     border: 1px solid #e5e5e5;
     border-radius: 50%;
@@ -774,7 +811,7 @@ owl-date-time-container {
       font-weight: 400;
       font-size: 22px;
       color: rgba(0, 0, 0, 0.62);
-      margin-top: 8px;
+      margin-top: 16px;
     }
   }
 }
@@ -787,8 +824,44 @@ owl-date-time-container {
   margin: 4px 0;
 }
 
+
 // Media Query
 
 @media only screen and (max-width: 720px) { 
 }
 // End of the responsiveness
+
+
+
+
+
+// Styles as per new UX
+
+.container {
+  max-width: 1400px;
+}
+// Mat Input box
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: transparent;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 5px 0 15px 0;
+  font-size: 18px;
+  color: #262626;
+}
+.mat-form-field-appearance-outline .mat-form-field-subscript-wrapper {
+  padding: 0 !important;
+  font-weight: 500;
+}
+.mat-form-field-appearance-outline .mat-form-field-prefix, .mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 6px !important;
+  font-size: 16px;
+  margin-right: 10px;
+  color: rgba(0, 0, 0, 68%);
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-end, .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-gap, .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-start {
+  border-width: 1px !important;
+}

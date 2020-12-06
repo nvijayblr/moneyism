@@ -1,45 +1,35 @@
-<mat-card class="user-wrapper account-details">
+<mat-card class="user-wrapper account-details no-padding">
   <app-progress-bar [message]="loaderMsg" class="page component" *ngIf="isLoading"></app-progress-bar>
-  <div class="flex-containers space-between account-heading">
-    <div class="flex-item">
-      <h4 class="a-title">Account Details</h4>
+  <div class="account-heading">
+    <div class="flex-item acc-bg"></div>
+
+    <div class="user-profile-img">
+      <div class="profile-pic-small img" *ngIf="user.path" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + user.path + ')'}"></div>
+      <h4 class="profile-pic-small" *ngIf="!user.path">
+        <mat-icon>account_circle</mat-icon>
+      </h4>
+      <div class="btn-main-right-wrapper" *ngIf="isCurrentUser">
+        <button mat-icon-button routerLink="/auth/personal/settings">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+
     </div>
-    <div class="btn-main-right-wrapper" *ngIf="isCurrentUser">
-      <button mat-icon-button routerLink="/auth/personal/settings">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
+  
   </div>
-  <div class="user-profile-img">
-    <div class="profile-pic-small img" *ngIf="user.path" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + user.path + ')'}"></div>
-    <h4 class="profile-pic-small" *ngIf="!user.path">
-      <mat-icon>account_circle</mat-icon>
-    </h4>
-  </div>
+
   <div class="personal-details">
-    <div class="text-center ratting-container">
-      <star-rating value="2.5" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="18px" readonly="true"></star-rating>
-    </div>
     <div class="list">
-      <label class="label">Fullname</label>
-      <h4>{{user.fullname}}&nbsp;</h4>
-    </div>
-    <div class="list">
-      <label class="label">Username</label>
-      <h4>{{user.username}}</h4>
-    </div>
-    <div class="list">
-      <label class="label">Email</label>
+      <h4>{{user.fullname}}</h4>
+
       <h4>
         {{user.email}} 
         <span class="verified" *ngIf="user.emailVerified"><mat-icon>done</mat-icon></span>
-        <button mat-button color="primary" *ngIf="!user.emailVerified" (click)="verifyEmail()" [disabled]="isLoading" [class.loading]="isLoading">
+        <a class="verify-link" href="javascript: void()" *ngIf="!user.emailVerified" (click)="verifyEmail()">
           Verify
-        </button>
+        </a>
       </h4>
-    </div>
-    <div class="list">
-      <label class="label">Phone number</label>
+
       <h4>
         {{user.phoneno}}
         <span class="verified" *ngIf="user.phonenoVerified"><mat-icon>done</mat-icon></span>
@@ -62,6 +52,19 @@
         </div>
       </form>
     </div>
-
+    <div class="flex-containers space-between list stats">
+      <div class="text-center right-bd">
+        <label class="label">Likes</label>
+        <h4>344</h4>
+      </div>
+      <div class="text-center right-bd ratting-container">
+        <label class="label" style="margin-bottom: 1px;">Rating</label>
+        <star-rating value="4" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="16px" readonly="true"></star-rating>
+      </div>
+      <div class="text-center">
+        <label class="label">Deals</label>
+        <h4>10</h4>
+      </div>
+    </div>
   </div>
 </mat-card>

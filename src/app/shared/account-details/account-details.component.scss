@@ -1,8 +1,20 @@
 .account-details {
-  position: sticky !important;
-  top: 100px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px #00000029 !important;
+  border-radius: 0 !important;
+  .acc-bg {
+    background: #eeeeee;
+    height: 90px;
+  }
+  .user-profile-img {
+    position: relative;
+    top: -60px;
+  }
+  .profile-pic-small {
+    padding: 0;
+  }
   .account-heading {
-    border-bottom: 1px solid #eeeeee;
+    height: 150px;
     .a-title {
       margin: 0;
       font-size: 18px;
@@ -26,16 +38,49 @@
     }
   }
 }
-
-:host {
-  .star {
-    position: relative;
-    &:after {
-      position: absolute;
-      width: 9px !important;
-      top: 0px;
-      left: 15px;
+.user-profile-img {
+  position: relative;
+  .btn-main-right-wrapper {
+    position: absolute;
+    right: 80px;
+    bottom: 10px;
+    .mat-icon-button {
+      background: #D5D5D5;
+      border: 2px solid #fff;
+      line-height: 36px;
     }
   }
 }
+.personal-details {
+  padding: 10px;
+  text-align: center;
+  .verify-link {
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .stats {
+    padding: 32px 20px 4px;
+    h4 {
+      margin-bottom: 0 !important;
+    }
+    .right-bd {
+      padding-right: 15px;
+      border-right: 1px solid #ccc;
+    }
+  }
+}
+
+
+// :host {
+//   .star {
+//     position: relative;
+//     &:after {
+//       position: absolute;
+//       width: 9px !important;
+//       top: 0px;
+//       left: 15px;
+//     }
+//   }
+// }
      

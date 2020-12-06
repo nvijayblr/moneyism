@@ -1,12 +1,15 @@
-.signup-wrapper {
-  background: linear-gradient(100deg,#b00000 ,#8d0000),linear-gradient(100deg, #8aaebb, #89adba);
-  background-attachment: fixed;
-  background-color: #b00000;  
+.login-wrapper {
+  background: url('./../../../../assets/images/joinnow-bg.svg') no-repeat top left;
+  background-size: cover;
+  height: 100%;
   height: 100vh;
   .login-card {
-    width: 600px;
-    background: #fff;
+    width: 580px;
+    opacity: 0.94;
+    backdrop-filter: blur(37px);
+    -webkit-backdrop-filter: blur(37px);
     border-radius: 10px;
+    background: rgba(255, 255, 255, 0.68);
     overflow: hidden;
     margin-bottom: 0;
     padding: 44px 55px 33px 55px;
@@ -16,44 +19,69 @@
     -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   }
-  .page-title {
-    font-size: 52px;
-    text-align: left;
-    font-weight: 300;
-    margin-right: 44px;
-    color: #f2f2f2;
+  .login-container {
+    height: 100%;
   }
+  .title-wrp {
+    width: 640px;
+    margin-right: 100px;
+    text-align: center;
+    margin-top: 100px;
+    .page-title {
+      font-size: 52px;
+      text-align: left;
+      font-weight: 300;
+      margin-right: 44px;
+      color: #fff;
+      text-align: center;
+    }
+    .login-image {
+      max-width: 600px;
+      margin-top: 64px;
+    }
+  }
+
   .title {
-    font-size: 28px;
+    font: italic normal 900 20px/35px Roboto;;
     text-align: center;
     font-weight: 300;
     margin-bottom: 44px;
+    font-weight: 100;
+    .strong {
+      font-weight: 500;
+    }
   }
   .logo-wrapper {
     text-align: center;
     margin: 24px 0;
     .logo {
-      width: 100px;
+      width: 120px;
     }
   }
   .mat-form-field {
     font-size: 18px;
     font-weight: 300;
-    margin-bottom: 18px;
   }
   .login-btn-wrpper {
     margin-top: 24px;
     text-align: center;
   }
   .account-btn-wrpper {
-    margin-top: 62px;
+    margin-top: 32px;
     text-align: center;
+    p {
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
   }
-  .btn-wrapper-text {
-    margin-top: 20px; 
-    text-align: center;
-    line-height: 22px;
-    width: 400px;
-    margin: auto;    
+}
+
+.otp-login-wrapper {
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+  .login-btn-wrpper {
+    margin: 0 0 24px 0;
   }
 }

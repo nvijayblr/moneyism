@@ -16,6 +16,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { FileFormatPipe } from '../services/file-format-pipe';
 import { MnCarouselComponent } from './mn-carousel/mn-carousel.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { RecentDealsComponent } from './recent-deals/recent-deals.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     ConfirmDialogComponent,
     FileFormatPipe,
     MnCarouselComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    RecentDealsComponent
   ],
   exports: [
     FormsModule,
@@ -52,6 +54,7 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     ImageCropperComponent,
     ConfirmDialogComponent,
     AccountDetailsComponent,
+    RecentDealsComponent,
     MnCarouselComponent,
     FileFormatPipe,
     RatingModule,

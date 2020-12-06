@@ -2,12 +2,12 @@
   <div class="header-top header-body">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-1 ">
+        <div class="col-xs-12 col-sm-4 col-md-3">
           <a class="logo-wrapper" routerLink="/auth/home">
-            <img class="logo" src="./../assets/images/logo.png" alt="Moneyism">
+            <img class="logo" src="./../assets/images/logo-vertical.svg" alt="Moneyism">
           </a>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-7">
+        <!-- <div class="col-xs-12 col-sm-4 col-md-7">
           <form [formGroup]="searchForm">
             <div class="list flex-containers flex-start wrap">
               <div class="list-item-4 list-item">
@@ -35,12 +35,36 @@
               </div>
             </div>
           </form>
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 text-right">
+        </div> -->
+        <div class="col-xs-12 col-sm-4 col-md-9 text-right">
           <div class="main-nav">
-            <button mat-button [matMenuTriggerFor]="menu">
+            <button mat-button routerLink="/auth/deals">
+              <mat-icon matPrefix>group_work</mat-icon>
+              Deals
+            </button>
+
+            <button mat-button routerLink="/auth/professional">
+              <mat-icon matPrefix>group_work</mat-icon>
+              Professional
+            </button>
+
+            <button mat-button routerLink="/auth/community">
+              <mat-icon matPrefix>group_work</mat-icon>
+              Community
+            </button>
+
+            <span class="seperator">&nbsp;</span>
+
+            <button mat-icon-button class="notification-menu" routerLink="/auth/notifications">
+              <mat-icon>search</mat-icon>
+            </button>
+
+            <button mat-icon-button class="notification-menu" routerLink="/auth/notifications">
+              <mat-icon matBadge="{{notificationsCount}}" matBadgeColor="warn">notifications</mat-icon>
+            </button>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>account_circle</mat-icon>
-              Me
             </button>
             <mat-menu #menu="matMenu">
               <div class="nav-category-item user-menu-item" mat-menu-item routerLink="/auth/personal">
@@ -54,37 +78,14 @@
               <button class="nav-category-item" mat-menu-item routerLink="/auth/personal">Personal</button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/professional">Professional</button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/community">My Community</button>
+              <button class="nav-category-item" mat-menu-item routerLink="/auth/contacts">Contacts</button>
+              <button class="nav-category-item" mat-menu-item routerLink="/auth/tasks">Tasks</button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/personal/settings">Settings</button>
               <mat-divider></mat-divider>
               <button class="nav-category-item" mat-menu-item (click)="doLogout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
             </mat-menu>
 
-            <button mat-button routerLink="/auth/deals">
-              <mat-icon>group_work</mat-icon>
-              Deals
-            </button>
-            <button mat-button routerLink="/auth/contacts">
-              <mat-icon>perm_contact_calendar</mat-icon>
-              Contacts
-            </button>
-            <button mat-button routerLink="/auth/tasks">
-              <mat-icon>calendar_today</mat-icon>
-              Tasks
-            </button>
-            <button mat-button class="notification-menu" routerLink="/auth/notifications">
-              <mat-icon matBadge="{{notificationsCount}}" matBadgeColor="warn">notifications</mat-icon>
-              Notifications
-            </button>
           </div>
-          <!-- <div class="logged-in-wrp sub-nav" *ngIf="user.isLoggedIn">
-            <a class="gv-btn-link" 
-              routerLink="/personal/{{user.UserId}}"
-              routerLinkActive="on"
-              [routerLinkActiveOptions]="{ exact: false, __change_detection_hack__: user.UserId }"
-            >
-              Vijay N
-          </a>
-          </div> -->
         </div>
       </div>
     </div>

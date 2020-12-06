@@ -1,73 +1,44 @@
-<section class="page-body profile-body">
+<section class="page-body home-body">
   <div class="container">
     <div class="home-wrapper">
-      <div class="flex-containers list space-between">
-        <mat-card class="flex-item-h border no-margin professional">
-          <div class="flex-wrapper">
-            <div class="flex-overlay"></div>
-            <h4 class="sec-title">Personal</h4>
-            <h1 class="strong-title">Platform</h1>
-            <label class="label">This platform will facilitate at personal level Organizer such as Name, contact details, personal banking, insurance, medical, legal, educational, Phots, like any many records in a one single place, based on need and requirement person can use this information.</label>
-            <button mat-stroked-button class="secondary-btn" routerLink="/auth/personal">View</button>
-          </div>
-        </mat-card>
-        <mat-card class="flex-item-h border no-margin personal">
-          <div class="flex-wrapper">
-            <div class="flex-overlay"></div>
-            <h4 class="sec-title">Professional</h4>
-            <h1 class="strong-title">Platform</h1>
-            <label class="label">This platform will accommodate nearly more than 1000+ profession’s and number small business users, in this platform a profession or business entity can maintain highlights of their service and products to generate business leads.</label>
-            <button mat-stroked-button class="secondary-btn" routerLink="/auth/professional">View</button>
-          </div>
-        </mat-card>
-        <mat-card class="flex-item-h border no-margin community">
-          <div class="flex-wrapper">
-            <div class="flex-overlay"></div>
-            <h4 class="sec-title">Community</h4>
-            <h1 class="strong-title">Platform</h1>
-            <label class="label">Moneyism Community is a community platform to post their business products, flayers, videos, awards and rewards. The community can be selected by using, Aera, Business, Education, Family, Friends and so on.</label>
-            <button mat-stroked-button class="secondary-btn" routerLink="/auth/community">View</button>
-          </div>
-        </mat-card>
-      </div>
-
       <!-- Community Pages -->
-      <div class="row my-community-body">
-        <div class="col-xs-12 col-sm-4 col-md-4 ">
+      
+      <div class="clearfix my-community-body">
+        <div class="left-pannel">
           <app-account-details></app-account-details>
+          <app-recent-deals></app-recent-deals>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-8">
+        <div class="community-panel">
           <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
 
           <mat-card class="border no-rounded list" *ngFor="let post of posts; let i = index">
-            <div class="flex-containers wrap">
-              <div class="flex-item no-margin">
-                <div class="user-profile-img" *ngIf="post.path">
-                  <div class="profile-pic-small pic-xs img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.path + ')'}"></div>
-                </div>
-                <div class="user-profile-name" *ngIf="!post.path">
-                  <div class="user-initials">{{post.initials}}</div>
-                </div>
+            <div class="flex-item user-image">
+              <div class="user-profile-img" *ngIf="post.path">
+                <div class="profile-pic-small pic-xs img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.path + ')'}"></div>
               </div>
-              <div class="flex-item no-margin">
-                <p class="name">{{post.fullname}}</p>
-                <label class="label">Tech Lead, Aveva, Bangalore</label>
-                <label class="label">{{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label>
+              <div class="user-profile-name" *ngIf="!post.path">
+                <div class="user-initials">{{post.initials}}</div>
               </div>
             </div>
-            <div *ngIf="post.records && post.records.length">
+            <div class="flex-item post-user-info">
+              <div class="user-info">
+                <p class="name">{{post.fullname}} <label class="label"> ‧ {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label></p>
+                <label class="label">Tech Lead, Aveva, Bangalore</label>
+                
+              </div>
+
               <h4 class="comm-title">{{post.records[0].name}}</h4>
               <p class="comm-desc">{{post.records[0].description}}</p>
               <div class="img-wrapper">
                 <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
               </div>
-            </div>
-            <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
-              <div class="likes-icon flex-item">
-                <mat-icon>thumb_up</mat-icon>
-              </div>
-              <div class="likes-count flex-item">
-                {{post.likesCount}}
+              <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
+                <div class="likes-icon flex-item">
+                  <mat-icon>thumb_up</mat-icon>
+                </div>
+                <div class="likes-count flex-item">
+                  {{post.likesCount}}
+                </div>
               </div>
             </div>
           </mat-card>

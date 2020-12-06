@@ -49,7 +49,7 @@ export class ImageCropperComponent implements OnInit {
 
   constructor(private http: HttpService, private authGuardService: AuthGuardService) {
     const user = this.authGuardService.getLoggedInUserDetails();
-    this.userId = user.id;
+    this.userId = user.user_id;
     this.appConfig = appConfig;
   }
 
