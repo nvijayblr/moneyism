@@ -23,6 +23,7 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
   appConfig: any = {};
   isCurrentUser = false;
   isProfessionalTab = true;
+  loaderMsg = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -53,6 +54,7 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
 
   getUsersProfessionalDetails() {
     this.isLoading = true;
+    this.loaderMsg = 'Loading professional details...';
     this.http.getProfessionalDetails(this.userId).subscribe((result: any) => {
       this.isLoading = false;
       this.professional = result;
@@ -63,9 +65,23 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
 
   getUsersServicesDetails() {
     this.isLoading = true;
+    this.loaderMsg = 'Loading professional details...';
     this.http.getServicesDetails(this.userId).subscribe((result: any) => {
       this.isLoading = false;
       this.services = result;
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
+  shareWithCommunity(item, shareKey) {
+    this.isLoading = true;
+    this.loaderMsg = 'Sharing the content to your community...';
+    const payload = {
+      [shareKey]: item.id
+    };
+    this.http.shareWithCommunity(this.userId, payload).subscribe((result: any) => {
+      this.isLoading = false;
     }, (error) => {
       this.isLoading = false;
     });
@@ -79,6 +95,10 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
       this.isProfessionalTab = false;
       this.getUsersServicesDetails();
     }
+  }
+
+  navigateToSection(element) {
+    element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
   }
 
   ngOnDestroy() {

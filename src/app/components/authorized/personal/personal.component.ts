@@ -63,6 +63,10 @@ export class PersonalComponent implements OnInit, OnDestroy {
     });
   }
 
+  navigateToSection(element) {
+    element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+  }
+
   ngOnDestroy() {
     this.http.cancelGetPersonalDetailsReq();
   }

@@ -44,13 +44,24 @@ export class HomeComponent implements OnInit {
       this.showVerifyEmailPhoneDialog();
     }
     localStorage.removeItem('isInitLoad');
-    this.getSharedPosts();
+    this.getAllPosts();
   }
 
-  getSharedPosts() {
+  getAllPosts() {
     this.isLoading = true;
     this.loaderMsg = 'Loading community details...';
     this.http.sharedByOthers(this.userId).subscribe((result: any) => {
+      this.isLoading = false;
+      this.posts = result && result.communityResponse ? result.communityResponse : [];
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
+  getMyPosts() {
+    this.isLoading = true;
+    this.loaderMsg = 'Loading my community details...';
+    this.http.sharedByMe(this.userId).subscribe((result: any) => {
       this.isLoading = false;
       this.posts = result && result.communityResponse ? result.communityResponse : [];
     }, (error) => {
@@ -86,6 +97,15 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(action => {
     });
+  }
+
+  tabChange(tab) {
+    if (tab.index === 0) {
+      this.getAllPosts();
+    }
+    if (tab.index === 1) {
+      this.getMyPosts();
+    }
   }
 
 

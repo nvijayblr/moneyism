@@ -10,39 +10,74 @@
         </div>
         <div class="community-panel">
           <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
-
-          <mat-card class="border no-rounded list" *ngFor="let post of posts; let i = index">
-            <div class="flex-item user-image">
-              <div class="user-profile-img" *ngIf="post.path">
-                <div class="profile-pic-small pic-xs img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.path + ')'}"></div>
-              </div>
-              <div class="user-profile-name" *ngIf="!post.path">
-                <div class="user-initials">{{post.initials}}</div>
-              </div>
-            </div>
-            <div class="flex-item post-user-info">
-              <div class="user-info">
-                <p class="name">{{post.fullname}} <label class="label"> ‧ {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label></p>
-                <label class="label">Tech Lead, Aveva, Bangalore</label>
-                
-              </div>
-
-              <h4 class="comm-title">{{post.records[0].name}}</h4>
-              <p class="comm-desc">{{post.records[0].description}}</p>
-              <div class="img-wrapper">
-                <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
-              </div>
-              <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
-                <div class="likes-icon flex-item">
-                  <mat-icon>thumb_up</mat-icon>
+          <mat-tab-group (selectedTabChange)="tabChange($event)">  
+            <mat-tab label="All Post">
+              <mat-card class="border no-rounded list" *ngFor="let post of posts; let i = index">
+                <div class="flex-item user-image">
+                  <div class="user-profile-img" *ngIf="post.path">
+                    <div class="profile-pic-small pic-xs img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.path + ')'}"></div>
+                  </div>
+                  <div class="user-profile-name" *ngIf="!post.path">
+                    <div class="user-initials">{{post.initials}}</div>
+                  </div>
                 </div>
-                <div class="likes-count flex-item">
-                  {{post.likesCount}}
+                <div class="flex-item post-user-info">
+                  <div class="user-info">
+                    <p class="name"><a href="javascript: void(0)">{{post.fullname}}</a> <label class="label"> <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label></p>
+                    <label class="label">Tech Lead, Aveva, Bangalore</label>
+                    
+                  </div>
+    
+                  <h4 class="comm-title">{{post.records[0].name}}</h4>
+                  <p class="comm-desc">{{post.records[0].description}}</p>
+                  <div class="img-wrapper">
+                    <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
+                  </div>
+                  <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
+                    <div class="likes-icon flex-item">
+                      <mat-icon>thumb_up</mat-icon>
+                    </div>
+                    <div class="likes-count flex-item">
+                      {{post.likesCount}}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </mat-card>
-  
+              </mat-card>
+            </mat-tab>
+            <mat-tab label="My Post">
+              <mat-card class="border no-rounded list" *ngFor="let post of posts; let i = index">
+                <div class="flex-item user-image">
+                  <div class="user-profile-img" *ngIf="post.path">
+                    <div class="profile-pic-small pic-xs img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.path + ')'}"></div>
+                  </div>
+                  <div class="user-profile-name" *ngIf="!post.path">
+                    <div class="user-initials">{{post.initials}}</div>
+                  </div>
+                </div>
+                <div class="flex-item post-user-info">
+                  <div class="user-info">
+                    <p class="name"><a href="javascript: void(0)">{{post.fullname}}</a> <label class="label"> <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label></p>
+                    <label class="label">Tech Lead, Aveva, Bangalore</label>
+                    
+                  </div>
+    
+                  <h4 class="comm-title">{{post.records[0].name}}</h4>
+                  <p class="comm-desc">{{post.records[0].description}}</p>
+                  <div class="img-wrapper">
+                    <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
+                  </div>
+                  <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
+                    <div class="likes-icon flex-item">
+                      <mat-icon>thumb_up</mat-icon>
+                    </div>
+                    <div class="likes-count flex-item">
+                      {{post.likesCount}}
+                    </div>
+                  </div>
+                </div>
+              </mat-card>
+            </mat-tab>
+          </mat-tab-group>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@
               Professional
             </button>
 
-            <button mat-button routerLink="/auth/community">
+            <button mat-button routerLink="/auth/home">
               <mat-icon matPrefix>group_work</mat-icon>
               Community
             </button>
@@ -66,7 +66,7 @@
             <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>account_circle</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" xPosition="before">
               <div class="nav-category-item user-menu-item" mat-menu-item routerLink="/auth/personal">
                 <mat-icon class="user-icon">account_circle</mat-icon>
                 <div class="user-info">
@@ -77,7 +77,6 @@
               <mat-divider></mat-divider>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/personal">Personal</button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/professional">Professional</button>
-              <button class="nav-category-item" mat-menu-item routerLink="/auth/community">My Community</button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/contacts">Contacts</button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/tasks">Tasks</button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/personal/settings">Settings</button>

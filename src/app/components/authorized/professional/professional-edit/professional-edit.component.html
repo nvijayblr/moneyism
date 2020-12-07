@@ -1,4 +1,4 @@
-<section class="page-body profile-body">
+<section class="page-body profile-body home-body">
   <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
   <div class="container">
     <div class="flex-containers space-between page-heading-action">
@@ -6,10 +6,6 @@
         <h4 class="name">Professional Details</h4>
       </div>
       <div class="btns-wrapper">
-        <div class="btn-main-right-wrapper">
-          <button mat-stroked-button class="secondary-btn" routerLink="/auth/professional">Cancel</button>
-          <button mat-stroked-button class="primary-btn" (click)="saveProfessionalDetails()">Save</button>
-        </div>
         <div class="error-messages-wrapper">
           <mat-error *ngIf="errorMessage">
             {{errorMessage}}
@@ -21,82 +17,90 @@
       <form [formGroup]="professionalDetailsForm">
 
         <mat-accordion class="personal-details" multi>
-          <mat-expansion-panel expanded>
+          <mat-expansion-panel expanded hideToggle disabled>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Summary
+                Professional Experience
               </mat-panel-title>
+              <mat-panel-description>
+                <button mat-icon-button routerLink="/auth/professional">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <button mat-icon-button (click)="saveProfessionalDetails()">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="form-continer">
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-3">
+                  <div class="list-item-3 outline">
+                    <mat-label>Company / Individual</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Company / Individual</mat-label>
                       <input matInput placeholder="Company / Individual" formControlName="company" maxlength="50" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-3">
+                  <div class="list-item-3 outline">
+                    <mat-label>Professional</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Professional</mat-label>
                       <input matInput placeholder="Professional" formControlName="profession" maxlength="50" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-3">
+                  <div class="list-item-3 outline">
+                    <mat-label>Location</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Location</mat-label>
                       <input matInput placeholder="Location" formControlName="location" maxlength="50" autocomplete="off"/>
                     </mat-form-field>
                   </div>
                 </div>
 
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-8">
+                  <div class="list-item-8 outline">
+                    <mat-label>Experience (Years)</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Experience (Years)</mat-label>
                       <input matInput type="number" placeholder="Experience" formControlName="exp" maxlength="2" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-8">
+                  <div class="list-item-8 outline">
+                    <mat-label>Self Ratting</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Self Ratting</mat-label>
                       <input matInput type="number" placeholder="Rating" formControlName="rating" maxlength="2" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-4">
+                  <div class="list-item-4 outline">
+                    <mat-label>Skill Level</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Skill Level</mat-label>
                       <mat-select formControlName="skilltype">
                         <mat-option *ngFor="let skill of skillTypes" [value]="skill.value">{{skill.title}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-2">
+                  <div class="list-item-2 outline">
+                    <mat-label>Highest Qualification</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Highest Qualification</mat-label>
                       <input matInput placeholder="Highest Qualification" formControlName="qualification" maxlength="100" autocomplete="off"/>
                     </mat-form-field>
                   </div>
                 </div>
 
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-2">
+                  <div class="list-item-2 outline">
+                    <mat-label>Personal Website</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Personal Website</mat-label>
                       <input matInput placeholder="Blood Group" formControlName="perwebsite" maxlength="50" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-2">
+                  <div class="list-item-2 outline">
+                    <mat-label>Office Website</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Office Website</mat-label>
                       <input matInput placeholder="Company Name" formControlName="offwebsite" maxlength="50" autocomplete="off"/>
                     </mat-form-field>
                   </div>
                 </div>
 
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-1">
+                  <div class="list-item-1 outline">
+                    <mat-label>Skiills</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Skiills</mat-label>
                       <mat-chip-list #produtsChipsList formControlName="skills">
                         <mat-chip
                           *ngFor="let skill of professionalDetailsForm.get('skills').value"
@@ -119,9 +123,9 @@
                 </div>
 
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-1">
+                  <div class="list-item-1 outline">
+                    <mat-label>Service Locations</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Service Locations</mat-label>
                       <mat-chip-list #locationChipsList formControlName="serLocations">
                         <mat-chip
                           *ngFor="let product of professionalDetailsForm.get('serLocations').value"
@@ -145,9 +149,9 @@
                 </div>
 
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-1">
+                  <div class="list-item-1 outline">
+                    <mat-label>About me</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>About me</mat-label>
                       <textarea matInput placeholder="About me" formControlName="description" rows="4" autocomplete="off"></textarea>
                     </mat-form-field>
                   </div>
@@ -156,55 +160,71 @@
             </div>
           </mat-expansion-panel>
 
-          <mat-expansion-panel expanded>
+          <mat-expansion-panel expanded hideToggle disabled>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Address
               </mat-panel-title>
+              <mat-panel-description>
+                <button mat-icon-button routerLink="/auth/professional">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <button mat-icon-button (click)="saveProfessionalDetails()">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="form-continer">
               <div class="list flex-containers flex-start wrap">
-                <div class="list-item-2">
+                <div class="list-item-2 outline">
+                  <mat-label>Street</mat-label>
                   <mat-form-field appearance="outline">
-                    <mat-label>Street</mat-label>
-                    <input matInput placeholder="Company / Individual" formControlName="street" maxlength="50" autocomplete="off"/>
+                    <input matInput placeholder="Street" formControlName="street" maxlength="50" autocomplete="off"/>
                   </mat-form-field>
                 </div>
-                <div class="list-item-2">
+                <div class="list-item-2 outline">
+                  <mat-label>City</mat-label>
                   <mat-form-field appearance="outline">
-                    <mat-label>City</mat-label>
-                    <input matInput placeholder="Professional" formControlName="city" maxlength="50" autocomplete="off"/>
+                    <input matInput placeholder="City" formControlName="city" maxlength="50" autocomplete="off"/>
                   </mat-form-field>
                 </div>
               </div>
               <div class="list flex-containers flex-start wrap">
-                <div class="list-item-3">
+                <div class="list-item-3 outline">
+                  <mat-label>State</mat-label>
                   <mat-form-field appearance="outline">
-                    <mat-label>State</mat-label>
-                    <input matInput placeholder="Company / Individual" formControlName="state" maxlength="50" autocomplete="off"/>
+                    <input matInput placeholder="State" formControlName="state" maxlength="50" autocomplete="off"/>
                   </mat-form-field>
                 </div>
-                <div class="list-item-3">
+                <div class="list-item-3 outline">
+                  <mat-label>Country</mat-label>
                   <mat-form-field appearance="outline">
-                    <mat-label>Country</mat-label>
-                    <input matInput placeholder="Professional" formControlName="country" maxlength="50" autocomplete="off"/>
+                    <input matInput placeholder="Country" formControlName="country" maxlength="50" autocomplete="off"/>
                   </mat-form-field>
                 </div>
-                <div class="list-item-3">
+                <div class="list-item-3 outline">
+                  <mat-label>Zipcode</mat-label>
                   <mat-form-field appearance="outline">
-                    <mat-label>Zipcode</mat-label>
-                    <input matInput type="number" placeholder="Professional" formControlName="zipcode" maxlength="6" autocomplete="off"/>
+                    <input matInput type="number" placeholder="Zipcode" formControlName="zipcode" maxlength="6" autocomplete="off"/>
                   </mat-form-field>
                 </div>
               </div>
             </div>
           </mat-expansion-panel>
 
-          <mat-expansion-panel expanded>
+          <mat-expansion-panel expanded hideToggle disabled>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Achivements
               </mat-panel-title>
+              <mat-panel-description>
+                <button mat-icon-button routerLink="/auth/professional">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <button mat-icon-button (click)="saveProfessionalDetails()">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="btn-main-right-wrapper top-sapce">
               <button type="button" mat-stroked-button class="secondary-btn" 
@@ -217,19 +237,20 @@
               formArrayName="achivements" *ngFor="let achivement of professionalDetailsForm.get('achivements')['controls']; index as i; last as isLast; first as isFirst">
               <ng-container [formGroupName]="i">
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-3">
+                  <div class="list-item-3 outline">
+                    <mat-label>Name</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Name</mat-label>
                       <input matInput placeholder="Name" formControlName="name" maxlength="100" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-2">
+                  <div class="list-item-2 outline">
+                    <mat-label>Description</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Description</mat-label>
                       <input matInput placeholder="Description" formControlName="description" maxlength="255" autocomplete="off"/>
                     </mat-form-field>
                   </div>
                   <div class="list-item-6">
+                    <mat-label>Choose/Change Image</mat-label>
                     <app-image-cropper 
                       [imageType]="'Achivements'"
                       [fileTypes]="'application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*'"
@@ -250,11 +271,19 @@
             </div>
           </mat-expansion-panel>
 
-          <mat-expansion-panel expanded>
+          <mat-expansion-panel expanded hideToggle disabled>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Clients
               </mat-panel-title>
+              <mat-panel-description>
+                <button mat-icon-button routerLink="/auth/professional">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <button mat-icon-button (click)="saveProfessionalDetails()">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="btn-main-right-wrapper top-sapce">
               <button type="button" mat-stroked-button class="secondary-btn" 
@@ -267,9 +296,9 @@
               formArrayName="clients" *ngFor="let client of professionalDetailsForm.get('clients')['controls']; index as i; last as isLast; first as isFirst">
               <ng-container [formGroupName]="i">
                 <div class="list flex-containers flex-start wrap">
-                  <div class="list-item-3">
+                  <div class="list-item-3 outline">
+                    <mat-label>Client Name</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Client Name</mat-label>
                       <input matInput placeholder="Client Name" formControlName="clientname" maxlength="100" autocomplete="off"/>
                     </mat-form-field>
                   </div>
@@ -283,20 +312,21 @@
                     </mat-form-field>
                   </div> -->
 
-                  <div class="list-item-4">
+                  <div class="list-item-4 outline">
+                    <mat-label>Email</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Email</mat-label>
                       <input matInput placeholder="Email" formControlName="email" maxlength="100" autocomplete="off"/>
                     </mat-form-field>
                   </div>
-                  <div class="list-item-5">
+                  <div class="list-item-5 outline">
+                    <mat-label>Phone No</mat-label>
                     <mat-form-field appearance="outline">
-                      <mat-label>Phone No</mat-label>
                       <input matInput placeholder="Phone No" formControlName="phoneno" maxlength="15" autocomplete="off"/>
                     </mat-form-field>
                   </div>
 
-                  <div class="list-item-5">
+                  <div class="list-item-5 outline">
+                    <mat-label>Choose/Change Image</mat-label>
                     <app-image-cropper 
                       [imageType]="'Client'"
                       [imagePath]="professional.clients[i]?.path ? professional.clients[i].path : ''"
