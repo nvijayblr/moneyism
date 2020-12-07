@@ -142,38 +142,11 @@
                           <input matInput placeholder="Blood Group" formControlName="bloodgroup" maxlength="50" autocomplete="off"/>
                         </mat-form-field>
                       </div>
-                      <div class="list-item-3 outline">
-                        <mat-label>Company Name</mat-label>
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Company Name" formControlName="comapanyname" maxlength="50" autocomplete="off"/>
-                        </mat-form-field>
-                      </div>
                     </div>
-        
-    
-                    <div class="list flex-containers flex-start wrap">
-                      <div class="list-item-3 outline">
-                        <mat-label>Company Location</mat-label>
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Company Location" formControlName="comapanyloc" maxlength="50" autocomplete="off"/>
-                        </mat-form-field>
-                      </div>
-                      <div class="list-item-3 outline">
-                        <mat-label>Designation</mat-label>
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Designation" formControlName="designation" maxlength="50" autocomplete="off"/>
-                        </mat-form-field>
-                      </div>
-                      <div class="list-item-3 outline">
-                        <mat-label>Company Email</mat-label>
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Company Email" formControlName="companyemail" maxlength="50" autocomplete="off"/>
-                        </mat-form-field>
-                      </div>
-                    </div>
+                   
                 </div>
               </mat-expansion-panel>
-    
+
               <mat-expansion-panel expanded hideToggle disabled>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
@@ -240,6 +213,53 @@
                   </ng-container>
                 </div>
               </mat-expansion-panel>
+
+              <mat-expansion-panel expanded hideToggle disabled>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span #Oraganizaiton>Oraganizaiton</span>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <button mat-icon-button routerLink="/auth/personal">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="savePersonalDetails()">
+                      <mat-icon>save</mat-icon>
+                    </button>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="form-continer">
+                    <div class="list flex-containers flex-start wrap">
+                      <div class="list-item-2 outline">
+                        <mat-label>Company Name</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Company Name" formControlName="comapanyname" maxlength="50" autocomplete="off"/>
+                        </mat-form-field>
+                        </div>
+                        <div class="list-item-2 outline">
+                        <mat-label>Company Location</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Company Location" formControlName="comapanyloc" maxlength="50" autocomplete="off"/>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="list flex-containers flex-start wrap">
+                      <div class="list-item-2 outline">
+                        <mat-label>Designation</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Designation" formControlName="designation" maxlength="50" autocomplete="off"/>
+                        </mat-form-field>
+                      </div>
+                      <div class="list-item-2 outline">
+                        <mat-label>Company Email</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Company Email" formControlName="companyemail" maxlength="50" autocomplete="off"/>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                </div>
+              </mat-expansion-panel>              
     
               <mat-expansion-panel expanded hideToggle disabled>
                 <mat-expansion-panel-header>
@@ -316,7 +336,7 @@
               <mat-expansion-panel expanded hideToggle disabled>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    <span #Service>Service</span>
+                    <span #Service>Service Providers</span>
                   </mat-panel-title>
                   <mat-panel-description>
                     <button mat-icon-button routerLink="/auth/personal">
