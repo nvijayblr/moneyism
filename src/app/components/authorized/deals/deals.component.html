@@ -81,11 +81,11 @@
                     <div class="list flex-containers flex-start rating-wrapper">
                       <div class="list-item-4 no-margin">
                         <label class="label">Ratting to me</label>
-                        <star-rating [value]="deals.assignerating ? deals.assignerating : 0" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="18px" readonly="true"></star-rating>
+                        <star-rating [value]="deals.ownerrating ? deals.ownerrating : 0" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="18px" readonly="true"></star-rating>
                       </div>
                       <div class="list-item-4 no-margin">
                         <label class="label">Ratting to Proffession</label>
-                        <star-rating [value]="deals.ownerrating ? deals.ownerrating : 0" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="18px" readonly="true"></star-rating>
+                        <star-rating [value]="deals.assignerating ? deals.assignerating : 0" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="18px" readonly="true"></star-rating>
                       </div>
                     </div>
 
