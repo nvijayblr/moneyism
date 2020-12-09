@@ -38,7 +38,12 @@
         </button>
       </h4>
     </div>
-
+    <div class="pro-complete">
+      <p>Profile Completion <span class="percent">{{user.weight}}%</span></p>
+      <div class="comp-chart-outer">
+        <div class="comp-chart" [ngStyle]="{width: user.weight + '%'}"></div>
+      </div>
+    </div>
     <div class="otp-wrpper" *ngIf="showVerifyOTP">
       <form [formGroup]="otpForm" class="custom-login-wrapper" style="margin-top: 24px; font-size: 12px;">
         <mat-form-field  appearance="outline">
@@ -55,15 +60,15 @@
     <div class="flex-containers space-between list stats">
       <div class="text-center right-bd">
         <label class="label">Likes</label>
-        <h4>344</h4>
+        <h4>{{user.likes}}</h4>
       </div>
       <div class="text-center right-bd ratting-container">
         <label class="label" style="margin-bottom: 1px;">Rating</label>
-        <star-rating value="4" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="16px" readonly="true"></star-rating>
+        <star-rating [value]="user.ratting" totalstars="5" checkedcolor="#b00000" uncheckedcolor="#ccc" size="16px" readonly="true"></star-rating>
       </div>
       <div class="text-center">
         <label class="label">Deals</label>
-        <h4>10</h4>
+        <h4>{{user.deals}}</h4>
       </div>
     </div>
   </div>

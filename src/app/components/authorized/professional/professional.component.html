@@ -50,7 +50,7 @@
                   <mat-panel-title>
                     <span #experience>Professional Experience</span>
                   </mat-panel-title>
-                  <mat-panel-description>
+                  <mat-panel-description *ngIf="isCurrentUser">
                     <button mat-icon-button routerLink="/auth/professional/update">
                       <mat-icon>edit</mat-icon>
                     </button>
@@ -126,7 +126,7 @@
                   <mat-panel-title>
                     <span #address>Address</span>
                   </mat-panel-title>
-                  <mat-panel-description>
+                  <mat-panel-description *ngIf="isCurrentUser">
                     <button mat-icon-button routerLink="/auth/professional/update">
                       <mat-icon>edit</mat-icon>
                     </button>
@@ -169,7 +169,7 @@
                   <mat-panel-title>
                     <span #achivements>Achivements ({{professional?.achivements?.length}})</span>
                   </mat-panel-title>
-                  <mat-panel-description>
+                  <mat-panel-description *ngIf="isCurrentUser">
                     <button mat-icon-button routerLink="/auth/professional/update">
                       <mat-icon>edit</mat-icon>
                     </button>
@@ -201,7 +201,7 @@
                   <mat-panel-title>
                     <span #clients>Clients ({{professional?.clients?.length}})</span>
                   </mat-panel-title>
-                  <mat-panel-description>
+                  <mat-panel-description *ngIf="isCurrentUser">
                     <button mat-icon-button routerLink="/auth/professional/update">
                       <mat-icon>edit</mat-icon>
                     </button>
@@ -235,7 +235,7 @@
                   <mat-panel-title>
                     Nature of work
                   </mat-panel-title>
-                  <mat-panel-description>
+                  <mat-panel-description *ngIf="isCurrentUser">
                     <button mat-icon-button routerLink="/auth/professional/services">
                       <mat-icon>edit</mat-icon>
                     </button>
@@ -243,7 +243,7 @@
                 </mat-expansion-panel-header>
                 <div *ngFor="let service of services; index as i" class="list bt-border">
                   <div class="list flex-containers flex-start">
-                    <div class="list-item-5 no-margin">
+                    <div class="list-item-7 no-margin">
                       <div class="deals-image-wrapper">
                         <h4 *ngIf="!service.path" class="icon-image"><mat-icon>image</mat-icon></h4>
                         <h4 *ngIf="service.path && (service.path | fileformat) === 'docs'" class="icon-image">

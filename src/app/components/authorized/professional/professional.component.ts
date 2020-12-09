@@ -9,6 +9,7 @@ import { appConfig } from '../../../app.config';
   selector: 'app-professional',
   templateUrl: './professional.component.html',
   styleUrls: ['./professional.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProfessionalComponent implements OnInit, OnDestroy {
 

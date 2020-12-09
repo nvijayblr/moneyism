@@ -4,9 +4,9 @@
     <p>{{data.message}}</p>
   </div>
   <div class="footer">
-    <button mat-stroked-button class="secondary-btn" 
+    <button mat-stroked-button class="primary-btn-gray white" 
       *ngIf="data.cancelLable"
       matDialogClose (click)="onCloseDialog('cancel')">{{data.cancelLable}}</button>
-    <button mat-stroked-button class="primary-btn btn-bg" matDialogClose (click)="onCloseDialog('ok'); " cdkFocusInitial>{{data.okLable}}</button>
+    <button mat-stroked-button class="primary-btn-gray" matDialogClose (click)="onCloseDialog('ok'); " cdkFocusInitial>{{data.okLable}}</button>
   </div>
 </div>

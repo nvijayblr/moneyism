@@ -70,8 +70,7 @@ export class HomeComponent implements OnInit {
   }
 
   likeUnlikePost(post, isLiked) {
-    console.log(post);
-    this.http.likeUnlikePost(this.userId, post.records[0].id, isLiked).subscribe((result: any) => {
+    this.http.likeUnlikePost(this.userId, post.id, isLiked).subscribe((result: any) => {
       if (isLiked) {
         post.likesCount = post.likesCount + 1;
         post.isLiked = true;
@@ -79,6 +78,17 @@ export class HomeComponent implements OnInit {
         post.likesCount = post.likesCount - 1;
         post.isLiked = false;
       }
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
+  removePost(post, index) {
+    this.isLoading = true;
+    this.loaderMsg = 'Removing post from community...';
+    this.http.removePost(this.userId, post.id).subscribe((result: any) => {
+      this.isLoading = false;
+      this.posts.splice(index, 1);
     }, (error) => {
       this.isLoading = false;
     });

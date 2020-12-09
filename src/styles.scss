@@ -17,6 +17,11 @@
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
+// Firefox
+* {
+  scrollbar-width: thin;
+}
+
 body {
   // 300;400;500;600
   font-family: "Roboto", Arial, sans-serif;
@@ -109,6 +114,26 @@ button {
 .primary-btn-gray {
   border: 1px solid #3B3B3B !important;
   background-color: #3B3B3B !important;
+  border-radius: 40px !important;
+  height: 40px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0 20px !important;
+  &.white {
+    border: 1px solid #000000 !important;
+    background-color: #FFFFFF !important;
+    color: #3B3B3B;
+  }
+  &[disabled] {
+    color: #fff !important;
+    opacity: 0.3;
+  }
+}
+
+.primary-btn-red {
+  border: 1px solid #C33730 !important;
+  background-color: #C33730 !important;
   border-radius: 40px !important;
   height: 40px;
   color: #fff;
@@ -302,15 +327,7 @@ button {
       margin-bottom: 12px;        
     }
     .status {
-      font-size: 11px;
-      text-transform: uppercase;
-      border: 1px solid #038403;
       color: #038403;
-      padding: 2px 8px;
-      position: relative;
-      top: -4px;
-      margin-left: 1px;
-      border-radius: 10px;
       .mat-icon {
         height: auto;
         width: auto;
@@ -319,41 +336,25 @@ button {
         top: 4px;
       }
       &.closed {
-        margin-left: 10px;
-        background-color: #038403;
-        color: #fff;
+        color: #038403;
       }
       &.rejected {
-        margin-left: 10px;
-        background-color: #c03d38;
-        border-color: #c03d38;
-        color: #fff;
+        color: #c03d38;
       }
       &.assigned {
-        margin-left: 10px;
-        background-color: #037d84;
-        border-color: #037d84;
-        color: #fff;
+        color: #037d84;
       }
       &.inprogress {
-        margin-left: 10px;
-        background-color: #ffa500;
-        border-color: #ffa500;
-        color: #fff;
+        color: #ffa500;
       }
       &.accepted {
-        margin-left: 10px;
-        background-color: #6c6c6c;
-        border-color: #6c6c6c;
-        color: #fff;
+        color: #6c6c6c;
       }
       &.active {
-        margin-left: 10px;
         color: #038403;
         border-width: 0;
       }
       &.deactive {
-        margin-left: 10px;
         color: #c03d38;
         border-width: 0;
       }
@@ -782,11 +783,16 @@ owl-date-time-container {
       font-size: 16px;
       color: #7B7C7D;
       display: inline-block;
+      &.date {
+        float: right;
+      }
       .dot {
         display: inline-block;
-        margin: 0 5px 0 10px;
+        margin: 0px 1px 0 1px;
         font-size: 20px;
         font-weight: 500;
+        position: relative;
+        top: 3px;
       }
     }
     h4.comm-title {

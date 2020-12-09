@@ -23,9 +23,11 @@
                 </div>
                 <div class="flex-item post-user-info">
                   <div class="user-info">
-                    <p class="name"><a href="javascript: void(0)">{{post.fullname}}</a> <label class="label"> <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label></p>
-                    <label class="label">Tech Lead, Aveva, Bangalore</label>
-                    
+                    <p class="name">
+                      <a routerLink="/auth/professional" [queryParams]="{id: post.user_id}">{{post.fullname}}</a> 
+                      <label class="label date"> <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label>
+                    </p>
+                    <label class="label">{{post.designation}}, {{post.company}}, {{post.location}}</label>
                   </div>
     
                   <h4 class="comm-title">{{post.records[0].name}}</h4>
@@ -56,9 +58,14 @@
                 </div>
                 <div class="flex-item post-user-info">
                   <div class="user-info">
-                    <p class="name"><a href="javascript: void(0)">{{post.fullname}}</a> <label class="label"> <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label></p>
-                    <label class="label">Tech Lead, Aveva, Bangalore</label>
-                    
+                    <p class="name">
+                      <a routerLink="/auth/professional" [queryParams]="{id: post.user_id}">{{post.fullname}}</a> 
+                      <label class="label date"> 
+                        <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}
+                        <button mat-button class="primary-btn-gray remove-btn" (click)="removePost(post, i)">Remove</button>
+                      </label>
+                    </p>
+                    <label class="label">{{post.designation}}, {{post.company}}, {{post.location}}</label>
                   </div>
     
                   <h4 class="comm-title">{{post.records[0].name}}</h4>

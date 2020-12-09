@@ -51,6 +51,29 @@
     }
   }
 }
+
+.pro-complete {
+  margin: 24px 30px 0 30px;
+  p {
+    font-size: 10px;
+    color: #706F6F;
+    margin-bottom: 8px;
+    .percent {
+      color: #19AB19;
+    }
+  }
+  .comp-chart-outer {
+    height: 3px;
+    width: 100%;
+    background-color: #ccc;
+    .comp-chart {
+      background-color: #19AB19;
+      height: 3px;
+      max-width: 100% !important;
+    }
+  }
+}
+
 .account-personal-details {
   padding: 10px;
   text-align: center;
