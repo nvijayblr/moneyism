@@ -96,7 +96,33 @@
 </div>
 
 <mat-drawer-container class="notification-drawer-container" autosize end [ngClass]="{'full-height' : isHidden}">
-  <mat-drawer #drawer class="notification-drawer-sidenav" mode="side" [position]="'end'">
-    <p>Auto-resizing sidenav</p>
+  <mat-drawer #drawer class="notification-drawer-sidenav" mode="side" [position]="'end'" (openedChange)="drawerOpen($event)">
+    <div class="not-page">
+      <div class="not-header">
+        <div class="close-icon" (click)="drawer.toggle()">
+          <mat-icon>close</mat-icon>
+        </div>
+        <h4>
+          <mat-icon>notifications</mat-icon>
+          NOTIFICATION
+        </h4>
+      </div>
+      <div class="not-body">
+        <app-progress-bar [message]="loaderMsg" class="component" *ngIf="isLoading"></app-progress-bar>
+        <div *ngFor="let notification of notifications; index as i">
+          <div class="not-item" [class.read]="notification.status" (click)="makeNotificationRead(notification)">
+            <div class="flex-containers space-between">
+              <div class="flex-item status">{{notification.status ? 'Old' : 'New'}}</div>
+              <div class="flex-item label">{{notification.createdAt | date:'MMM dd, yyyy hh:mm a'}}</div>
+            </div>
+            <div class="message">
+              <h4>{{notification.subject}}</h4>
+              <p [innerHTML]="notification.description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
   </mat-drawer>
 </mat-drawer-container>

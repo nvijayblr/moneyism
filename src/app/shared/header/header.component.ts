@@ -52,6 +52,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     title: 'Full name'
   }];
 
+  notifications: any = [];
+  isLoading = false;
+  loaderMsg = 'Loading notifications...';
+  userId = '';
+
   @HostListener('window:scroll')
   checkScroll() {
     const curOffset = window.pageYOffset;
@@ -147,6 +152,39 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isUserLoggedIn = false;
     localStorage.removeItem('moneyism_token');
     this.router.navigate([`/login`]);
+  }
+
+
+  drawerOpen(event) {
+    this.notifications = [];
+   if (event) {
+    this.userId = this.user.user_id;
+    this.getAllNotifications();
+   }
+  }
+
+  getAllNotifications() {
+    this.loaderMsg = 'Loading notifications...';
+    this.isLoading = true;
+    this.http.getNotifications(this.userId).subscribe((result: any) => {
+      this.isLoading = false;
+      this.notifications = result;
+    }, (error) => {
+      this.isLoading = false;
+    });
+  }
+
+  makeNotificationRead(notification) {
+    notification.showMsg = !notification.showMsg;
+    if (!notification.status) {
+      this.http.makeNotificationRead(this.userId, notification.id).subscribe((result: any) => {
+        this.isLoading = false;
+        notification.status = true;
+        this.messageService.sendCommonMessage({topic: 'notifications', reason: 'Read Notification'});
+      }, (error) => {
+        this.isLoading = false;
+      });
+    }
   }
 
   ngOnDestroy() {
