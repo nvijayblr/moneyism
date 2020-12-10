@@ -7,35 +7,7 @@
             <img class="logo" src="./../assets/images/logo-vertical.svg" alt="Moneyism">
           </a>
         </div>
-        <!-- <div class="col-xs-12 col-sm-4 col-md-7">
-          <form [formGroup]="searchForm">
-            <div class="list flex-containers flex-start wrap">
-              <div class="list-item-4 list-item">
-                <mat-form-field appearance="outline">
-                  <mat-label>Option</mat-label>
-                  <mat-select formControlName="option">
-                    <mat-option *ngFor="let option of searchOptions" [value]="option.value">{{option.title}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="list-item-3 list-item">
-                <mat-form-field appearance="outline">
-                  <mat-label>Search</mat-label>
-                  <input matInput placeholder="Search" formControlName="q" maxlength="100" autocomplete="off"/>
-                </mat-form-field>
-              </div>
-              <div class="list-item-3 list-item">
-                <mat-form-field appearance="outline">
-                  <mat-label>Location</mat-label>
-                  <input matInput placeholder="Location" formControlName="location" maxlength="100" autocomplete="off"/>
-                </mat-form-field>
-              </div>
-              <div class="list-item-7 list-item">
-                <button mat-stroked-button class="primary-btn" cdkFocusInitial (click)="initSearch()">Search</button>
-              </div>
-            </div>
-          </form>
-        </div> -->
+        
         <div class="col-xs-12 col-sm-4 col-md-9 text-right">
           <div class="main-nav">
             <button mat-button routerLink="/auth/deals">
@@ -55,11 +27,11 @@
 
             <span class="seperator">&nbsp;</span>
 
-            <button mat-icon-button class="notification-menu" routerLink="/auth/notifications">
+            <button mat-icon-button class="notification-menu" (click)="showCloseSerach()">
               <mat-icon>search</mat-icon>
             </button>
-
-            <button mat-icon-button class="notification-menu" routerLink="/auth/notifications">
+            <!--  routerLink="/auth/notifications" -->
+            <button mat-icon-button class="notification-menu notification-btn" (click)="drawer.toggle()">
               <mat-icon matBadge="{{notificationsCount}}" matBadgeColor="warn">notifications</mat-icon>
             </button>
 
@@ -90,3 +62,41 @@
     </div>
   </div>
 </header>
+<div class="search-wrapper" [ngClass]="{'sticky' : isSticky}" *ngIf="isShowSearch">
+  <div class="container">
+      <form [formGroup]="searchForm">
+        <div class="list flex-containers flex-start wrap search-container">
+          <div class="list-item-4 list-item outline">
+            <mat-form-field appearance="outline" class="type">
+              <mat-label>Option</mat-label>
+              <mat-select formControlName="option">
+                <mat-option *ngFor="let option of searchOptions" [value]="option.value">{{option.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="list-item-3 list-item outline">
+            <mat-form-field appearance="outline" class="search">
+              <mat-label>Search</mat-label>
+              <input matInput placeholder="Search" formControlName="q" maxlength="100" autocomplete="off"/>
+            </mat-form-field>
+          </div>
+          <div class="list-item-3 list-item outline">
+            <mat-form-field appearance="outline" class="location">
+              <mat-label>Location</mat-label>
+              <input matInput placeholder="Location" formControlName="location" maxlength="100" autocomplete="off"/>
+            </mat-form-field>
+          </div>
+          <div class="list-item-7 list-item">
+            <button mat-stroked-button class="primary-btn-gray" (click)="initSearch()">Search</button>
+            <button mat-icon-button class="serach-close" (click)="showCloseSerach()"><mat-icon>close</mat-icon></button>
+          </div>
+        </div>
+      </form>
+  </div>
+</div>
+
+<mat-drawer-container class="notification-drawer-container" autosize end [ngClass]="{'full-height' : isHidden}">
+  <mat-drawer #drawer class="notification-drawer-sidenav" mode="side" [position]="'end'">
+    <p>Auto-resizing sidenav</p>
+  </mat-drawer>
+</mat-drawer-container>

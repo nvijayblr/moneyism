@@ -25,7 +25,8 @@ export class TasksComponent implements OnInit, OnDestroy {
   appConfig: any = {};
   dealStatus = '';
   tasksList = [];
-
+  selectedDate = new Date();
+  
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -92,6 +93,11 @@ export class TasksComponent implements OnInit, OnDestroy {
       } else {
       }
     });
+  }
+
+  selectedDateChange(event) {
+    console.log(event);
+    this.selectedDate = event;
   }
 
   ngOnDestroy() {

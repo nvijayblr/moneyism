@@ -1,5 +1,5 @@
 <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
-<section class="page-body profile-body">
+<section class="page-body profile-body home-body">
   <div class="container">
     <div class="flex-containers space-between page-heading-action">
       <div class="flex-item">
@@ -8,7 +8,7 @@
     </div>
     <div class="deals-wrapper personal-details deals-search">
       <!-- Professions List -->
-      <mat-card *ngFor="let profession of professionsList; index as i" class="no-rounded border">
+      <mat-card *ngFor="let profession of professionsList; index as i" class="search-card">
         <div class="list flex-containers flex-start">
           <div class="list-item-7 no-margin">
             <div class="user-profile-img">
@@ -21,33 +21,33 @@
             </div>
           </div>
           <div class="list-item-1 no-margin">
-            <h4><a routerLink="/auth/professional" [queryParams]="{id: profession.id}">
+            <h4 class="d-title"><a routerLink="/auth/professional" [queryParams]="{id: profession.id}">
               {{profession.fullname}}
             </a></h4>
-            <p>{{profession.profession}}</p>
+            <p class="d-desc">{{profession.profession}}</p>
             <div class="list no-all-margin flex-containers flex-start">
               <div class="list-item-4 no-margin">
-                <label class="label">Location</label>
+                <label class="d-label">Location</label>
                 <h4>{{profession.location ? profession.location : '-'}}</h4>
               </div>
               <div class="list-item-4 no-margin">
-                <label class="label">Phone no</label>
+                <label class="d-label">Phone no</label>
                 <h4>{{profession.phoneno}}</h4>
               </div>
               <div class="list-item-3 no-margin">
-                <label class="label">Email</label>
+                <label class="d-label">Email</label>
                 <h4>{{profession.email}}</h4>
               </div>
               <div class="list-item-4 no-margin">
-                <label class="label">Rating</label>
+                <label class="d-label">Rating</label>
                 <h4>{{profession.rating}}</h4>
               </div>
             </div>
-            <div class="btn-wrapper">
-              <button mat-stroked-button class="secondary-btn" (click)="showAssignDealComment(profession, true)" *ngIf="!profession.showComment">Assign Deal</button>
+            <div class="serach-btn-wrapper">
+              <button mat-stroked-button class="primary-btn-gray" (click)="showAssignDealComment(profession, true)" *ngIf="!profession.showComment">Assign Deal</button>
             </div>
             <div class="list comment" *ngIf="profession.showComment">
-              <form class="deal-requst-form">
+              <form class="deal-requst-form outline">
                 <mat-form-field appearance="outline">
                   <mat-label>Deals</mat-label>
                   <mat-select [(ngModel)]="profession.selectedDeal" name="selectedDeal">
@@ -60,8 +60,8 @@
                   <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="profession.comment" name="comment"></textarea>
                 </mat-form-field>
                 <div class="btn-main-right-wrapper">
-                  <button mat-stroked-button class="secondary-btn small" (click)="showAssignDealComment(profession, false)">Cancel</button>
-                  <button mat-stroked-button class="primary-btn small" (click)="onAssignDeals(profession)" [disabled]="!profession.selectedDeal?.id || !profession.comment">Assign</button>
+                  <button mat-stroked-button class="primary-btn-gray white" (click)="showAssignDealComment(profession, false)">Cancel</button>
+                  <button mat-stroked-button class="primary-btn-gray" (click)="onAssignDeals(profession)" [disabled]="!profession.selectedDeal?.id || !profession.comment">Assign</button>
                 </div>
               </form>
             </div>
@@ -72,7 +72,7 @@
       
       <!-- Deals List -->
 
-      <mat-card *ngFor="let deals of dealsList; index as i" class="no-rounded border">
+      <mat-card *ngFor="let deals of dealsList; index as i" class="search-card">
         <div class="list flex-containers flex-start">
           <div class="list-item-5 no-margin">
             <div class="deals-image-wrapper">
@@ -90,9 +90,9 @@
             </div>
           </div>
           <div class="list-item-1 no-margin">
-            <h4>{{deals.name}}</h4>
-            <p>{{deals.description}}</p>
-            <div class="list no-all-margin flex-containers flex-start">
+            <h4 class="d-title">{{deals.name}}</h4>
+            <p class="d-desc">{{deals.description}}</p>
+            <div class="list no-all-margin flex-containers flex-start deal-stats">
               <div class="list-item-4 no-margin">
                 <label class="label">Location</label>
                 <h4>{{deals.location}}</h4>
@@ -110,18 +110,18 @@
                 <h4>{{deals.owner}}</h4>
               </div>
             </div>
-            <div class="btn-wrapper">
-              <button mat-stroked-button class="secondary-btn" (click)="showRequestComment(deals, true)" *ngIf="!deals.showComment">Request Deal</button>
+            <div class="serach-btn-wrapper">
+              <button mat-stroked-button class="primary-btn-gray" (click)="showRequestComment(deals, true)" *ngIf="!deals.showComment">Request Deal</button>
             </div>
             <div class="list comment" *ngIf="deals.showComment">
-              <form class="deal-requst-form">
+              <form class="deal-requst-form outline">
                 <mat-form-field appearance="outline">
                   <mat-label>Leave a comment</mat-label>
                   <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="deals.req_description" name="req_description"></textarea>
                 </mat-form-field>
                 <div class="btn-main-right-wrapper">
-                  <button mat-stroked-button class="secondary-btn small" (click)="showRequestComment(deals, false)">Cancel</button>
-                  <button mat-stroked-button class="primary-btn small" (click)="onRequestDeals(deals)" [disabled]="!deals.req_description">Send</button>
+                  <button mat-stroked-button class="primary-btn-gray white" (click)="showRequestComment(deals, false)">Cancel</button>
+                  <button mat-stroked-button class="primary-btn-gray" (click)="onRequestDeals(deals)" [disabled]="!deals.req_description">Send</button>
                 </div>
               </form>
             </div>
@@ -129,7 +129,7 @@
         </div>
       </mat-card>      
       <mat-card 
-        class="no-data-found" 
+        class="no-data-found search-card" 
         *ngIf="!isLoading && (!dealsList.length && !professionsList.length)">
         {{search.option === 'deals' ? 'No deals data found.' : 'No professions data found.'}}
       </mat-card>

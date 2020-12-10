@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isUserLoggedIn = false;
   search: any = {};
   notificationsCount = 0;
+  isShowSearch = false;
   searchOptions = [{
     value: 'profession',
     title: 'Professions'
@@ -55,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   checkScroll() {
     const curOffset = window.pageYOffset;
     this.isSticky = curOffset >= 100;
-    if (curOffset >= 300 && (curOffset > this.prevOffset)) {
+    if (curOffset >= 200 && (curOffset > this.prevOffset)) {
       this.isHidden = true;
     } else {
       this.isHidden = false;
@@ -131,6 +132,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     //   this.user = this.authGuardService.getLoggedInUserDetails();
     // });
+  }
+
+  showCloseSerach() {
+    this.isShowSearch = !this.isShowSearch;
   }
 
   doLogout() {

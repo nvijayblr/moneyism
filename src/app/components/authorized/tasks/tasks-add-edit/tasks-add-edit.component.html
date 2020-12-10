@@ -1,11 +1,11 @@
 <div class="page-body">
   <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
 
-  <h1 mat-dialog-title>Task</h1>
+  <h1 mat-dialog-title>{{tasks.name ? 'Edit' : 'Create'}} <span class="red">Task</span></h1>
   <div mat-dialog-content>
     <div class="deals-form-wrapper page-body">
       <form [formGroup]="tasksForm">
-        <div class="form-continer">
+        <div class="form-continer outline">
   
           <div class="list flex-containers flex-start wrap">
             <div class="list-item-1">
@@ -101,7 +101,7 @@
 
   </div>
   <div class="btn-main-right-wrapper">
-    <button mat-stroked-button (click)="onCloseClick()" class="secondary-btn">Cancel</button>
-    <button mat-stroked-button class="primary-btn" cdkFocusInitial (click)="saveTaskDetails()">Save</button>
+    <button mat-stroked-button (click)="onCloseClick()" class="primary-btn-gray white">Cancel</button>
+    <button mat-stroked-button class="primary-btn-gray" cdkFocusInitial (click)="saveTaskDetails()">Save</button>
   </div>
 </div>

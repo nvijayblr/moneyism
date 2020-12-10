@@ -1,12 +1,11 @@
-<div class="page-body ">
+<div class="page-body create-deals">
   <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
 
-  <h1 mat-dialog-title>Deals</h1>
+  <h1 mat-dialog-title>Create <span class="red">Deal</span></h1>
   <div mat-dialog-content>
     <div class="deals-form-wrapper page-body" *ngIf="!isStatusOnly">
       <form [formGroup]="dealsForm">
         <div class="form-continer">
-  
           <div class="list flex-containers flex-start wrap">
             <div class="list-item-1 outline">
               <mat-form-field appearance="outline">

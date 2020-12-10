@@ -1,4 +1,4 @@
-<section class="page-body notification-body">
+<section class="page-body notification-body home-body">
   <div class="container">
     <div class="flex-containers space-between page-heading-action">
       <div class="flex-item">
@@ -8,8 +8,8 @@
     <div class="row">
       <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <mat-card  class="border no-rounded">
-          <div class="list notification bt-border flex-containers space-between" 
+        <div class="noti-wrapper">
+          <mat-card class="list notification flex-containers space-between" 
             *ngFor="let notification of notifications; index as i"
             (click)="makeNotificationRead(notification)">
             <div class="flex-item">
@@ -20,8 +20,8 @@
             <div class="flex-item" *ngIf="!notification.status">
               <mat-icon class="unread-icon">brightness_1</mat-icon>
             </div>
-          </div>
-        </mat-card>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
