@@ -4,9 +4,9 @@
       <div class="flex-containers space-between">
         <div class="deal-title">
           <h4>DEALS</h4>
-          <p>Total 200 delas</p>
+          <p>Total {{deals.count}} delas</p>
         </div>
-        <div class="more">
+        <!-- <div class="more">
           <mat-menu #shareMenu="matMenu" class="share-menu-wrapper">
             <button mat-menu-item>Remove</button>
           </mat-menu>
@@ -14,49 +14,23 @@
           <button mat-icon-button class="more-icon-btn" [matMenuTriggerFor]="shareMenu" [disabled]="isLoading" [class.loading]="isLoading">
             <mat-icon class="more-icon">more_horiz</mat-icon>
           </button>           
-        </div>
+        </div> -->
       </div>
   </div>
   <div class="deals-items">
-    <div class="deal-item">
+    <div class="deal-item" *ngFor="let deal of deals.deals">
       <div class="item-title">
-        <h4>Home insurance</h4>
-        <p>Post by: Arjun</p>
+        <h4>{{deal.name}}</h4>
+        <p>Post by: {{deal.owner}}</p>
       </div>
-      <div class="deal-img" style="background-image: url('./assets/images/joinnow-bg.svg');"></div>
+      <div class="deal-img" *ngIf="deal.path" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + deal.path + ')'}"></div>
       <div class="deal-details">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ...</p>
         <div class="btns">
-          <button mat-stroked-button class="primary-btn-gray">Request</button>
+          <button mat-stroked-button class="primary-btn-gray" [routerLink]="'/auth/search'" [queryParams]="{option: 'deals', q: deal.name, location: ''}">Request</button>
         </div>
       </div>
     </div>
-    <div class="deal-item">
-      <div class="item-title">
-        <h4>Home insurance</h4>
-        <p>Post by: Arjun</p>
-      </div>
-      <div class="deal-img" style="background-image: url('./assets/images/joinnow-bg.svg');"></div>
-      <div class="deal-details">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ...</p>
-        <div class="btns">
-          <button mat-stroked-button class="primary-btn-gray">Request</button>
-          <button mat-stroked-button class="primary-btn-gray white">Accept</button>
-        </div>
-      </div>
-    </div>
-    <div class="deal-item">
-      <div class="item-title">
-        <h4>Home insurance</h4>
-        <p>Post by: Arjun</p>
-      </div>
-      <div class="deal-img" style="background-image: url('./assets/images/joinnow-bg.svg');"></div>
-      <div class="deal-details">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ...</p>
-        <div class="btns">
-          <button mat-stroked-button class="primary-btn-gray">Request</button>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </mat-card>

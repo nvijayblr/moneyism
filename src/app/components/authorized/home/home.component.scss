@@ -83,4 +83,35 @@
     margin-left: 10px;
     font-size: 14px;
   }
+  .shrare-post {
+    textarea {
+      height: 80px;
+    }
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+    .share-post-title {
+      font-size: 20px;
+      color: #0C0C0C;
+      .red {
+        color: #C73D2F;
+      }
+    }
+    .share-btn {
+      font-weight: 300;
+      color: #7B7C7D;
+      margin-top: 20px;
+      padding: 2px 10px 2px 2px;
+      margin-left: 16px;
+      font-size: 17px;
+      .mat-icon {
+        font-size: 20px;
+        margin-right: 3px;
+        height: 22px;
+      }
+    }
+  }
+  .my-community-body .list {
+    margin: 20px 0 0 0;
+  } 
 }

@@ -49,6 +49,7 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  isDeleting: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -160,6 +161,17 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
       this.isLoading = false;
     });
   }
+
+  deleteRecord(record, arrayName, path, index) {
+    this.isDeleting[arrayName] = true;
+    this.http.deleteRecord(this.userId, record.value.id, path).subscribe((result: any) => {
+      this.isDeleting[arrayName] = false;
+      this.removeFormItem(arrayName, index);
+    }, (error) => {
+      this.isDeleting[arrayName] = false;
+    });
+  }
+
 
   addFormItem(arrayName) {
     const fbArray = this.professionalDetailsForm.get(arrayName) as FormArray;

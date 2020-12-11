@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { HttpService } from '../../../services/http-service.service';
 import { AuthGuardService } from '../../../services/auth-guard.service';
 import { MessageService } from '../../../services/message.service';
@@ -24,8 +25,11 @@ export class HomeComponent implements OnInit {
   isLoading = false;
   loaderMsg = '';
   posts: any = [];
+  sharePostForm: FormGroup;
+  isShareLoading = false;
 
   constructor(
+    private fb: FormBuilder,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private http: HttpService,
@@ -45,6 +49,45 @@ export class HomeComponent implements OnInit {
     }
     localStorage.removeItem('isInitLoad');
     this.getAllPosts();
+
+    this.sharePostForm = this.fb.group({
+      name: ['', [Validators.required, Validators.maxLength(100)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
+      image_type: ['Community'],
+      path: [''],
+    });
+  }
+
+  onUploadCompleted(e, formControl) {
+    formControl.controls.path.setValue(e.path);
+  }
+
+  shareWithCommunity() {
+    if (this.sharePostForm.invalid) {
+      return;
+    }
+    const post = this.sharePostForm.value;
+    this.isShareLoading = true;
+    this.loaderMsg = 'Creating Post...';
+    const payload = {
+      "userSharedSet": [
+        {
+            "image_type": "Community",
+            "name": post.name,
+            "path": post.path,
+            "description": post.description
+        }
+      ]
+    }
+    this.http.createPost(this.userId, payload).subscribe((result: any) => {
+      this.isShareLoading = false;
+      this.sharePostForm.controls.name.setValue('');
+      this.sharePostForm.controls.path.setValue('');
+      this.sharePostForm.controls.description.setValue('');
+      this.getMyPosts();
+    }, (error) => {
+      this.isShareLoading = false;
+    });
   }
 
   getAllPosts() {

@@ -226,6 +226,9 @@
                 </button>
               </mat-panel-description>
             </mat-expansion-panel-header>
+            <div class="inline-progress-wrapper" *ngIf="isDeleting['achivements']">
+              <mat-progress-bar mode="indeterminate" color="secondary"></mat-progress-bar>
+            </div>
             <div class="btn-main-right-wrapper top-sapce" style="margin-right: 10px;">
               <button type="button" mat-stroked-button class="primary-btn-gray" 
                 (click)="addFormItem('achivements')" 
@@ -260,11 +263,11 @@
                   </div>
                 </div>
                 <div class="list add-remove-button">
-                  <button type="button" mat-icon-button type="button" (click)="addFormItem('achivements')" *ngIf="isLast">
+                  <button type="button" mat-icon-button (click)="addFormItem('achivements')" *ngIf="isLast" [disabled]="isDeleting['achivements']">
                     <mat-icon>add</mat-icon>
                   </button>
-                  <button type="button" mat-icon-button type="button" (click)="removeFormItem('achivements', i)">
-                    <mat-icon>remove</mat-icon>
+                  <button type="button" mat-icon-button class="del-icon" (click)="deleteRecord(achivement, 'achivements', 'records', i)" [disabled]="isDeleting['achivements']">
+                    <mat-icon>delete</mat-icon>
                   </button>
                 </div>
               </ng-container>
@@ -285,6 +288,9 @@
                 </button>
               </mat-panel-description>
             </mat-expansion-panel-header>
+            <div class="inline-progress-wrapper" *ngIf="isDeleting['clients']">
+              <mat-progress-bar mode="indeterminate" color="secondary"></mat-progress-bar>
+            </div>
             <div class="btn-main-right-wrapper top-sapce" style="margin-right: 10px;">
               <button type="button" mat-stroked-button class="primary-btn-gray" 
                 (click)="addFormItem('clients')" 
@@ -336,11 +342,11 @@
 
                 </div>
                 <div class="list add-remove-button">
-                  <button type="button" mat-icon-button type="button" (click)="addFormItem('clients')" *ngIf="isLast">
+                  <button type="button" mat-icon-button (click)="addFormItem('clients')" *ngIf="isLast" [disabled]="isDeleting['clients']">
                     <mat-icon>add</mat-icon>
                   </button>
-                  <button type="button" mat-icon-button type="button" (click)="removeFormItem('clients', i)">
-                    <mat-icon>remove</mat-icon>
+                  <button type="button" mat-icon-button class="del-icon" (click)="deleteRecord(client, 'clients', 'clients', i)" [disabled]="isDeleting['clients']">
+                    <mat-icon>delete</mat-icon>
                   </button>
                 </div>
               </ng-container>

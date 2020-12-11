@@ -22,4 +22,13 @@
       margin-top: 16px;
     }
   }
+  .mat-dialog-title {
+    margin: 0 12px 20px;
+    font-size: 30px;
+    font-weight: 300;
+    .red {
+      color: #C73D2F;
+      font-weight: 500;
+    }
+  }
 }

@@ -180,8 +180,13 @@
                     <mat-icon>share</mat-icon>Share
                   </button>
                   <div class="image-wrp">
-                    <div class="img-preview" *ngIf="achivement.path">
+                    <div class="img-preview" *ngIf="achivement.path && achivement.path && (achivement.path | fileformat) === 'images'">
                       <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + achivement.path + ')'}"></div>
+                    </div>
+                    <div class="icon-image" *ngIf="achivement.path && achivement.path && (achivement.path | fileformat) === 'docs'">
+                      <a href="{{appConfig.imgBaseUrl}}{{achivement.path}}" target="_blank">
+                        <mat-icon>picture_as_pdf</mat-icon>
+                      </a>
                     </div>
                   </div>
                   <div class="info-wrp">
@@ -207,17 +212,19 @@
                     </button>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                  <div class="list flex-containers space-between">
+                  <div class="list flex-containers wrap">
                     <div class="list-item-2 clients-wrp" *ngFor="let client of professional.clients">
-                      <div class="flex-item">
-                        <label class="label">Client Name</label>
-                        <h4>{{client.clientname}}</h4>
-                        <label class="label">Email, Phone</label>
-                        <h4>{{client.email}}, {{client.phoneno}}</h4>
-                      </div>
-                      <div class="flex-item">
-                        <div class="img-preview" *ngIf="client.path">
-                          <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + client.path + ')'}"></div>
+                      <div class="list flex-containers wrap">
+                        <div class="flex-item">
+                          <div class="img-preview" *ngIf="client.path">
+                            <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + client.path + ')'}"></div>
+                          </div>
+                        </div>
+                        <div class="flex-item">
+                          <label class="label">Client Name</label>
+                          <h4>{{client.clientname}}</h4>
+                          <label class="label">Email, Phone</label>
+                          <h4>{{client.email}}, {{client.phoneno}}</h4>
                         </div>
                       </div>
                     </div>

@@ -47,6 +47,38 @@
               </mat-card>
             </mat-tab>
             <mat-tab label="My Post">
+              <mat-card class="border no-rounded list shrare-post">
+                <h1 class="share-post-title">Create <span class="red">Your Post</span></h1>
+                <app-progress-bar [message]="'Sharing your Post...'" class="page" *ngIf="isShareLoading"></app-progress-bar>
+                <form [formGroup]="sharePostForm">
+                  <div class="form-continer">
+                    <div class="list flex-containers flex-start wrap">
+                      <div class="list-item-2 outline">
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Title" formControlName="name" maxlength="50" autocomplete="off"/>
+                        </mat-form-field>
+                      </div>
+                      <div class="list-item-3 outline" *ngIf="!isShareLoading">
+                        <app-image-cropper 
+                          [imageType]="'Community'"
+                          [imagePath]="''"
+                          (uploadCompleted)="onUploadCompleted($event, sharePostForm)">
+                        </app-image-cropper>
+                      </div>
+                    </div>
+                    <div class="list flex-containers flex-start wrap">
+                      <div class="list-item-1 outline">
+                        <mat-form-field appearance="outline">
+                          <textarea matInput placeholder="Description" formControlName="description" maxlength="250" autocomplete="off"></textarea>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <button mat-button class="share-btn" (click)="shareWithCommunity()" [disabled]="isShareLoading">
+                  <mat-icon>share</mat-icon>Share with community
+                </button>
+              </mat-card>
               <mat-card class="border no-rounded list" *ngFor="let post of posts; let i = index">
                 <div class="flex-item user-image">
                   <div class="user-profile-img" *ngIf="post.path">

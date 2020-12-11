@@ -2,7 +2,7 @@
   <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
   <div class="container">
     <div class="profile-wrapper clearfix">
-      <div class="left-panel large">
+      <!-- <div class="left-panel large">
         <mat-card class="left-nav sticky">
           <mat-nav-list>
             <div mat-subheader>
@@ -40,8 +40,8 @@
             </mat-list-item>
           </mat-nav-list>
         </mat-card>
-      </div>
-      <div class="right-panel large">
+      </div> -->
+      <div class="right-panels large">
         <div class="flex-containers space-between page-heading-action">
           <div class="flex-item">
             <h4 class="name"><mat-icon>account_box</mat-icon>Personal Details</h4>
@@ -161,6 +161,9 @@
                     </button>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
+                <div class="inline-progress-wrapper" *ngIf="isDeleting['education']">
+                  <mat-progress-bar mode="indeterminate" color="secondary"></mat-progress-bar>
+                </div>
                 <div class="btn-main-right-wrapper top-sapce" style="margin-right: 10px;">
                   <button type="button" mat-stroked-button class="primary-btn-gray" 
                     (click)="addFormItem('education')" 
@@ -203,11 +206,11 @@
                       </div>
                     </div>
                     <div class="list add-remove-button">
-                      <button type="button" mat-icon-button type="button" (click)="addFormItem('education')" *ngIf="isLast">
+                      <button type="button" mat-icon-button type="button" (click)="addFormItem('education')" *ngIf="isLast" [disabled]="isDeleting['education']">
                         <mat-icon>add</mat-icon>
                       </button>
-                      <button type="button" mat-icon-button type="button" (click)="removeFormItem('education', i)">
-                        <mat-icon>remove</mat-icon>
+                      <button type="button" mat-icon-button class="del-icon" (click)="deleteRecord(edu, 'education', 'education', i)" [disabled]="isDeleting['education']">
+                        <mat-icon>delete</mat-icon>
                       </button>
                     </div>
                   </ng-container>
@@ -275,6 +278,9 @@
                     </button>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
+                <div class="inline-progress-wrapper" *ngIf="isDeleting['relations']">
+                  <mat-progress-bar mode="indeterminate" color="secondary"></mat-progress-bar>
+                </div>
                 <div class="btn-main-right-wrapper top-sapce" style="margin-right: 10px;">
                   <button type="button" mat-stroked-button class="primary-btn-gray" 
                     (click)="addFormItem('relations')" 
@@ -321,11 +327,11 @@
                       </div>
                     </div>
                     <div class="list add-remove-button">
-                      <button type="button" mat-icon-button type="button" (click)="addFormItem('relations')" *ngIf="isLast">
+                      <button type="button" mat-icon-button type="button" (click)="addFormItem('relations')" *ngIf="isLast" [disabled]="isDeleting['relations']">
                         <mat-icon>add</mat-icon>
                       </button>
-                      <button type="button" mat-icon-button type="button" (click)="removeFormItem('relations', i)">
-                        <mat-icon>remove</mat-icon>
+                      <button type="button" mat-icon-button class="del-icon" (click)="deleteRecord(relation, 'relations', 'relations', i)" [disabled]="isDeleting['relations']">
+                        <mat-icon>delete</mat-icon>
                       </button>
                     </div>
                   </ng-container>
@@ -347,6 +353,9 @@
                     </button>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
+                <div class="inline-progress-wrapper" *ngIf="isDeleting['providers']">
+                  <mat-progress-bar mode="indeterminate" color="secondary"></mat-progress-bar>
+                </div>
                 <div class="btn-main-right-wrapper top-sapce" style="margin-right: 10px;">
                   <button type="button" mat-stroked-button class="primary-btn-gray" 
                     (click)="addFormItem('serviceproviders')" 
@@ -359,9 +368,9 @@
                   <ng-container [formGroupName]="i">
                     <div class="list flex-containers flex-start wrap">
                       <div class="list-item-5 outline">
-                        <mat-label>Service Provider Type</mat-label>
+                        <mat-label>Type</mat-label>
                         <mat-form-field appearance="outline">
-                          <mat-label>Service Provider Type</mat-label>
+                          <mat-label>Type</mat-label>
                           <mat-select formControlName="relation_type">
                             <mat-option *ngFor="let type of serviceProvidersTypes | keyvalue" [value]="type.value.value">{{type.value.title}}</mat-option>
                           </mat-select>
@@ -396,8 +405,8 @@
                       <button type="button" mat-icon-button type="button" (click)="addFormItem('serviceproviders')" *ngIf="isLast">
                         <mat-icon>add</mat-icon>
                       </button>
-                      <button type="button" mat-icon-button type="button" (click)="removeFormItem('serviceproviders', i)">
-                        <mat-icon>remove</mat-icon>
+                      <button type="button" mat-icon-button class="del-icon" (click)="deleteRecord(provider, 'providers', 'providers', i)" [disabled]="isDeleting['relations']">
+                        <mat-icon>delete</mat-icon>
                       </button>
                     </div>
                   </ng-container>
@@ -418,6 +427,9 @@
                     </button>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
+                <div class="inline-progress-wrapper" *ngIf="isDeleting['records']">
+                  <mat-progress-bar mode="indeterminate" color="secondary"></mat-progress-bar>
+                </div>
                 <div class="btn-main-right-wrapper top-sapce" style="margin-right: 10px;">
                   <button type="button" mat-stroked-button class="primary-btn-gray" 
                     (click)="addFormItem('records')" 
@@ -458,8 +470,8 @@
                       <button type="button" mat-icon-button type="button" (click)="addFormItem('records')" *ngIf="isLast">
                         <mat-icon>add</mat-icon>
                       </button>
-                      <button type="button" mat-icon-button type="button" (click)="removeFormItem('records', i)">
-                        <mat-icon>remove</mat-icon>
+                      <button type="button" mat-icon-button class="del-icon" (click)="deleteRecord(record, 'records', 'records', i)" [disabled]="isDeleting['relations']">
+                        <mat-icon>delete</mat-icon>
                       </button>
                     </div>
                   </ng-container>

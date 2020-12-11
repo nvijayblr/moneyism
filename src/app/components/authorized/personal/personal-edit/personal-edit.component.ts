@@ -102,6 +102,7 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
   maxDate = new Date();
   loaderMsg = 'Loading personal details...';
   errorMessage = '';
+  isDeleting: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -132,18 +133,18 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
 
   initPersonalDetails(personal) {
     this.personalDetailsForm = this.fb.group({
-      gender: [personal.gender, [Validators.required]],
-      fathername: [personal.fathername, [Validators.required]],
-      mothername: [personal.mothername, [Validators.required]],
-      dob: [personal.dob, [Validators.required]],
-      maritalstatus: [personal.maritalstatus, [Validators.required]],
-      birthcity: [personal.birthcity, [Validators.required]],
-      leavingcity: [personal.leavingcity, [Validators.required]],
-      bloodgroup: [personal.bloodgroup, [Validators.required]],
-      comapanyname: [personal.comapanyname, [Validators.required]],
-      comapanyloc: [personal.comapanyloc, [Validators.required]],
-      designation: [personal.designation, [Validators.required]],
-      companyemail: [personal.companyemail, [Validators.required]],
+      gender: [personal.gender],
+      fathername: [personal.fathername],
+      mothername: [personal.mothername],
+      dob: [personal.dob],
+      maritalstatus: [personal.maritalstatus],
+      birthcity: [personal.birthcity],
+      leavingcity: [personal.leavingcity],
+      bloodgroup: [personal.bloodgroup],
+      comapanyname: [personal.comapanyname],
+      comapanyloc: [personal.comapanyloc],
+      designation: [personal.designation],
+      companyemail: [personal.companyemail],
       education: this.fb.array([]),
       relations: this.fb.array([]),
       serviceproviders: this.fb.array([]),
@@ -256,6 +257,16 @@ export class PersonalEditComponent implements OnInit, OnDestroy {
   addFormItem(arrayName) {
     const fbArray = this.personalDetailsForm.get(arrayName) as FormArray;
     fbArray.push(this.intiFormArrays(arrayName));
+  }
+
+  deleteRecord(record, arrayName, path, index) {
+    this.isDeleting[arrayName] = true;
+    this.http.deleteRecord(this.userId, record.value.id, path).subscribe((result: any) => {
+      this.isDeleting[arrayName] = false;
+      this.removeFormItem(arrayName, index);
+    }, (error) => {
+      this.isDeleting[arrayName] = false;
+    });
   }
 
   removeFormItem(arrayName, index) {

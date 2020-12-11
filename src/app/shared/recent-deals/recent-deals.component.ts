@@ -19,7 +19,8 @@ export class RecentDealsComponent implements OnInit, OnDestroy {
   appConfig: any = {};
   subscription: Subscription;
   isLoading = false;
-  loaderMsg = 'Loading recent details...';
+  loaderMsg = 'Loading recent deals...';
+  deals: any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -44,9 +45,9 @@ export class RecentDealsComponent implements OnInit, OnDestroy {
   getRecentDeails() {
     this.loaderMsg = 'Loading recent details...';
     this.isLoading = true;
-    this.http.getAccountDetails(this.userId).subscribe((result: any) => {
+    this.http.getRecentDeals().subscribe((result: any) => {
       this.isLoading = false;
-      this.user = result;
+      this.deals = result;
     }, (error) => {
       this.isLoading = false;
     });

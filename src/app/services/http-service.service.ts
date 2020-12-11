@@ -184,6 +184,18 @@ export class HttpService  {
   }
 
 
+  deleteRecord(userId, recordId, path): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.delete<any>(`${this.rootUrl}userprof/${userId}/${path}/${recordId}`, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+
   // Get user services details
   getServicesDetails(userId): Observable<any> {
     const header: any = this.getAuthHeaders();
@@ -571,6 +583,16 @@ export class HttpService  {
     );
   }
 
+  createPost(userId, payload): Observable<any> {
+    return this.http.post<any>(`${this.rootUrl}users/${userId}/community/share`, payload).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
   removePost(userId, communityId): Observable<any> {
     return this.http.delete<any>(`${this.rootUrl}users/${userId}/community/${communityId}/share`).pipe(
       tap((res) => {
@@ -604,6 +626,17 @@ export class HttpService  {
 
   sharedByOthers(userId): Observable<any> {
     return this.http.get<any>(`${this.rootUrl}users/${userId}/community/share/others`).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+
+  getRecentDeals(): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}all/deals`).pipe(
       tap((res) => {
       }),
       catchError(err => {

@@ -1,7 +1,6 @@
 <div class="page-body">
   <app-progress-bar [message]="loaderMsg" class="page" *ngIf="isLoading"></app-progress-bar>
-
-  <h1 mat-dialog-title>Contact</h1>
+  <h1 class="mat-dialog-title">{{contact.id ? 'Edit' : 'Create'}} <span class="red">Contact</span></h1>
   <div mat-dialog-content>
     <div class="contacts-form-wrapper page-body outline">
       <form [formGroup]="contactsForm">

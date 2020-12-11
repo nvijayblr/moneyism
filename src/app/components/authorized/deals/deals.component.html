@@ -230,11 +230,11 @@
                 <mat-card class="list with-border" *ngFor="let history of deals.history" class="history-card">
                   <div class="flex-containers space-between">
                     <div class="flex-item">
-                      <h5>{{history.createdAt | date:'mediumDate'}}</h5>
+                      <h5>{{history.createdAt | date:'MMM dd, yyyy hh:mm a'}}</h5>
                     </div>
                     <div class="flex-item">
                       <span class="status {{history.status.toLowerCase()}}">
-                        {{history.status}}
+                        <strong>Status:</strong> {{history.status}}
                       </span>
                     </div>
                   </div>
@@ -422,11 +422,11 @@
                 <mat-card class="list with-border" *ngFor="let history of deals.history" class="history-card">
                   <div class="flex-containers space-between">
                     <div class="flex-item">
-                      <h5>{{history.createdAt | date:'mediumDate'}}</h5>
+                      <h5>{{history.createdAt | date:'MMM dd, yyyy hh:mm a'}}</h5>
                     </div>
                     <div class="flex-item">
                       <span class="status {{history.status.toLowerCase()}}">
-                        {{history.status}}
+                        <strong>Status:</strong> {{history.status}}
                       </span>
                     </div>
                   </div>
