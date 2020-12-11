@@ -2,17 +2,19 @@
   <div class="container">
     <div class="flex-containers space-between page-heading-action">
       <div class="flex-item">
-        <h4 class="name">Contacts</h4>
+        <h4 class="name">
+          <mat-icon>chrome_reader_mode</mat-icon>
+          Contacts</h4>
       </div>
       <div class="flex-item">
         <div class="btn-main-right-wrapper">
-          <button mat-stroked-button class="secondary-btn" (click)="showImportContacts()">Import Contacts</button>
-          <button mat-stroked-button class="secondary-btn" (click)="showCreateContact()">Create Contact</button>
+          <button mat-stroked-button class="primary-btn-red" (click)="showImportContacts()">Import Contacts</button>
+          <button mat-stroked-button class="primary-btn-red" (click)="showCreateContact()">Create Contact</button>
         </div>
       </div>
     </div>
     <div class="contacts-wrapper personal-details">
-      <mat-card class="deals-card flex-containers flex-start wrap no-border no-padding" style="min-height: calc(100vh - 265px)">
+      <mat-card class="contacts-card flex-containers flex-start wrap" style="min-height: calc(100vh - 265px)">
         <ag-grid-angular
           #agGrid
           style="width: 100%; height: calc(100vh - 265px)"
@@ -31,6 +33,7 @@
           [pagination]="true"
           [paginationPageSize]="20"
           colResizeDefault='true'
+          [rowHeight]="50"
         >
         </ag-grid-angular>
     

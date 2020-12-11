@@ -22,10 +22,15 @@ export class ContactsComponent implements OnInit, OnDestroy {
     field: 'firstname',
     resizable: true,
     filter: true,
+    width: 300,
     pinned: 'left',
     floatingFilterComponentParams: { suppressFilterButton: true },
     cellRenderer: (params) => {
-      return `${params.data.salutation} ${params.value}`;
+      const intials = params.value ? params.value.substr(0, 1).toUpperCase() : '';
+      return `
+        <div class="initials">${intials}</div>
+        ${params.data.salutation} ${params.value}
+      `;
     }
    }, {
     headerName: 'Middlename',
