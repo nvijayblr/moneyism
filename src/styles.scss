@@ -247,8 +247,9 @@ button {
     border-bottom: 1px solid #eeeeee;
   }
  .sub-title {
-    font-size: 16px;
-    margin: 20px 0 6px 0;
+    font-size: 18px;
+    color: #b00000;
+    margin: 32px 0px 20px 0;
     font-weight: 400;
   }
   .user-wrapper {
@@ -280,7 +281,7 @@ button {
     padding: 0;
     &.img {
       height: 52px;
-      background-size: contain;
+      background-size: cover;
       width: 52px;
       text-align: center;
       margin: auto;
@@ -292,14 +293,12 @@ button {
     }
   }
   .list {
-    margin: 12px 0 12px 0;
+    padding: 12px 0 5px;
     &.bt-border {
-      border-bottom: 1px solid #f5f5f5;
-      padding-bottom: 20px;
+      border-bottom: 1px solid #eaeaea;
     }
     &.bt-border-dark {
       border-bottom: 1px solid #e5e5e5;
-      padding-bottom: 20px;
     }
     label.label {
       // font-size: 11px;
@@ -523,7 +522,7 @@ button {
     height: 36px;
     line-height: 36px;
     .mat-icon {
-      margin-right: 4px;
+      margin-right: 12px;
       font-size: 18px;
       height: auto;
       width: auto;

@@ -175,30 +175,27 @@
             </mat-expansion-panel-header>
             <div class="mat-expansion-panel-body-margin">
               <h4 class="sub-title">Spouse</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let spouse of personal.spouse">
-                  <label class="label">{{spouse.location}}</label>
-                  <h4>{{spouse.name}}</h4>
-                  <h4>{{spouse.phoneno}}, {{spouse.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let spouse of personal.spouse">
+                <h4 class="list-item-4 no-margin">{{spouse.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{spouse.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{spouse.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{spouse.email}}</h4>
               </div>
   
               <h4 class="sub-title">Friends</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let friend of personal.friends">
-                  <label class="label">{{friend.location}}</label>
-                  <h4>{{friend.name}}</h4>
-                  <h4>{{friend.phoneno}}, {{friend.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let friend of personal.friends">
+                <h4 class="list-item-4 no-margin">{{friend.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{friend.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{friend.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{friend.email}}</h4>
               </div>
   
               <h4 class="sub-title">Relatives</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let relative of personal.relatives">
-                  <label class="label">{{relative.location}}</label>
-                  <h4>{{relative.name}}</h4>
-                  <h4>{{relative.phoneno}}, {{relative.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let relative of personal.relatives">
+                <h4 class="list-item-4 no-margin">{{relative.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{relative.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{relative.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{relative.email}}</h4>
               </div>
             </div>
           </mat-expansion-panel>
@@ -216,48 +213,43 @@
             </mat-expansion-panel-header>
             <div class="mat-expansion-panel-body-margin">
               <h4 class="sub-title">Doctors</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let doctor of personal.doctors">
-                  <label class="label">{{doctor.location}}</label>
-                  <h4>{{doctor.name}}</h4>
-                  <h4>{{doctor.phoneno}}, {{doctor.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let doctor of personal.doctors">
+                <h4 class="list-item-4 no-margin">{{doctor.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{doctor.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{doctor.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{doctor.email}}</h4>
               </div>
-  
+
               <h4 class="sub-title">Accountants</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let accountant of personal.accountant">
-                  <label class="label">{{accountant.location}}</label>
-                  <h4>{{accountant.name}}</h4>
-                  <h4>{{accountant.phoneno}}, {{accountant.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let accountant of personal.accountant">
+                <h4 class="list-item-4 no-margin">{{accountant.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{accountant.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{accountant.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{accountant.email}}</h4>
               </div>
-  
+
               <h4 class="sub-title">Drivers</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let driver of personal.drivers">
-                  <label class="label">{{driver.location}}</label>
-                  <h4>{{driver.name}}</h4>
-                  <h4>{{driver.phoneno}}, {{driver.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let driver of personal.drivers">
+                <h4 class="list-item-4 no-margin">{{driver.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{driver.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{driver.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{driver.email}}</h4>
               </div>
   
               <h4 class="sub-title">Lawyers</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let lawyer of personal.lawyers">
-                  <label class="label">{{lawyer.location}}</label>
-                  <h4>{{lawyer.name}}</h4>
-                  <h4>{{lawyer.phoneno}}, {{lawyer.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let lawyer of personal.lawyers">
+                <h4 class="list-item-4 no-margin">{{lawyer.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{lawyer.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{lawyer.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{lawyer.email}}</h4>
               </div>
   
               <h4 class="sub-title">Servant</h4>
-              <div class="flex-containers flex-start wrap">
-                <div class="list-item-2 list bt-border" *ngFor="let servant of personal.servants">
-                  <label class="label">{{servant.location}}</label>
-                  <h4>{{servant.name}}</h4>
-                  <h4>{{servant.phoneno}}, {{servant.email}}</h4>
-                </div>
+              <div class="list bt-border flex-containers space-between" *ngFor="let servant of personal.servants">
+                <h4 class="list-item-4 no-margin">{{servant.name}}</h4>
+                <h4 class="list-item-4 no-margin">{{servant.location}}</h4>
+                <h4 class="list-item-4 no-margin">{{servant.phoneno}}</h4>
+                <h4 class="list-item-4 no-margin">{{servant.email}}</h4>
               </div>
             </div>
             

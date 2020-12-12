@@ -9,6 +9,7 @@ import { MessageService } from '../../services/message.service';
 import { AuthGuardService } from '../../services/auth-guard.service';
 import { HttpService } from '../../services/http-service.service';
 import { query } from '@angular/animations';
+import { appConfig } from '../../app.config';
 
 @Component({
   selector: 'app-header',
@@ -56,6 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoading = false;
   loaderMsg = 'Loading notifications...';
   userId = '';
+  appConfig: any = {};
 
   @HostListener('window:scroll')
   checkScroll() {
@@ -82,6 +84,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.appConfig = appConfig;
     // console.log(this.categoryName, this.authGuardService.getLoggedInUserDetails());
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
