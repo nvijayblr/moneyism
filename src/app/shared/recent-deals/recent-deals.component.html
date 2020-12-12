@@ -27,7 +27,7 @@
       <div class="deal-details">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ...</p>
         <div class="btns">
-          <button mat-stroked-button class="primary-btn-gray" [routerLink]="'/auth/search'" [queryParams]="{option: 'deals', q: deal.name, location: ''}">Request</button>
+          <button mat-stroked-button class="primary-btn-gray" [routerLink]="'/auth/search'" [queryParams]="{option: 'deals', q: deal.name, location: deal.location}">Request</button>
         </div>
       </div>
     </div>

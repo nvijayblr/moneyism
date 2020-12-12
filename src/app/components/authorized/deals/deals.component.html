@@ -1,5 +1,11 @@
 <section class="page-body profile-body home-body">
   <div class="container">
+    <div class="flex-containers space-between page-heading-action">
+      <p class="info-msg" *ngIf="!this.user.phonenoVerified && !this.user.emailVerified">
+        <mat-icon>info</mat-icon>
+        Please verify your phone number or email to create the delas.
+      </p>
+    </div>
     <div class="row deals-header">
       <div class="col-md-4 text-right">
         <img src="./../assets/images/deal-illustration.svg" class="deal-bg" />
@@ -18,9 +24,6 @@
       </div>
     </div>
 
-    <div class="flex-containers space-between page-heading-action">
-      <p class="info-msg" *ngIf="!this.user.phonenoVerified && !this.user.emailVerified">Please verify your phone number or email to create the delas.</p>
-    </div>
     <div class="deals-wrapper personal-details">
       <mat-tab-group (selectedTabChange)="tabChange($event)">  
         <mat-tab label="My Deals">
