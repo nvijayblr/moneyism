@@ -57,6 +57,9 @@
               <button class="nav-category-item" mat-menu-item routerLink="/auth/tasks">
                 <mat-icon matPrefix>alarm</mat-icon>Tasks
               </button>
+              <button class="nav-category-item" mat-menu-item routerLink="/auth/users" *ngIf="isAdmin">
+                <mat-icon matPrefix>supervisor_account</mat-icon>Users
+              </button>
               <button class="nav-category-item" mat-menu-item routerLink="/auth/personal/settings">
                 <mat-icon matPrefix>settings</mat-icon>Settings
               </button>

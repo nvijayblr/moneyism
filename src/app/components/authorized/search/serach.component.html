@@ -21,10 +21,12 @@
             </div>
           </div>
           <div class="list-item-1 no-margin">
-            <h4 class="d-title"><a routerLink="/auth/professional" [queryParams]="{id: profession.id}">
-              {{profession.fullname}}
-            </a></h4>
-            <p class="d-desc">{{profession.profession}}</p>
+            <div class="flex-containers space-between">
+              <h4 class="d-title"><a routerLink="/auth/professional" [queryParams]="{id: profession.id}">
+                {{profession.fullname}}
+              </a></h4>
+              <p class="d-desc">{{profession.profession}}</p>
+            </div>
             <div class="list no-all-margin flex-containers flex-start">
               <div class="list-item-4 no-margin">
                 <label class="d-label">Location</label>

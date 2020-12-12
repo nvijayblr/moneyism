@@ -58,6 +58,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loaderMsg = 'Loading notifications...';
   userId = '';
   appConfig: any = {};
+  isAdmin = false;
 
   @HostListener('window:scroll')
   checkScroll() {
@@ -87,6 +88,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.appConfig = appConfig;
     // console.log(this.categoryName, this.authGuardService.getLoggedInUserDetails());
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
+    this.isAdmin = this.authGuardService.isAdmin();
     this.user = this.authGuardService.getLoggedInUserDetails();
     this.router.events.subscribe(params => {
       // console.log(this.router.routerState.root);

@@ -167,12 +167,7 @@ export class SignupComponent implements OnInit {
     localStorage.setItem('moneyism_token', JSON.stringify(session));
     localStorage.setItem('isInitLoad', JSON.stringify({isInitLoad: true}));
     this.messageService.sendLoginMessage(session);
-    this.router.navigate([`/auth/home`]);
-    // if (this.data.option === 'create') {
-    //   this.router.navigate(['/ce-fundraiser'], {queryParams: {c: 't'}});
-    // } else {
-    //   this.router.navigate([`/personal/${result.UserId}`]);
-    // }
+    this.router.navigate([`auth/home`]);
   }
 
   signInWithGoogle(): void {

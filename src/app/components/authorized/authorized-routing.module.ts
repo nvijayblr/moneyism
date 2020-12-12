@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService as AuthGaurd } from 'src/app/services/auth-guard.service';
 import { AuthorizedComponent } from './authorized.component';
+
 
 const routes: Routes = [
   {
@@ -51,7 +53,12 @@ const routes: Routes = [
         path: 'notifications',
         loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule),
         // canActivate: [AuthGaurd]
-      }
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
+        // canActivate: [AuthGaurd]
+      },
     ]
   }
 ];

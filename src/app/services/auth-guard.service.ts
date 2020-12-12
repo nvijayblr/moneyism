@@ -1,3 +1,4 @@
+import { P } from '@angular/cdk/keycodes';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
@@ -32,8 +33,20 @@ export class AuthGuardService implements CanActivate {
     return this.session ? this.session : {};
   }
 
+  public isAdminUser() {
+    const user = this.session ? this.session : {};
+    if (user.role === 'admin') {
+      return true;
+    }
+    return false;
+  }
+
   get isUserLoggedIn() {
     return this.isAuthenticated;
+  }
+
+  get isAdmin() {
+    return this.isAdminUser;
   }
 
   canActivate(): boolean {

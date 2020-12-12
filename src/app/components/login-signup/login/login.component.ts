@@ -161,7 +161,6 @@ export class LoginComponent implements OnInit {
   }
 
   setLoginSessionAndRouting(result, isSocial?) {
-    console.log(result);
     const session = {
       ...result,
       isLoggedIn: true,

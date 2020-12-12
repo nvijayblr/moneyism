@@ -287,6 +287,43 @@ export class HttpService  {
     );
   }
 
+  // Get all the users - admin
+  getAllUsersList(): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.get<any>(`${this.rootUrl}admin/users`, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+      takeUntil(this.onCancelGetContactsList())
+    );
+  }
+
+  // delete user - admin
+  deleteUser(userId): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.delete<any>(`${this.rootUrl}admin/users/${userId}`, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+    // Import users - admin
+    importUsers(userId, formdata): Observable<any> {
+      const header: any = this.getAuthHeaders();
+      return this.http.post<any>(`${this.rootUrl}admin/user/${userId}/upload`, formdata, header).pipe(
+        tap((res) => {
+        }),
+        catchError(err => {
+          return throwError(err);
+        }),
+      );
+    }
+
 
   // Get user deals list
   getUserDealsList(userId): Observable<any> {
