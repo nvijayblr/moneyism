@@ -366,9 +366,20 @@ export class HttpService  {
     return this.cancelGetAssignedDealsList$.asObservable();
   }
 
-  createUpdateUserDeals(userId, deals): Observable<any> {
+  createUserDeals(userId, deals): Observable<any> {
     const header: any = this.getAuthHeaders();
     return this.http.post<any>(`${this.rootUrl}user/${userId}/created/deals`, deals, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  updateUserDeals(userId, deals): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.put<any>(`${this.rootUrl}user/${userId}/created/deals/${deals.id}`, deals, header).pipe(
       tap((res) => {
       }),
       catchError(err => {

@@ -137,12 +137,21 @@ export class DealsAddEditComponent implements OnInit {
     if (payload.due_date) {
       payload.due_date = moment(payload.due_date).format('YYYY-MM-DD');
     }
-    this.http.createUpdateUserDeals(this.userId, payload).subscribe((result: any) => {
-      this.isLoading = false;
-      this.dialogRef.close({isCancelled: false});
-    }, (error) => {
-      this.isLoading = false;
-    });
+    if (payload.id) {
+      this.http.updateUserDeals(this.userId, payload).subscribe((result: any) => {
+        this.isLoading = false;
+        this.dialogRef.close({isCancelled: false});
+      }, (error) => {
+        this.isLoading = false;
+      });
+    } else {
+      this.http.createUserDeals(this.userId, payload).subscribe((result: any) => {
+        this.isLoading = false;
+        this.dialogRef.close({isCancelled: false});
+      }, (error) => {
+        this.isLoading = false;
+      });
+    }
   }
 
   getUsernameTypeahead(username) {
