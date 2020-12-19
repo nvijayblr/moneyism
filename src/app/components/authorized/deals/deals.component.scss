@@ -30,11 +30,18 @@
     margin-top: 20px;
     .not-found-msg {
       margin: 30px 0;
+      font-size: 16px;
+    }
+    h5 {
+      font-size: 16px;
     }
     .abs-btn-wrapper {
       position: absolute;
       right: 20px;
       top: 30px;
+      button {
+        margin-left: 10px;
+      }
     }
   }
 }
@@ -134,7 +141,7 @@
   .deal-stats {
     padding: 18px;
     border: 1px solid #D1D1D1;
-    border-radius: 8px;
+    border-radius: 8px !important;
     margin-bottom: 16px;
     label.label {
       color: #262626;

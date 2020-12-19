@@ -522,6 +522,17 @@ export class HttpService  {
     );
   }
 
+  rejectDealsRequest(payload): Observable<any> {
+    const header: any = this.getAuthHeaders();
+    return this.http.post<any>(`${this.rootUrl}user/reject/deals`, payload, header).pipe(
+      tap((res) => {
+      }),
+      catchError(err => {
+        return throwError(err);
+      }),
+    );
+  }
+
   // Update the deal status
   updateDealsStatus(payload): Observable<any> {
     const header: any = this.getAuthHeaders();

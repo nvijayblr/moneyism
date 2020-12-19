@@ -1,4 +1,4 @@
-<header class="header masthead sticky" [ngClass]="{'white-bg' : isSticky, 'menu-hidden' : isHidden}">
+<header class="header masthead sticky" [ngClass]="{'white-bg' : isSticky, 'menu-hidden' : isHidden}" #header>
   <div class="header-top header-body">
     <div class="container">
       <div class="row">
@@ -73,7 +73,7 @@
     </div>
   </div>
 </header>
-<div class="search-wrapper" [ngClass]="{'sticky' : isSticky}" *ngIf="isShowSearch">
+<div class="search-wrapper" [ngClass]="{'sticky' : isSticky}" [hidden]="!isShowSearch" #serachWrapper>
   <div class="container">
       <form [formGroup]="searchForm">
         <div class="list flex-containers flex-start wrap search-container">

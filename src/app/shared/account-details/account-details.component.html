@@ -23,7 +23,7 @@
       <h4>{{user.fullname}}</h4>
 
       <h4>
-        {{user.email}} 
+        <span>{{user.email}} </span>
         <span class="verified" *ngIf="user.emailVerified"><mat-icon>done</mat-icon></span>
         <a class="verify-link" href="javascript: void()" *ngIf="!user.emailVerified" (click)="verifyEmail()">
           Verify
@@ -33,9 +33,9 @@
       <h4>
         {{user.phoneno}}
         <span class="verified" *ngIf="user.phonenoVerified"><mat-icon>done</mat-icon></span>
-        <button mat-button color="primary" *ngIf="!user.phonenoVerified" (click)="generateOtp()">
+        <a class="verify-link" href="javascript: void()" *ngIf="!user.phonenoVerified" (click)="generateOtp()">
           Verify
-        </button>
+        </a>
       </h4>
     </div>
     <div class="pro-complete">
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="otp-wrpper" *ngIf="showVerifyOTP">
-      <form [formGroup]="otpForm" class="custom-login-wrapper" style="margin-top: 24px; font-size: 12px;">
+      <form [formGroup]="otpForm" class="custom-login-wrapper outline" style="margin-top: 24px; font-size: 12px;">
         <mat-form-field  appearance="outline">
           <mat-label>One Time Password</mat-label>
           <input matInput placeholder="One Time Password" cdkFocusInitial formControlName="otpnum" autocomplete="off">

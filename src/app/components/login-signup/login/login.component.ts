@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.otpForm = this.fb.group({
-      phoneno: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneno: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       otpnum: ['']
     });
   }

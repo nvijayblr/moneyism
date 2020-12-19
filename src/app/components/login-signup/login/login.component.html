@@ -61,13 +61,17 @@
         </div>
 
         <!-- Login with OTP -->
-        <div class="otp-wrpper otp-login-wrapper page-body" [hidden]="!isOtpScreen">
+        <div class="otp-wrpper page-body" [hidden]="!isOtpScreen">
           <app-progress-bar [message]="loaderMsg" class="page component" *ngIf="isLoading"></app-progress-bar>
           <p>The OTP has been Sent to your phone. Please input the OTP before 5 minutes.</p>
           <form [formGroup]="otpForm" class="custom-login-wrapper" style="margin-top: 24px; font-size: 12px;">
+
             <mat-form-field  appearance="outline">
               <mat-icon matPrefix>phone</mat-icon>
-              <input matInput type="number" placeholder="Your 10 digit mobile number" cdkFocusInitial formControlName="phoneno" autocomplete="off">
+              <input matInput type="text" placeholder="Your 10 digit mobile number" cdkFocusInitial formControlName="phoneno" autocomplete="off">
+              <mat-error>
+                Please provide a valid Phone number.
+              </mat-error>
             </mat-form-field>
             
             <div class="login-btn-wrpper" style="margin-top: 24px;" *ngIf="!isOtpGenerated">

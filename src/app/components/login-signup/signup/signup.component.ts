@@ -51,12 +51,12 @@ export class SignupComponent implements OnInit {
       password: ['', Validators.required],
       confirm_password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneno: ['', Validators.required],
+      phoneno: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       fullname: ['', Validators.required],
     });
 
     this.otpForm = this.fb.group({
-      phoneno: ['', Validators.required],
+      phoneno: ['', [Validators.required]],
       otpnum: ['', Validators.required]
     });
   }

@@ -2,6 +2,7 @@
   <div class="container">
     <div class="profile-wrapper clearfix">
       <div class="left-panel large">
+        <app-account-details></app-account-details>
         <mat-card class="left-nav sticky">
           <mat-nav-list>
             <div mat-subheader>
@@ -82,7 +83,7 @@
                         <h4>{{professional.skilltype}}</h4>
                       </div>
                       <div class="flex-item list-item-3 no-margin">
-                        <label class="label">Skills - Self Ratting (out of 10)</label>
+                        <label class="label">Skills - Self Rating (out of 10)</label>
                         <h4>{{professional.rating}}</h4>
                       </div>
                     </div>
@@ -176,7 +177,7 @@
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="list achivements-wrp clearfix" *ngFor="let achivement of professional.achivements">
-                  <button mat-button class="share-btn" (click)="shareWithCommunity(achivement, 'achivements');">
+                  <button mat-button class="share-btn" (click)="shareWithCommunity(achivement, 'achivements');"  *ngIf="isCurrentUser">
                     <mat-icon>share</mat-icon>Share
                   </button>
                   <div class="image-wrp">

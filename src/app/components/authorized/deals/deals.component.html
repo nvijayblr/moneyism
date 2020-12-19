@@ -121,7 +121,7 @@
 
                     <div class="deal-btn-wrapper">
                       <!-- Status - NEW -->
-                      <span *ngIf="deals.status === 'New' && !deals.showReqestors">
+                      <span *ngIf="deals.status === 'New'">
                         <button mat-stroked-button class="primary-btn-gray white" *ngIf="!deals.showReqestors && deals.isRequested" (click)="showHideRequestors(deals, true)">
                           Show Requestors
                           <mat-icon class="suffix">keyboard_arrow_down</mat-icon>
@@ -145,6 +145,11 @@
                           routerLink="/auth/search" [queryParams]="{option: 'profession', q: '', location: '', dealId: ''}">
                           Assign
                         </button>
+                      </span>
+                      
+                      <!-- Status - Assigned, Accepted, Inprogress -->
+                      <span *ngIf="(deals.status === 'Assigned' || deals.status === 'Accepted' || deals.status === 'Inprogress') && !deals.showComment">
+                        <button mat-stroked-button class="primary-btn-gray" (click)="showHideStatusComment(deals, true, 'New')">Cancel / Re assign</button>
                       </span>
 
                       <!-- Status - Rejected -->
@@ -195,15 +200,16 @@
 
                   <!-- Request Accept with comment -->
                   <div class="list no-margin req-wrapper" *ngIf="deals.requestors && deals.showReqestors">
-                    <mat-card class="list-item-1 list with-border" *ngFor="let reqestors of deals.requestors">
+                    <mat-card class="list deal-stats no-border" *ngFor="let reqestors of deals.requestors">
                       <h5><a routerLink="/auth/professional" [queryParams]="{id: reqestors.user_id}">{{reqestors.username}}</a> | {{reqestors.phoneno}} | {{reqestors.email}}</h5>
                       <h5>{{reqestors.req_description}}</h5>
 
                       <div class="abs-btn-wrapper">
-                        <button mat-stroked-button class="primary-btn-gray small" (click)="showHideStatusComment(reqestors, true)" *ngIf="!reqestors.showComment">Accept Request</button>
+                        <!-- <button mat-stroked-button class="primary-btn-gray white small" (click)="showHideStatusComment(reqestors, true)" *ngIf="!reqestors.showComment">Reject</button> -->
+                        <button mat-stroked-button class="primary-btn-gray small" (click)="showHideStatusComment(reqestors, true)" *ngIf="!reqestors.showComment">Accept</button>
                       </div>
                       <div class="list comment" *ngIf="reqestors.showComment">
-                        <form class="deal-requst-form">
+                        <form class="deal-requst-form outline">
                           <mat-form-field appearance="outline">
                             <mat-label>Leave a comment</mat-label>
                             <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="reqestors.comment" name="comment"></textarea>

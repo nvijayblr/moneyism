@@ -143,6 +143,18 @@
       </mat-card>
     </div>
     
+    <!-- Pagination -->
+    <div class="pagination-wrapper" [hidden]="isLoading">
+      <mat-paginator 
+        *ngIf="!isLoading && total"
+        [length]="total"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        [showFirstLastButtons]="true"
+        (page)="pageEvent = onPaginationChange($event)">
+      </mat-paginator>
+    </div>
+    
 
   </div>
 </section>

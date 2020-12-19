@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../../services/http-service.service';
 import { MatPaginatorIntl } from '@angular/material';
@@ -18,13 +18,22 @@ export class SerachComponent implements OnInit {
   user: any = {};
   search: any = {};
   professionsList = [];
+  professionsListFull = [];
   dealsList = [];
+  dealsListFull = [];
   userId: any = '';
   isUserLoggedIn = false;
   isEditMode = false;
   appConfig: any = {};
   openDeals = [];
   loaderMsg = 'Loading search results...';
+  isDealsView = false;
+
+  pageEvent: any = {};
+  total = 0;
+  page = 0;
+  pageSize = 5;
+  private _eref: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,9 +63,15 @@ export class SerachComponent implements OnInit {
   initDealsSearch(search) {
     this.isLoading = true;
     this.professionsList = [];
+    this.professionsListFull = [];
     this.http.getDealsSearch(search).subscribe((result: any) => {
       this.isLoading = false;
-      this.dealsList = result ? result : [];
+      const dealsList = [...result ? result : []];
+      this.page = 0;
+      this.dealsList = dealsList.splice(0, this.pageSize)
+      this.dealsListFull = result ? result : [];
+      this.total = this.dealsListFull.length;
+      this.isDealsView = true;
     }, (error) => {
       this.isLoading = false;
     });
@@ -65,9 +80,15 @@ export class SerachComponent implements OnInit {
   initProfessionalsSearch(search) {
     this.isLoading = true;
     this.dealsList = [];
+    this.dealsListFull = [];
     this.http.getProfessionsSearch(search).subscribe((result: any) => {
       this.isLoading = false;
-      this.professionsList = result ? result : [];
+      const professionsList = [...result ? result : []];
+      this.page = 0;
+      this.professionsList = professionsList.splice(0, this.pageSize)
+      this.professionsListFull = result ? result : [];
+      this.total = this.professionsListFull.length;
+      this.isDealsView = false;
     }, (error) => {
       this.isLoading = false;
     });
@@ -126,6 +147,17 @@ export class SerachComponent implements OnInit {
     }, (error) => {
       this.isLoading = false;
     });
+  }
+
+  onPaginationChange(event) {
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    if (this.isDealsView) {
+      this.dealsList = this.dealsListFull.slice(this.page * this.pageSize, (this.page * this.pageSize) + this.pageSize);
+    } else {
+      this.professionsList = this.professionsListFull.slice(this.page * this.pageSize, (this.page * this.pageSize) + this.pageSize);
+    }
+    window.scrollTo(0, 0);
   }
 
 }

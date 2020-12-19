@@ -151,6 +151,13 @@ button {
   }
 }
 
+.ellipses {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: calc(100% - 30px);
+  display: inline-block;
+}
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
   color: #b00000;
@@ -830,9 +837,17 @@ owl-date-time-container {
     .img {
       width: 100%;
       height: 100%;
-      background-size: cover;
+      background-size: contain;
       background-repeat: no-repeat;
       background-position: center center;
+    }
+    &.documents {
+      height: auto;
+      padding: 20px 0;
+      text-align: center;
+      .mat-icon {
+        font-size: 70px;
+      }
     }
   }
   .user-profile-name {
@@ -995,9 +1010,10 @@ owl-date-time-container {
 }
 .left-nav {
   &.sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 120px;
+    // position: -webkit-sticky;
+    // position: sticky;
+    // top: 120px;
+    margin-top: 24px;
   }
   .mat-list-base .mat-subheader {
     padding: 0;
@@ -1089,8 +1105,20 @@ owl-date-time-container {
   }
 }
 .list.add-remove-button {
-  margin-top: 35px;
+  margin-top: 25px;
   .del-icon:enabled {
     color: #C9422E;
   }
+}
+
+mat-paginator.mat-paginator {
+  background: transparent;
+  font-size: 17px;
+  .mat-form-field {
+    width: 50px !important;
+  }
+}
+.mat-paginator-page-size .mat-select-trigger {
+  font-size: 16px;
+  text-align: center;
 }

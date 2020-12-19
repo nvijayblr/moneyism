@@ -11,9 +11,14 @@
     padding: 17px 25px;
     .deal-title {
       h4 {
-        font-size: 20px;
-        color: #404040;
+        font-size: 18px;
+        color: #b00000;
         font-weight: 500;
+        margin-bottom: 3px;
+        cursor: pointer;
+        &:focus {
+          outline: none;
+        }
       }
       p {
         font-size: 14px;

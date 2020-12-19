@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,6 +19,9 @@ import { appConfig } from '../../app.config';
 })
 
 export class HeaderComponent implements OnInit, OnDestroy {
+  @ViewChild('serachWrapper', {static: true}) serachWrapper: ElementRef;
+  @ViewChild('header', {static: true}) header: ElementRef;
+
   searchForm: FormGroup;
 
   isSticky = false;
@@ -72,6 +75,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.prevOffset = curOffset;
   }
 
+
+  @HostListener('document:click', ['$event'])
+  documentClick(e) {
+    if (this.header.nativeElement.contains(e.target)) {
+      return;
+    }
+    if (!this.serachWrapper.nativeElement.contains(e.target)) {
+      this.isShowSearch = false;
+    }
+  }
+  
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,

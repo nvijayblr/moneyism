@@ -25,16 +25,36 @@
                   <div class="user-info">
                     <p class="name">
                       <a routerLink="/auth/professional" [queryParams]="{id: post.user_id}">{{post.fullname}}</a> 
-                      <label class="label date"> <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label>
+                      <label class="label date">{{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label>
                     </p>
                     <label class="label">{{post.designation}}, {{post.company}}, {{post.location}}</label>
                   </div>
     
                   <h4 class="comm-title">{{post.records[0].name}}</h4>
                   <p class="comm-desc">{{post.records[0].description}}</p>
-                  <div class="img-wrapper">
+                  <!-- {{post.records[0].path}}
+                  <h4 *ngIf="deals.path && (deals.path | fileformat) === 'docs'" class="icon-image">
+                    <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
+                      <mat-icon>picture_as_pdf</mat-icon>
+                    </a>
+                  </h4>
+                  <div *ngIf="deals.path && (deals.path | fileformat) === 'images'" class="img-preview">
+                    <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
+                      <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + deals.path + ')'}"></div>
+                    </a>
+                  </div> -->
+
+
+                  <div class="img-wrapper documents" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'docs'">
+                    <a href="{{appConfig.imgBaseUrl}}{{post.records[0].path}}" class="pdf" target="_blank">
+                      <mat-icon>picture_as_pdf</mat-icon>
+                    </a>
+                  </div>
+                  
+                  <div class="img-wrapper" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'images'">
                     <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
                   </div>
+                  
                   <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
                     <div class="likes-icon flex-item">
                       <mat-icon>thumb_up</mat-icon>

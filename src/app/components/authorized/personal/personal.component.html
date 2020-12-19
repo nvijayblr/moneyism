@@ -2,6 +2,7 @@
   <div class="container">
     <div class="profile-wrapper clearfix">
       <div class="left-panel large">
+        <app-account-details></app-account-details>
         <mat-card class="left-nav sticky">
           <mat-nav-list>
             <div mat-subheader>
@@ -25,17 +26,17 @@
             
             <mat-list-item (click)="navigateToSection(Relations)">
               <mat-icon mat-list-icon>face</mat-icon>
-              <div mat-line>Relations</div>
+              <div mat-line>My Relations</div>
             </mat-list-item>
             
             <mat-list-item (click)="navigateToSection(Service)">
               <mat-icon mat-list-icon>face</mat-icon>
-              <div mat-line>Service Providers</div>
+              <div mat-line>My Service Providers</div>
             </mat-list-item>
             
             <mat-list-item (click)="navigateToSection(Repository)">
               <mat-icon mat-list-icon>face</mat-icon>
-              <div mat-line>Repository</div>
+              <div mat-line>My Repository</div>
             </mat-list-item>
           </mat-nav-list>
         </mat-card>
@@ -84,7 +85,7 @@
                   <h4>{{personal.fathername}}</h4>
                 </div>
                 <div class="list-item-3 no-margin">
-                  <label class="label">Monther Name</label>
+                  <label class="label">Mother Name</label>
                   <h4>{{personal.mothername}}</h4>
                 </div>
                 <div class="list-item-3 no-margin">
@@ -92,7 +93,7 @@
                   <h4>{{personal.birthcity}}</h4>
                 </div>
                 <div class="list-item-3 no-margin">
-                  <label class="label">Living City</label>
+                  <label class="label">Current City</label>
                   <h4>{{personal.leavingcity}}</h4>
                 </div>
               </div>
@@ -165,7 +166,7 @@
           <mat-expansion-panel expanded hideToggle disabled>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <span #Relations>Relations</span>
+                <span #Relations>My Relations</span>
               </mat-panel-title>
               <mat-panel-description>
                 <button mat-icon-button routerLink="/auth/personal/update">
@@ -203,7 +204,7 @@
           <mat-expansion-panel expanded hideToggle disabled>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <span #Service>Service Providers</span>
+                <span #Service>My Service Providers</span>
               </mat-panel-title>
               <mat-panel-description>
                 <button mat-icon-button routerLink="/auth/personal/update">
@@ -259,7 +260,7 @@
           <mat-expansion-panel class="repository-wrp" expanded hideToggle disabled>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <span #Repository>Repository</span>
+                <span #Repository>My Repository</span>
               </mat-panel-title>
               <mat-panel-description>
                 <button mat-icon-button routerLink="/auth/personal/update">
