@@ -27,7 +27,7 @@
             </a>
           </div>
           <h4>{{item.name}}</h4>
-          <p class="desc" *ngIf="item.description" title="{{item.description}}">{{item.description}}</p>
+          <p class="desc word-wrap" *ngIf="item.description" title="{{item.description}}">{{item.description}}</p>
           <!-- Sharing menu -->
           <mat-menu #shareMenu="matMenu" class="share-menu-wrapper">
             <button mat-menu-item (click)="shareWithCommunity(item)">Share with Community</button>
@@ -59,7 +59,7 @@
         </a>
       </div>
       <h4>{{item.name}}</h4>
-      <p class="desc" *ngIf="item.description" title="{{item.description}}">{{item.description}}</p>
+      <p class="desc word-wrap" *ngIf="item.description" title="{{item.description}}">{{item.description}}</p>
 
       <!-- Sharing menu -->
       <mat-menu #shareMenu="matMenu" class="share-menu-wrapper">

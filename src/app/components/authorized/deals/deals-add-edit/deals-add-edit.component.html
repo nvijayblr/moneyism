@@ -28,13 +28,13 @@
             <div class="list-item-2 outline">
               <mat-form-field appearance="outline">
                 <mat-label>Location</mat-label>
-                <input matInput placeholder="Location" formControlName="location" maxlength="100" autocomplete="off"/>
+                <input matInput placeholder="Location" formControlName="location" maxlength="30" autocomplete="off"/>
               </mat-form-field>
             </div>
             <div class="list-item-2 outline">
               <mat-form-field appearance="outline">
                 <mat-label>Amount (₹)</mat-label>
-                <input matInput type="number" placeholder="Amount" formControlName="amount" maxlength="10" autocomplete="off"/>
+                <input matInput (keypress)="inputValidation.numericOnly($event)" placeholder="Amount" formControlName="amount" maxlength="10" autocomplete="off"/>
               </mat-form-field>
             </div>
           </div>

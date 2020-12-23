@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@ang
 import { Observable, of } from 'rxjs';
 import { map, startWith, debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { HttpService } from '../../../../services/http-service.service';
+import { InputValidation } from '../../../../services/InputValidation';
 import { AuthGuardService } from '../../../../services/auth-guard.service';
 import { MessageService } from '../../../../services/message.service';
 import { Router } from '@angular/router';
@@ -66,6 +67,7 @@ export class DealsAddEditComponent implements OnInit {
     private authGuardService: AuthGuardService,
     private messageService: MessageService,
     private router: Router,
+    public inputValidation: InputValidation,
     public dialogRef: MatDialogRef<DealsAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -169,4 +171,5 @@ export class DealsAddEditComponent implements OnInit {
   onCloseClick() {
     this.dialogRef.close({isCancelled: true, isStatusOnly: this.isStatusOnly});
   }
+
 }

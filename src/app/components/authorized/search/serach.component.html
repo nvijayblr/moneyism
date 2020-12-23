@@ -35,7 +35,7 @@
             <div class="list no-all-margin flex-containers flex-start">
               <div class="list-item-4 no-margin">
                 <label class="d-label">Location</label>
-                <h4>{{profession.location ? profession.location : '-'}}</h4>
+                <h4 class="word-wrap">{{profession.location ? profession.location : '-'}}</h4>
               </div>
               <div class="list-item-4 no-margin">
                 <label class="d-label">Phone no</label>
@@ -96,8 +96,8 @@
           <div class="list-item-1 no-margin">
             <div class="flex-containers space-between">
               <div class="flex-item">
-                <h4 class="d-title">{{deals.name}}</h4>
-                <p class="d-desc">{{deals.description}}</p>
+                <h4 class="d-title word-wrap">{{deals.name}}</h4>
+                <p class="d-desc word-wrap">{{deals.description}}</p>
               </div>
               <div class="flex-item serach-btn-wrapper">
                 <button mat-stroked-button class="primary-btn-gray" (click)="showRequestComment(deals, true)" *ngIf="!deals.showComment">Request Deal</button>
@@ -106,7 +106,7 @@
             <div class="list no-all-margin flex-containers flex-start deal-stats">
               <div class="list-item-4 no-margin">
                 <label class="label">Location</label>
-                <h4>{{deals.location}}</h4>
+                <h4 class="word-wrap">{{deals.location}}</h4>
               </div>
               <div class="list-item-4 no-margin">
                 <label class="label">Due On</label>

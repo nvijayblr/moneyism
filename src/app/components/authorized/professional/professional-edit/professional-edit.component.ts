@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@ang
 import { Router } from '@angular/router';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { HttpService } from '../../../../services/http-service.service';
+import { InputValidation } from '../../../../services/InputValidation';
 import { AuthGuardService } from '../../../../services/auth-guard.service';
 import * as _ from 'lodash';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -54,6 +55,7 @@ export class ProfessionalEditComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private http: HttpService,
+    public inputValidation: InputValidation,
     private authGuardService: AuthGuardService,
     private router: Router,
   ) {

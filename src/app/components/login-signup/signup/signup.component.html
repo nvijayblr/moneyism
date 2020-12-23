@@ -56,7 +56,7 @@
 
               <mat-form-field class="full-width" appearance="outline">
                 <mat-icon matPrefix>phone</mat-icon>
-                <input matInput placeholder="Phone number" formControlName="phoneno">
+                <input matInput (keypress)="inputValidation.numericOnly($event)" placeholder="Phone number" formControlName="phoneno">
                 <mat-error>
                   Please provide a valid Phone number.
                 </mat-error>

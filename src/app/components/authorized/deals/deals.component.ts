@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpService } from '../../../services/http-service.service';
+import { InputValidation } from '../../../services/InputValidation';
 import { AuthGuardService } from '../../../services/auth-guard.service';
 import { MessageService } from '../../../services/message.service';
 import { appConfig } from '../../../app.config';
@@ -25,11 +26,13 @@ export class DealsComponent implements OnInit, OnDestroy {
   isEditMode = false;
   appConfig: any = {};
   dealStatus = '';
+  accountLoading = false;
 
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private http: HttpService,
+    public inputValidation: InputValidation,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private authGuardService: AuthGuardService,
@@ -41,6 +44,7 @@ export class DealsComponent implements OnInit, OnDestroy {
     this.isUserLoggedIn = this.authGuardService.isUserLoggedIn();
     this.user = this.authGuardService.getLoggedInUserDetails();
     this.userId = this.user.user_id;
+    this.getUsersAccountDetails();
     this.getUserDeals();
     // this.activatedRoute.params.subscribe(routeParams => {
     //   // this.userId = this.route.snapshot.params.userId;
@@ -54,6 +58,16 @@ export class DealsComponent implements OnInit, OnDestroy {
     //   }
     // });
 
+  }
+
+  getUsersAccountDetails() {
+    this.accountLoading = true;
+    this.http.getAccountDetails(this.userId).subscribe((result: any) => {
+      this.user = result;
+      this.accountLoading = false;
+    }, (error) => {
+      this.accountLoading = false;
+    });
   }
 
   getUserDeals() {

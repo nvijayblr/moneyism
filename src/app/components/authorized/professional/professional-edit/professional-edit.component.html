@@ -57,13 +57,13 @@
                   <div class="list-item-8 outline">
                     <mat-label>Experience (Years)</mat-label>
                     <mat-form-field appearance="outline">
-                      <input matInput type="number" placeholder="Experience" formControlName="exp" maxlength="2" autocomplete="off"/>
+                      <input matInput (keypress)="inputValidation.numericOnly($event)" maxlength="2" placeholder="Experience" formControlName="exp" maxlength="2" autocomplete="off"/>
                     </mat-form-field>
                   </div>
                   <div class="list-item-8 outline">
                     <mat-label>Self Rating</mat-label>
                     <mat-form-field appearance="outline">
-                      <input matInput type="number" placeholder="Rating" formControlName="rating" maxlength="2" autocomplete="off"/>
+                      <input matInput (keypress)="inputValidation.numericOnly($event)" maxlength="2" placeholder="Rating" formControlName="rating" maxlength="2" autocomplete="off"/>
                     </mat-form-field>
                   </div>
                   <div class="list-item-4 outline">
@@ -205,7 +205,7 @@
                 <div class="list-item-3 outline">
                   <mat-label>Zipcode</mat-label>
                   <mat-form-field appearance="outline">
-                    <input matInput type="number" placeholder="Zipcode" formControlName="zipcode" maxlength="6" autocomplete="off"/>
+                    <input matInput (keypress)="inputValidation.numericOnly($event)" placeholder="Zipcode" formControlName="zipcode" maxlength="6" autocomplete="off"/>
                   </mat-form-field>
                 </div>
               </div>

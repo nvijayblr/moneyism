@@ -27,11 +27,11 @@
                       <a routerLink="/auth/professional" [queryParams]="{id: post.user_id}">{{post.fullname}}</a> 
                       <label class="label date">{{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}</label>
                     </p>
-                    <label class="label">{{post.designation}}, {{post.company}}, {{post.location}}</label>
+                    <label class="label" *ngIf="post.designation">{{post.designation}}, {{post.company}}, {{post.location}}</label>
                   </div>
     
                   <h4 class="comm-title">{{post.records[0].name}}</h4>
-                  <p class="comm-desc">{{post.records[0].description}}</p>
+                  <p class="comm-desc word-wrap">{{post.records[0].description}}</p>
                   <!-- {{post.records[0].path}}
                   <h4 *ngIf="deals.path && (deals.path | fileformat) === 'docs'" class="icon-image">
                     <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
@@ -81,6 +81,7 @@
                       <div class="list-item-3 outline" *ngIf="!isShareLoading">
                         <app-image-cropper 
                           [imageType]="'Community'"
+                          [fileTypes]="'application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*'"
                           [imagePath]="''"
                           (uploadCompleted)="onUploadCompleted($event, sharePostForm)">
                         </app-image-cropper>
@@ -113,18 +114,26 @@
                     <p class="name">
                       <a routerLink="/auth/professional" [queryParams]="{id: post.user_id}">{{post.fullname}}</a> 
                       <label class="label date"> 
-                        <span class="dot">‧</span> {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}
+                        {{post.createdOn | date:'MMM dd, yyyy hh:mm a'}}
                         <button mat-button class="primary-btn-gray remove-btn" (click)="removePost(post, i)">Remove</button>
                       </label>
                     </p>
-                    <label class="label">{{post.designation}}, {{post.company}}, {{post.location}}</label>
+                    <label class="label" *ngIf="post.designation">{{post.designation}}, {{post.company}}, {{post.location}}</label>
                   </div>
     
                   <h4 class="comm-title">{{post.records[0].name}}</h4>
-                  <p class="comm-desc">{{post.records[0].description}}</p>
-                  <div class="img-wrapper">
+                  <p class="comm-desc word-wrap">{{post.records[0].description}}</p>
+
+                  <div class="img-wrapper documents" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'docs'">
+                    <a href="{{appConfig.imgBaseUrl}}{{post.records[0].path}}" class="pdf" target="_blank">
+                      <mat-icon>picture_as_pdf</mat-icon>
+                    </a>
+                  </div>
+                  
+                  <div class="img-wrapper" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'images'">
                     <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
                   </div>
+
                   <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
                     <div class="likes-icon flex-item">
                       <mat-icon>thumb_up</mat-icon>

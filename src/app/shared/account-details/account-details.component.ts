@@ -68,6 +68,11 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     this.http.getAccountDetails(this.userId).subscribe((result: any) => {
       this.isLoading = false;
       this.user = result;
+      const session = {
+        ...result,
+        isLoggedIn: true,
+      };
+      localStorage.setItem('moneyism_token', JSON.stringify(session));
     }, (error) => {
       this.isLoading = false;
     });

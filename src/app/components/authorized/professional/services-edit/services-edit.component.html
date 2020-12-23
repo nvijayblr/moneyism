@@ -49,7 +49,7 @@
                   <div class="list-item-4 outline">
                     <mat-label>Amount</mat-label>
                     <mat-form-field appearance="outline">
-                      <input matInput type="number" placeholder="Amount" formControlName="amount" maxlength="10" autocomplete="off"/>
+                      <input matInput (keypress)="inputValidation.numericOnly($event)" placeholder="Amount" formControlName="amount" maxlength="10" autocomplete="off"/>
                     </mat-form-field>
                   </div>
                   <div class="list-item-1 outline">

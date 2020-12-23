@@ -51,7 +51,7 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.http.getAccountDetails(this.userId).subscribe((result: any) => {
       this.isLoading = false;
-      this.initPersonalDetails(this.user);
+      this.initPersonalDetails(result);
     }, (error) => {
       this.isLoading = false;
     });

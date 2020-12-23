@@ -6,6 +6,7 @@ import { SocialAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
 import { HttpService } from '../../../services/http-service.service';
+import { InputValidation } from '../../../services/InputValidation';
 import { MessageService } from '../../../services/message.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private socialAuthService: SocialAuthService,
     private http: HttpService,
+    public inputValidation: InputValidation,
     private router: Router,
     private messageService: MessageService
   ) { }

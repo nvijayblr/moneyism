@@ -68,7 +68,7 @@
 
             <mat-form-field  appearance="outline">
               <mat-icon matPrefix>phone</mat-icon>
-              <input matInput type="text" placeholder="Your 10 digit mobile number" cdkFocusInitial formControlName="phoneno" autocomplete="off">
+              <input matInput (keypress)="inputValidation.numericOnly($event)" maxlength="10" placeholder="Your 10 digit mobile number" cdkFocusInitial formControlName="phoneno" autocomplete="off">
               <mat-error>
                 Please provide a valid Phone number.
               </mat-error>
@@ -86,7 +86,7 @@
             
             <mat-form-field  appearance="outline" *ngIf="isOtpGenerated">
               <mat-icon matPrefix>dialpad</mat-icon>
-              <input matInput type="number" placeholder="One Time Password" formControlName="otpnum" autocomplete="off" [disabled]="!isOtpGenerated">
+              <input matInput (keypress)="inputValidation.numericOnly($event)" maxlength="6" placeholder="One Time Password" formControlName="otpnum" autocomplete="off" [disabled]="!isOtpGenerated">
             </mat-form-field>
 
             <div class="login-btn-wrpper" *ngIf="isOtpGenerated" style="margin-top: 24px;">
