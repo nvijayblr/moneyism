@@ -73,6 +73,9 @@ export class LoginComponent implements OnInit {
   }
 
   showHideOTPScreen(option) {
+    this.errorMessage = '';
+    this.isOtpGenerated = false;
+    this.otpForm.reset();
     this.isOtpScreen = option;
   }
 

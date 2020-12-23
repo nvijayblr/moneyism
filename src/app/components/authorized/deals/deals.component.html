@@ -1,7 +1,7 @@
 <section class="page-body profile-body home-body">
   <div class="container">
     <div class="flex-containers space-between page-heading-action">
-      <p class="info-msg" *ngIf="!this.user.phonenoVerified && !this.user.emailVerified">
+      <p class="info-msg" *ngIf="!user.phonenoVerified && !user.emailVerified">
         <mat-icon>info</mat-icon>
         Please verify your phone number or email to create the delas.
       </p>
@@ -19,7 +19,7 @@
       <div class="col-md-2 text-right">
         <button mat-stroked-button class="primary-btn-red" 
           (click)="showCreateEditDeals()" 
-          [disabled]="(!this.user.phonenoVerified && !this.user.emailVerified) || accountLoading">Create Deal
+          [disabled]="(!user.phonenoVerified && !user.emailVerified) || accountLoading">Create Deal
         </button>
       </div>
     </div>

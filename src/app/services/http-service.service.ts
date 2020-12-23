@@ -254,7 +254,7 @@ export class HttpService  {
   // Save user contact
   saveContacts(userId, contact): Observable<any> {
     const header: any = this.getAuthHeaders();
-    return this.http.post<any>(`${this.rootUrl}user/${userId}/contacts`, contact, header).pipe(
+    return this.http.put<any>(`${this.rootUrl}user/${userId}/contacts`, contact, header).pipe(
       tap((res) => {
       }),
       catchError(err => {

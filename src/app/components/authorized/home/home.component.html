@@ -30,9 +30,9 @@
                     <label class="label" *ngIf="post.designation">{{post.designation}}, {{post.company}}, {{post.location}}</label>
                   </div>
     
-                  <h4 class="comm-title">{{post.records[0].name}}</h4>
-                  <p class="comm-desc word-wrap">{{post.records[0].description}}</p>
-                  <!-- {{post.records[0].path}}
+                  <h4 class="comm-title">{{post.records[0]?.name}}</h4>
+                  <p class="comm-desc word-wrap">{{post.records[0]?.description}}</p>
+                  <!-- {{post.records[0]?.path}}
                   <h4 *ngIf="deals.path && (deals.path | fileformat) === 'docs'" class="icon-image">
                     <a href="{{appConfig.imgBaseUrl}}{{deals.path}}" target="_blank">
                       <mat-icon>picture_as_pdf</mat-icon>
@@ -45,14 +45,14 @@
                   </div> -->
 
 
-                  <div class="img-wrapper documents" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'docs'">
-                    <a href="{{appConfig.imgBaseUrl}}{{post.records[0].path}}" class="pdf" target="_blank">
+                  <div class="img-wrapper documents" *ngIf="post.records && post.records.length && post.records[0]?.path && (post.records[0]?.path | fileformat) === 'docs'">
+                    <a href="{{appConfig.imgBaseUrl}}{{post.records[0]?.path}}" class="pdf" target="_blank">
                       <mat-icon>picture_as_pdf</mat-icon>
                     </a>
                   </div>
                   
-                  <div class="img-wrapper" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'images'">
-                    <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
+                  <div class="img-wrapper" *ngIf="post.records && post.records.length && post.records[0]?.path && (post.records[0]?.path | fileformat) === 'images'">
+                    <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0]?.path + ')'}"></div>
                   </div>
                   
                   <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">
@@ -121,17 +121,17 @@
                     <label class="label" *ngIf="post.designation">{{post.designation}}, {{post.company}}, {{post.location}}</label>
                   </div>
     
-                  <h4 class="comm-title">{{post.records[0].name}}</h4>
-                  <p class="comm-desc word-wrap">{{post.records[0].description}}</p>
+                  <h4 class="comm-title">{{post.records[0]?.name}}</h4>
+                  <p class="comm-desc word-wrap">{{post.records[0]?.description}}</p>
 
-                  <div class="img-wrapper documents" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'docs'">
-                    <a href="{{appConfig.imgBaseUrl}}{{post.records[0].path}}" class="pdf" target="_blank">
+                  <div class="img-wrapper documents" *ngIf="post.records && post.records.length && post.records[0]?.path && (post.records[0]?.path | fileformat) === 'docs'">
+                    <a href="{{appConfig.imgBaseUrl}}{{post.records[0]?.path}}" class="pdf" target="_blank">
                       <mat-icon>picture_as_pdf</mat-icon>
                     </a>
                   </div>
                   
-                  <div class="img-wrapper" *ngIf="post.records && post.records.length && post.records[0].path && (post.records[0].path | fileformat) === 'images'">
-                    <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0].path + ')'}"></div>
+                  <div class="img-wrapper" *ngIf="post.records && post.records.length && post.records[0]?.path && (post.records[0]?.path | fileformat) === 'images'">
+                    <div class="img" [ngStyle]="{'background-image': 'url(' + appConfig.imgBaseUrl + post.records[0]?.path + ')'}"></div>
                   </div>
 
                   <div class="likes-wrapper flex-containers wrap v-center" [class.liked]="post.isLiked" (click)="likeUnlikePost(post, !post.isLiked)">

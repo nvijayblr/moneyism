@@ -63,7 +63,7 @@
         <!-- Login with OTP -->
         <div class="otp-wrpper page-body" [hidden]="!isOtpScreen">
           <app-progress-bar [message]="loaderMsg" class="page component" *ngIf="isLoading"></app-progress-bar>
-          <p>The OTP has been Sent to your phone. Please input the OTP before 5 minutes.</p>
+          <p *ngIf="isOtpGenerated">The OTP has been Sent to your phone. Please input the OTP before 5 minutes.</p>
           <form [formGroup]="otpForm" class="custom-login-wrapper" style="margin-top: 24px; font-size: 12px;">
 
             <mat-form-field  appearance="outline">
